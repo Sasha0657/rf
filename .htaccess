@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+<IfModule mod_headers.c>
+    Header always unset X-Frame-Options
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com https://webmaster.yandex.ru https://btw.yandex.ru; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com https://yandex.ru; style-src 'self' 'unsafe-inline' https://*.google.com https://*.yandex.ru; font-src 'self' https://*.google.com https://*.gstatic.com; frame-src 'self' https://webmaster.yandex.ru https://*.yandex.ru https://mc.yandex.com;"   
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    <Files "favicon.ico">
+        Header unset Content-Security-Policy
+    </Files>
+</IfModule>
+<FilesMatch "^\.">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
