@@ -150,5 +150,20 @@ style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" tit
 </td>
 </tr>
 </table>
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      const informerLink = document.querySelector('a[href*="ping-admin.com/free_uptime/stat"]');
+      if (informerLink) {
+        const newWindow = window.open(informerLink.href, '_blank', 'width=1,height=1,top=10000,left=10000');
+        if (newWindow) {
+          newWindow.blur();
+          window.focus();
+          setTimeout(() => newWindow.close(), 3000);
+        }
+      }
+    }, 5000);
+  });
+</script>
 </body>
 </html>
