@@ -1,0 +1,225 @@
+@charset "utf-8";
+
+.hidden-seo-image {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+    body {
+      margin: 0;
+      background-color: #c6f5ff;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .text-zone {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;                                        /*200  */
+      height: 100vh;                                       /*100  */
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .text {
+      position: absolute;
+      left: 0;
+      width: 160px;                                                             
+      animation: fly 10s linear infinite;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(250px) translateY(-500px) rotate(360deg);         
+        opacity: 0;
+      }
+    }
+
+/* Общие стили */
+body, td, th {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Меню */
+.menu_pr {
+  color: #fff;
+  font: 15px Tahoma, Geneva, sans-serif;
+  text-align: left;
+  font-weight: normal;
+}
+
+.menu_pr tr td {
+  color: #fc3;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+}
+
+a.menu_pr {
+  color: #fff;
+}
+
+a.menu_pr:hover {
+  color: #fc3;
+}
+
+/* Общие классы */
+._page {
+  font: 10px Tahoma, Geneva, sans-serif;
+  cursor: auto;
+}
+
+#apDiv1 {
+  position: absolute;
+  left: 222px;
+  top: 16px;
+  width: 976px;
+  height: 139px;
+  z-index: 1;
+}
+
+/* Стилевые классы */
+.text-light {
+  color: #B8C8B7;
+  font: 13px Tahoma, Geneva, sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.text-yellow {
+  color: #FC0;
+  font: 13px Tahoma, Geneva, sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  color: #FC0;
+  font: bold italic 18px Georgia, "Times New Roman", Times, serif;
+}
+
+.link-green {
+  color: #718D3B;
+  font: 14px Tahoma, Geneva, sans-serif;
+  text-decoration: underline;
+}
+
+.text-green {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  color: #718D3B;
+}
+
+.keywords {
+  font-size: 11px;
+  color: #a0c374; /* светло-зелёный, заметный, но не кричащий */
+  opacity: 0.8;
+  text-align: right;
+  max-width: 95%;
+  margin: 30px auto 0;
+  line-height: 1.4;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+@media (max-width: 600px) {
+  .keywords {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+.large-title {
+  font: 25px "Times New Roman", Times, serif;
+  color: #718D3B;
+}
+
+/* Overlay */
+#overlay {
+  background-image: url(overlay.png);
+}
+
+/* Анимация и иконки */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.pulsing-icon,
+.whatsapp-icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+.pulsing-icon {
+  margin-right: 5px;
+}
+
+.whatsapp-icon {
+  margin-left: 120px;
+}
+
+.whatsapp-text {
+  color: green;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.phone-number {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+    .blinking-text {
+        animation: blink 2s infinite alternate;
+    }
+
+    @keyframes blink {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    
+ body {
+            background-image: url("zekouz62.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 10px 0 0 0;
+        }
+        
+   .ym-advanced-informer {
+        display: ; /*  none */
+        position: fixed;
+        bottom: 10px;
+        right: 7px;
+    }
+
+    .informer-link {
+        position: fixed;
+        bottom: 50px; /* отступ от нижней части страницы, выше информера */
+        right: 7px; /* совпадает с позицией информера */
+        z-index: 1000; /* для того, чтобы ссылка была над остальными элементами */
+    }
+    
