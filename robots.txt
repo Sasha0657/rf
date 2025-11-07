@@ -1,2 +1,3 @@
 User-agent: *  
-Sitemap: https://artscreen.su/sitemap.xml
+
+Sitemap: https://артскрин.рф/sitemap.xml
