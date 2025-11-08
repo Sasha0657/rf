@@ -11,7 +11,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 100px;                                        /*200  */
+      width: 50px;                                        /*200  */
       height: 50vh;                                       /*100  */
       pointer-events: none;
       z-index: 1;
@@ -214,5 +214,6 @@ a.menu_pr:hover {
         z-index: 1000; /* для того, чтобы ссылка была над остальными элементами */
     }
     
+
 
 
