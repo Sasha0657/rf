@@ -1,14 +1,5 @@
 @charset "utf-8";
 
-.hidden-seo-image {
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
     body {
       margin: 0;
       background-color: #c6f5ff;
@@ -21,7 +12,7 @@
       left: 0;
       top: 0;
       width: 100px;                                        /*200  */
-      height: 100vh;                                       /*100  */
+      height: 50vh;                                       /*100  */
       pointer-events: none;
       z-index: 1;
     }
@@ -223,4 +214,5 @@ a.menu_pr:hover {
         z-index: 1000; /* для того, чтобы ссылка была над остальными элементами */
     }
     
+
 
