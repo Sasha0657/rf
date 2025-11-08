@@ -11,8 +11,8 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 50px;                                        /*200  */
-      height: 50vh;                                       /*100  */
+      width: 200px;                                        /*200  */
+      height: 100vh;                                       /*100  */
       pointer-events: none;
       z-index: 1;
     }
@@ -20,7 +20,7 @@
     .text {
       position: absolute;
       left: 0;
-      width: 160px;                                                             
+      width: 100px;                                                             
       animation: fly 10s linear infinite;
     }
 
@@ -214,6 +214,7 @@ a.menu_pr:hover {
         z-index: 1000; /* для того, чтобы ссылка была над остальными элементами */
     }
     
+
 
 
 
