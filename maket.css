@@ -20,7 +20,7 @@
     .text {
       position: absolute;
       left: 0;
-      width: 100px;                                                             
+      width: 80px;                                                             
       animation: fly 10s linear infinite;
     }
 
@@ -214,6 +214,7 @@ a.menu_pr:hover {
         z-index: 1000; /* для того, чтобы ссылка была над остальными элементами */
     }
     
+
 
 
 
