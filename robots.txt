@@ -1,3 +1,4 @@
 User-agent: *  
 
-Sitemap: https://артскрин.рф/sitemap.xml
+Sitemap: https://xn--80aqfnmbfh.xn--p1ai/
+
