@@ -1,226 +1,199 @@
-@charset "utf-8";
+/* Базовые стили */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #fff url("fon.webp") center top no-repeat fixed;
+  background-size: cover;
+  color: #111;
+}
 
-    body {
-      margin: 0;
-      background-color: #c6f5ff;
-      position: relative;
-      overflow-x: hidden;
-    }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 3%;
+  background-color: rgba(255,255,255,0.85);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 
-    .text-zone {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 200px;                                        /*200  */
-      height: 100vh;                                       /*100  */
-      pointer-events: none;
-      z-index: 1;
-    }
+.logo {
+  width: 80px;
+  height: auto;
+}
 
-    .text {
-      position: absolute;
-      left: 0;
-      width: 100px;                                                     
-      animation: fly 10s linear infinite;
-    }
+.phone {
+  font-weight: bold;
+  font-size: 18px;
+  color: #c30;
+  margin-top: 5px;
+}
 
-    @keyframes fly {
-      0% {
-        transform: translateX(0) translateY(0) rotate(1deg);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(250px) translateY(-500px) rotate(1deg);         
-        opacity: 0;
-      }
-    }
+.blink {
+  animation: blink 1.4s infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
 
-/* Общие стили */
-body, td, th {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+.banner {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Контент */
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 12px;
+}
+
+.sidebar {
+  width: 25%;
   text-align: center;
 }
 
-a {
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu a {
   text-decoration: none;
+  background: #f8f8f8;
+  color: #000;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
 }
 
-/* Меню */
-.menu_pr {
-  color: #fff;
-  font: 25px Tahoma, Geneva, sans-serif;
-  text-align: left;
-  font-weight: normal;
+.menu a:hover, .menu a.active {
+  background: #ffb700;
+  color: #000;
 }
 
-.menu_pr tr td {
-  color: #fc3;
-  font-weight: bold;
-  font-size: 14px;
-  text-align: left;
+.divider {
+  width: 80%;
+  margin: 20px auto;
 }
 
-a.menu_pr {
-  color: #fff;
+.article {
+  width: 70%;
 }
 
-a.menu_pr:hover {
-  color: #fc3;
-}
-
-/* Общие классы */
-._page {
-  font: 10px Tahoma, Geneva, sans-serif;
-  cursor: auto;
-}
-
-#apDiv1 {
-  position: absolute;
-  left: 222px;
-  top: 16px;
-  width: 976px;
-  height: 139px;
-  z-index: 1;
-}
-
-/* Стилевые классы */
-.text-light {
-  color: #B8C8B7;
-  font: 13px Tahoma, Geneva, sans-serif;
-  letter-spacing: 0.1em;
-}
-
-.text-yellow {
-  color: #FC0;
-  font: 13px Tahoma, Geneva, sans-serif;
-  letter-spacing: 0.1em;
+.article p {
+  line-height: 1.6;
+  margin-bottom: 1em;
 }
 
 .title {
-  color: #FC0;
-  font: bold italic 18px Georgia, "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.link-green {
-  color: #718D3B;
-  font: 14px Tahoma, Geneva, sans-serif;
-  text-decoration: underline;
+.float-right {
+  float: right;
+  width: 45%;
+  margin-left: 20px;
+  border-radius: 10px;
 }
 
-.text-green {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-size: 14px;
-  color: #718D3B;
+.float-left {
+  float: left;
+  width: 45%;
+  margin-right: 20px;
+  border-radius: 10px;
 }
 
-.keywords {
-  font-size: 11px;
-  color: #a0c374; /* светло-зелёный, заметный, но не кричащий */
-  opacity: 0.8;
-  text-align: right;
-  max-width: 95%;
-  margin: 30px auto 0;
-  line-height: 1.4;
-  font-family: Verdana, Arial, sans-serif;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
 }
 
-@media (max-width: 600px) {
-  .keywords {
-    font-size: 10px;
-    text-align: center;
-    margin-top: 20px;
-  }
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
 }
 
-.large-title {
-  font: 25px "Times New Roman", Times, serif;
-  color: #718D3B;
-}
-
-/* Overlay */
-#overlay {
-  background-image: url(overlay.png);
-}
-
-/* Анимация и иконки */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-.pulsing-icon,
-.whatsapp-icon {
-  width: 30px;
-  height: 30px;
-  vertical-align: middle;
-  animation: pulse 1.5s infinite;
+/* Подвал */
+.footer {
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  font-size: 16px;
+  position: relative;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
 }
 
 .pulsing-icon {
-  margin-right: 5px;
+  width: 32px;
+  animation: pulse 2s infinite;
+  vertical-align: middle;
 }
 
-.whatsapp-icon {
-  margin-left: 120px;
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
 }
 
 .whatsapp-text {
-  color: green;
-  font-size: 15px;
   font-weight: bold;
-  margin-left: 5px;
+  color: #25D366;
+  margin-left: 8px;
 }
 
 .phone-number {
-  font-size: 16px;
+  display: block;
   font-weight: bold;
-  margin-left: 5px;
+  color: #333;
+  margin-top: 6px;
 }
 
-    .blinking-text {
-        animation: blink 2s infinite alternate;
-    }
+/* --- АДАПТАЦИЯ --- */
 
-    @keyframes blink {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-    }
-    
- body {
-            background-image: url("zekouz62.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            margin: 10px 0 0 0;
-        }
-        
-   .ym-advanced-informer {
-        display: ; /*  none */
-        position: fixed;
-        bottom: 10px;
-        right: 7px;
-    }
+/* Планшеты (до 1024px) */
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .sidebar, .article {
+    width: 100%;
+  }
+  .float-left, .float-right {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .banner {
+    max-width: 100%;
+  }
+}
 
-    .informer-link {
-        position: fixed;
-        bottom: 50px; /* отступ от нижней части страницы, выше информера */
-        right: 7px; /* совпадает с позицией информера */
-        z-index: 1000; /* для того, чтобы ссылка была над остальными элементами */
-    }
-    
-
-
-
-
-
-
-
-
-
-
+/* Смартфоны (до 600px) */
+@media (max-width: 600px) {
+  .phone { font-size: 16px; }
+  .menu a { font-size: 16px; padding: 8px; }
+  .title { font-size: 1.4em; }
+  .content { padding: 10px 5px; }
+  .footer { font-size: 14px; }
+}
