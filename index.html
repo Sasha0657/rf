@@ -86,20 +86,18 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   <span class="whatsapp-text">WhatsApp</span>
   <span class="phone-number">+7 (918) 608-5006</span>
 </footer>
-<!-- Лайтбокс для фото -->
+
+  <!-- Лайтбокс для фото -->
 <style>
   .lightbox {
     display: none;
     position: fixed;
     z-index: 9999;
-    padding: 20px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: rgba(0,0,0,0.9);
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
   .lightbox img {
@@ -108,10 +106,8 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
     border: 3px solid #fff;
     box-shadow: 0 0 20px rgba(255,255,255,0.5);
     border-radius: 10px;
-  }
-
-  .lightbox:target {
-    display: flex;
+    margin: auto;
+    display: block;
   }
 
   .gallery img {
@@ -123,7 +119,6 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
     transform: scale(1.05);
   }
 </style>
-
 <!-- Логика открытия изображения -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -150,6 +145,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
