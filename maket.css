@@ -1,4 +1,6 @@
-/* Базовые стили */
+/* =========================
+   БАЗОВЫЕ СТИЛИ
+========================= */
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -7,6 +9,7 @@ body {
   color: #111;
 }
 
+/* ----- ШАПКА ----- */
 .header {
   display: flex;
   justify-content: space-between;
@@ -42,7 +45,9 @@ body {
   border-radius: 12px;
 }
 
-/* Контент */
+/* =========================
+   КОНТЕНТ
+========================= */
 .content {
   display: flex;
   justify-content: space-between;
@@ -113,6 +118,7 @@ body {
   border-radius: 10px;
 }
 
+/* Галерея */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -124,12 +130,15 @@ body {
   width: 100%;
   border-radius: 10px;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 .gallery img:hover {
   transform: scale(1.05);
 }
 
-/* Подвал */
+/* =========================
+   ПОДВАЛ
+========================= */
 .footer {
   text-align: center;
   background: rgba(255,255,255,0.9);
@@ -163,7 +172,9 @@ body {
   margin-top: 6px;
 }
 
-/* --- АДАПТАЦИЯ --- */
+/* =========================
+   АДАПТАЦИЯ
+========================= */
 
 /* Планшеты (до 1024px) */
 @media (max-width: 1024px) {
@@ -171,19 +182,23 @@ body {
     flex-direction: column;
     padding: 10px;
   }
+
   .sidebar, .article {
     width: 100%;
   }
+
   .float-left, .float-right {
     float: none;
     display: block;
     width: 100%;
     margin: 10px 0;
   }
+
   .header {
     flex-direction: column;
     text-align: center;
   }
+
   .banner {
     max-width: 100%;
   }
@@ -196,10 +211,11 @@ body {
   .title { font-size: 1.4em; }
   .content { padding: 10px 5px; }
   .footer { font-size: 14px; }
-
 }
 
-/* --- ВОССТАНОВЛЕНИЕ ВИДА ДЛЯ ПК (более 1024px) --- */
+/* =========================
+   ВОССТАНОВЛЕНИЕ ВИДА ДЛЯ ПК
+========================= */
 @media (min-width: 1025px) {
   body {
     background-size: auto;
@@ -247,38 +263,41 @@ body {
   .phone {
     font-size: 20px;
   }
+}
 
-/* ----- Выравнивание изображений в шапке ----- */
+/* =========================
+   ВЫРАВНИВАНИЕ ШАПКИ (всегда)
+========================= */
 header.header {
   display: flex !important;
   width: 100vw !important;
-  height: 350px !important; /* одинаковая высота блока */
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  height: 350px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 .header-left,
 .header-right {
-  flex: 1 1 50% !important; /* делим экран поровну */
+  flex: 1 1 50% !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .header-left img.banner,
 .header-right img.banner {
-  width: 100% !important;   /* растянуть по ширине контейнера */
-  height: 100% !important;  /* подогнать по высоте контейнера */
-  object-fit: cover !important; /* обрезка лишнего, без искажений */
-  margin: 0;
-  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+  display: block !important;
 }
 
-/* --- Смартфоны --- */
+/* --- Смартфоны: шапка подстраивается под ширину --- */
 @media (max-width: 768px) {
   header.header {
     flex-direction: column !important;
@@ -291,4 +310,5 @@ header.header {
     height: auto !important;
   }
 }
+
 
