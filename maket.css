@@ -16,17 +16,33 @@ html, body {
 header.header {
   display: flex;
   width: 100%;
-  aspect-ratio: 2 / 1; /* подгоняем адаптивную высоту */
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 10px; /* расстояние между изображениями */
   overflow: hidden;
 }
 
-.header-left, .header-right {
-  flex: 1;
+/* Левая часть — квадрат */
+.header-left {
+  flex: 0 0 auto;
+  width: 40%;
+  aspect-ratio: 1 / 1; /* квадратная форма */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin: 0 5px; /* отступ между блоками */
+  border-radius: 10px;
+}
+
+/* Правая часть — прямоугольник */
+.header-right {
+  flex: 1 1 auto;
+  aspect-ratio: 16 / 9; /* вытянутый прямоугольник */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .header-left img.banner,
@@ -34,7 +50,27 @@ header.header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  display: block;
+}
+
+/* --- Мобильная версия: фото друг под другом --- */
+@media (max-width: 900px) {
+  header.header {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* === Основной макет === */
@@ -223,3 +259,4 @@ main.content {
     gap: 5px;
   }
 }
+
