@@ -18,15 +18,20 @@ header.header {
   overflow: hidden;
 }
 
-.header-left,
-.header-right {
-  flex: 1 1 50%;
+.header-left {
+  flex: 0 0 35%; /* квадрат слева — примерно 1/3 ширины */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
+}
+
+.header-right {
+  flex: 1 1 65%; /* прямоугольник справа — оставшаяся часть */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .header-left img.banner,
@@ -40,6 +45,23 @@ header.header {
   margin: 0;
 }
 
+/* Смартфоны и планшеты — фото одно под другим */
+@media (max-width: 768px) {
+  header.header {
+    flex-direction: column;
+    height: auto;
+  }
+  .header-left,
+  .header-right {
+    width: 100%;
+    flex: none;
+  }
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100%;
+    height: auto;
+  }
+}
 /* === ОСНОВНОЙ КОНТЕНТ === */
 .content {
   display: flex;
@@ -207,6 +229,7 @@ header.header {
   animation: blink 1.4s infinite;
 }
 }
+
 
 
 
