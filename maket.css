@@ -279,33 +279,35 @@ main.content {
   .article {
     order: 0;
   }
-/* --- Исправление отображения shapka.webp на мобильных --- */
-@media (max-width: 900px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .header-left,
-  .header-right {
-    width: 100%;
-    aspect-ratio: auto !important;
-    height: auto !important;
-  }
-
-  .header-right img.banner {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important; /* показываем полностью */
-    object-position: center !important;
-    border-radius: 0;
-  }
-
-  .header-left img.banner {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: cover !important; /* квадрат остаётся как фото */
-  }
+/* === Шапка для страницы Home === */
+header.header {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
+/* Изображение баннера */
+header.header img.banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* сохраняет пропорции */
+  object-position: center;
+  border-radius: 10px;
+}
 
+/* --- Мобильная версия --- */
+@media (max-width: 900px) {
+  header.header {
+    width: 100%;
+  }
+
+  header.header img.banner {
+    width: 100%;
+    height: auto;
+    object-fit: contain !important; /* не обрезает */
+    object-position: center !important;
+  }
+}
