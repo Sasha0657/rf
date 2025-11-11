@@ -15,18 +15,22 @@ html, body {
 /* === Шапка === */
 header.header {
   display: flex;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 10px; /* расстояние между изображениями */
+  gap: 10px;
   overflow: hidden;
+  height: auto;
+  max-height: 250px; /* ограничение по высоте */
 }
 
 /* Левая часть — квадрат */
 .header-left {
   flex: 0 0 auto;
   width: 40%;
-  aspect-ratio: 1 / 1; /* квадратная форма */
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +41,7 @@ header.header {
 /* Правая часть — прямоугольник */
 .header-right {
   flex: 1 1 auto;
-  aspect-ratio: 16 / 9; /* вытянутый прямоугольник */
+  aspect-ratio: 16 / 9;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +53,8 @@ header.header {
 .header-right img.banner {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* чтобы не обрезало */
+  object-position: center;
   display: block;
 }
 
@@ -58,6 +63,7 @@ header.header {
   header.header {
     flex-direction: column;
     gap: 5px;
+    max-height: none; /* убираем ограничение на мобильных */
   }
 
   .header-left,
@@ -70,6 +76,7 @@ header.header {
   .header-right img.banner {
     width: 100%;
     height: auto;
+    object-fit: cover;
   }
 }
 
@@ -259,4 +266,5 @@ main.content {
     gap: 5px;
   }
 }
+
 
