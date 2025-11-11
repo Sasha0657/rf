@@ -11,6 +11,53 @@
 <link rel="canonical" href="https://артскрин.рф/">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta name="yandex-verification" content="7055e619ec8c1bf4">
+
+  <style>
+    /* ----- Выравнивание шапки ----- */
+    header.header {
+      display: flex !important;
+      width: 100vw !important;
+      height: 350px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .header-left,
+    .header-right {
+      flex: 1 1 50% !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .header-left img.banner,
+    .header-right img.banner {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      margin: 0 !important;
+      display: block !important;
+    }
+
+    /* Смартфоны: фото одно под другим */
+    @media (max-width: 768px) {
+      header.header {
+        flex-direction: column !important;
+        height: auto !important;
+      }
+
+      .header-left img.banner,
+      .header-right img.banner {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -39,47 +86,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   </div>
 </header>
 
-<style>
-  header.header {
-    display: flex !important;
-    width: 100vw !important;
-    height: 350px !important; /* одинаковая высота */
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
 
-  .header-left,
-  .header-right {
-    flex: 1 1 50% !important; /* делим пополам */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 0;
-    padding: 0;
-  }
-
-  .header img.banner {
-    width: 100% !important;   /* растягиваем по ширине */
-    height: 100% !important;  /* и по высоте контейнера */
-    object-fit: cover !important; /* аккуратное заполнение */
-    margin: 0;
-    display: block;
-  }
-
-  /* Смартфоны */
-  @media (max-width: 768px) {
-    header.header {
-      flex-direction: column !important;
-      height: auto !important;
-    }
-
-    .header img.banner {
-      width: 100% !important;
-      height: auto !important;
-    }
-  }
-</style>
 
 <main class="content">
   <aside class="sidebar">
@@ -187,6 +194,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
