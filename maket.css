@@ -267,6 +267,61 @@ main, .content { max-width: 100%; box-sizing: border-box; }
 .blink {
   animation: blink 1.4s infinite;
 }
+/* ----- Исправленное выравнивание шапки ----- */
+header.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px; /* расстояние между картинками */
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1400px; /* ограничим ширину, чтобы не вылезал скролл */
+  box-sizing: border-box;
+}
+
+/* Левая и правая часть */
+.header-left,
+.header-right {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Квадратное фото (01.webp) */
+.header-left img.banner {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* всегда квадрат */
+  height: auto;
+  object-fit: contain; /* сохраняет полностью фото без обрезки */
+  border-radius: 8px;
+}
+
+/* Прямоугольное фото (shapka.webp) */
+.header-right img.banner {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* стандартная прямоугольная пропорция */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Смартфоны: одно под другим */
+@media (max-width: 768px) {
+  header.header {
+    flex-direction: column;
+    gap: 6px;
+    max-width: 100%;
+  }
+
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+  }
 
 
 
