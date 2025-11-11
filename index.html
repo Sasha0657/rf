@@ -39,6 +39,41 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   </div>
 </header>
 
+<style>
+  .header {
+    display: flex;
+    width: 100%;
+    height: 350px; /* общая высота шапки */
+  }
+
+  .header-left,
+  .header-right {
+    flex: 1; /* делит экран пополам */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .banner {
+    height: 100%; /* подгоняет по высоте контейнера */
+    width: auto;  /* сохраняет пропорции */
+    object-fit: cover; /* если нужно обрезать по краям для равной высоты */
+  }
+
+  /* Адаптация для смартфонов */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      height: auto;
+    }
+    .banner {
+      width: 100%;
+      height: auto;
+    }
+  }
+</style>
+
 <main class="content">
   <aside class="sidebar">
     <nav class="menu">
@@ -145,6 +180,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
