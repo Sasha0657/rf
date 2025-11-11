@@ -1,147 +1,162 @@
-/* Базовые стили */
+/* ========== ОБЩИЕ НАСТРОЙКИ ========== */
 body {
   margin: 0;
+  padding: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #fff url("fon.webp") center top no-repeat fixed;
-  background-size: cover;
-  color: #111;
+  background-color: #fff;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow-x: hidden;
 }
 
-/* ----- Шапка ----- */
+main {
+  width: 100%;
+  max-width: 1300px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* ========== ШАПКА ========== */
 header.header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;                 /* Отступ между фото */
   width: 100%;
   max-width: 1300px;
-  margin: 0 auto;
-  padding: 0;
+  margin: 0 auto 20px;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 
-.header-left,
+/* Левая часть — 01.webp (квадрат) */
+.header-left {
+  flex: 0 1 350px;           /* ширина около 350px */
+  max-width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-left img.banner {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;       /* строго квадрат */
+  object-fit: contain;       /* не обрезает */
+  border-radius: 8px;
+}
+
+/* Правая часть — shapka.webp (прямоугольник) */
 .header-right {
-  flex: 1 1 50%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-/* Квадратная картинка */
-.header-left img.banner {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* Прямоугольная картинка */
 .header-right img.banner {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  object-fit: cover;
+  max-height: 250px;         /* ограничение высоты */
+  object-fit: cover;         /* заполняет область */
   border-radius: 8px;
 }
 
-/* Контент */
-.content {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  max-width: 1300px;
-  margin: 0 auto;
-  background-color: rgba(255,255,255,0.9);
-  border-radius: 12px;
-}
-
-.sidebar {
-  width: 25%;
-  text-align: center;
-}
-
-.menu {
+/* ========== МЕНЮ (слева) ========== */
+nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: stretch;
+  gap: 15px;
+  width: 250px;
+  margin-right: 20px;
 }
 
-.menu a {
-  text-decoration: none;
-  background: #f8f8f8;
-  color: #000;
-  padding: 10px;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
-
-.menu a:hover, .menu a.active {
-  background: #ffb700;
-  color: #000;
-}
-
-.article {
-  width: 70%;
-}
-
-.article p {
-  line-height: 1.6;
-  margin-bottom: 1em;
-}
-
-.title {
+nav a {
+  display: block;
   text-align: center;
-  font-size: 1.8em;
-  color: #333;
-  margin-bottom: 20px;
+  background-color: #ffcc00;
+  color: #000;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-/* Галерея */
+nav a:hover {
+  background-color: #ffd633;
+}
+
+/* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+.content {
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+/* ========== ГАЛЕРЕЯ ========== */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 20px;
 }
 
 .gallery img {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
 }
 
-/* Подвал */
-.footer {
-  text-align: center;
-  background: rgba(255,255,255,0.9);
-  padding: 20px;
-  font-size: 16px;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+/* ========== ОКНО ПРОСМОТРА ФОТО (FULLSCREEN) ========== */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
 }
 
-/* --- АДАПТАЦИЯ --- */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 10px;
+}
 
-/* Планшеты (до 1024px) */
-@media (max-width: 1024px) {
-  .content {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  .sidebar, .article {
-    width: 100%;
-  }
-
+/* ========== АДАПТАЦИЯ ДЛЯ СМАРТФОНОВ ========== */
+@media (max-width: 768px) {
   header.header {
     flex-direction: column;
+    gap: 8px;
+  }
+
+  .header-left,
+  .header-right {
     max-width: 100%;
   }
 
@@ -151,13 +166,21 @@ header.header {
     height: auto;
     aspect-ratio: auto;
   }
-}
 
-/* Смартфоны (до 600px) */
-@media (max-width: 600px) {
-  .menu a { font-size: 16px; padding: 8px; }
-  .title { font-size: 1.4em; }
-  .footer { font-size: 14px; }
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    width: 90%;
+  }
 }
 
 
