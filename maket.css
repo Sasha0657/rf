@@ -61,7 +61,7 @@ header.header {
     width: 100%;
     height: auto;
   }
-}
+
 /* === ОСНОВНОЙ КОНТЕНТ === */
 .content {
   display: flex;
@@ -229,6 +229,7 @@ header.header {
   animation: blink 1.4s infinite;
 }
 }
+
 
 
 
