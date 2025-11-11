@@ -248,3 +248,46 @@ body {
     font-size: 20px;
   }
 }
+/* ----- Выравнивание изображений в шапке ----- */
+header.header {
+  display: flex !important;
+  width: 100vw !important;
+  height: 350px !important; /* одинаковая высота блока */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.header-left,
+.header-right {
+  flex: 1 1 50% !important; /* делим экран поровну */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.header-left img.banner,
+.header-right img.banner {
+  width: 100% !important;   /* растянуть по ширине контейнера */
+  height: 100% !important;  /* подогнать по высоте контейнера */
+  object-fit: cover !important; /* обрезка лишнего, без искажений */
+  margin: 0;
+  display: block;
+}
+
+/* --- Смартфоны --- */
+@media (max-width: 768px) {
+  header.header {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
