@@ -1,6 +1,4 @@
-/* =========================
-   БАЗОВЫЕ СТИЛИ
-========================= */
+/* === БАЗОВЫЕ СТИЛИ === */
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -9,45 +7,40 @@ body {
   color: #111;
 }
 
-/* ----- ШАПКА ----- */
-.header {
+/* === ШАПКА === */
+header.header {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100vw;
+  height: 350px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.header-left,
+.header-right {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 10px 3%;
-  background-color: rgba(255,255,255,0.85);
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  width: 80px;
-  height: auto;
-}
-
-.phone {
-  font-weight: bold;
-  font-size: 18px;
-  color: #c30;
-  margin-top: 5px;
-}
-
-.blink {
-  animation: blink 1.4s infinite;
-}
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-.banner {
+.header-left img.banner,
+.header-right img.banner {
   width: 100%;
-  max-width: 480px;
-  height: auto;
-  border-radius: 12px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  border: none;
+  margin: 0;
 }
 
-/* =========================
-   КОНТЕНТ
-========================= */
+/* === ОСНОВНОЙ КОНТЕНТ === */
 .content {
   display: flex;
   justify-content: space-between;
@@ -118,7 +111,6 @@ body {
   border-radius: 10px;
 }
 
-/* Галерея */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -130,15 +122,13 @@ body {
   width: 100%;
   border-radius: 10px;
   transition: transform 0.3s;
-  cursor: pointer;
 }
+
 .gallery img:hover {
   transform: scale(1.05);
 }
 
-/* =========================
-   ПОДВАЛ
-========================= */
+/* === ПОДВАЛ === */
 .footer {
   text-align: center;
   background: rgba(255,255,255,0.9);
@@ -172,143 +162,51 @@ body {
   margin-top: 6px;
 }
 
-/* =========================
-   АДАПТАЦИЯ
-========================= */
+/* === АДАПТАЦИЯ === */
 
-/* Планшеты (до 1024px) */
+/* Планшеты */
 @media (max-width: 1024px) {
   .content {
     flex-direction: column;
     padding: 10px;
   }
-
   .sidebar, .article {
     width: 100%;
   }
-
   .float-left, .float-right {
     float: none;
     display: block;
     width: 100%;
     margin: 10px 0;
   }
-
   .header {
     flex-direction: column;
-    text-align: center;
+    height: auto;
   }
-
-  .banner {
-    max-width: 100%;
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100%;
+    height: auto;
   }
 }
 
-/* Смартфоны (до 600px) */
+/* Смартфоны */
 @media (max-width: 600px) {
-  .phone { font-size: 16px; }
   .menu a { font-size: 16px; padding: 8px; }
   .title { font-size: 1.4em; }
   .content { padding: 10px 5px; }
   .footer { font-size: 14px; }
 }
 
-/* =========================
-   ВОССТАНОВЛЕНИЕ ВИДА ДЛЯ ПК
-========================= */
-@media (min-width: 1025px) {
-  body {
-    background-size: auto;
-  }
-
-  .content {
-    flex-direction: row;
-    padding: 20px;
-  }
-
-  .sidebar {
-    width: 25%;
-  }
-
-  .article {
-    width: 70%;
-  }
-
-  .float-left {
-    float: left;
-    width: 45%;
-    margin-right: 20px;
-  }
-
-  .float-right {
-    float: right;
-    width: 45%;
-    margin-left: 20px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-
-  .header {
-    flex-direction: row;
-    text-align: left;
-  }
-
-  .banner {
-    max-width: 480px;
-  }
-
-  .phone {
-    font-size: 20px;
-  }
+/* === ЭФФЕКТЫ === */
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
-/* =========================
-   ВЫРАВНИВАНИЕ ШАПКИ (всегда)
-========================= */
-header.header {
-  display: flex !important;
-  width: 100vw !important;
-  height: 350px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
+.blink {
+  animation: blink 1.4s infinite;
+}
 }
 
-.header-left,
-.header-right {
-  flex: 1 1 50% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  overflow: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.header-left img.banner,
-.header-right img.banner {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  margin: 0 !important;
-  display: block !important;
-}
-
-/* --- Смартфоны: шапка подстраивается под ширину --- */
-@media (max-width: 768px) {
-  header.header {
-    flex-direction: column !important;
-    height: auto !important;
-  }
-
-  .header-left img.banner,
-  .header-right img.banner {
-    width: 100% !important;
-    height: auto !important;
-  }
-}
 
 
