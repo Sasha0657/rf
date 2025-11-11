@@ -279,7 +279,14 @@ main.content {
   .article {
     order: 0;
   }
+/* --- Исправление для shapka.webp на телефонах --- */
+@media (max-width: 900px) {
+  .header-right img.banner {
+    object-fit: contain !important; /* показывать полностью */
+    background-color: #fff; /* можно убрать, если фон не нужен */
+  }
 }
+
 
 
 
