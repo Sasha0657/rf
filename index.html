@@ -12,51 +12,61 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <meta name="yandex-verification" content="7055e619ec8c1bf4">
 
-  <style>
-    /* ----- Выравнивание шапки ----- */
-    header.header {
-      display: flex !important;
-      width: 100vw !important;
-      height: 350px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-    }
+<style>
+  /* Полный сброс размеров и отступов */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
 
-    .header-left,
-    .header-right {
-      flex: 1 1 50% !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      overflow: hidden !important;
-      margin: 0 !important;
-      padding: 0 !important;
+  /* ----- Выравнивание шапки ----- */
+  header.header {
+    display: flex !important;
+    width: 100vw !important;
+    height: 350px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .header-left,
+  .header-right {
+    flex: 1 1 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    display: block !important;
+    border: none !important;
+  }
+
+  /* Смартфоны: фото одно под другим */
+  @media (max-width: 768px) {
+    header.header {
+      flex-direction: column !important;
+      height: auto !important;
     }
 
     .header-left img.banner,
     .header-right img.banner {
       width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      margin: 0 !important;
-      display: block !important;
+      height: auto !important;
     }
+  }
+</style>
 
-    /* Смартфоны: фото одно под другим */
-    @media (max-width: 768px) {
-      header.header {
-        flex-direction: column !important;
-        height: auto !important;
-      }
-
-      .header-left img.banner,
-      .header-right img.banner {
-        width: 100% !important;
-        height: auto !important;
-      }
-    }
-  </style>
 
 </head>
 <body>
@@ -85,7 +95,6 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
     <img src="shapka.webp" alt="Дагомыс" class="banner">
   </div>
 </header>
-
 
 
 <main class="content">
@@ -194,6 +203,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
