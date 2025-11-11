@@ -113,4 +113,57 @@ header.header {
   .article {
     width: 100%;
   }
+/* === ВСТРОЕННЫЕ КАРТИНКИ В ТЕКСТЕ === */
+.article img.float-left {
+  float: left;
+  width: 45%;
+  max-width: 400px;
+  margin: 0 20px 10px 0;
+  border-radius: 10px;
+  height: auto;
+}
+
+.article img.float-right {
+  float: right;
+  width: 45%;
+  max-width: 400px;
+  margin: 0 0 10px 20px;
+  border-radius: 10px;
+  height: auto;
+}
+
+/* === ГАЛЕРЕЯ === */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* === АДАПТИВ ДЛЯ СМАРТФОНОВ === */
+@media (max-width: 768px) {
+  .article img.float-left,
+  .article img.float-right {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+  }
 }
