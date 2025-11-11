@@ -1,118 +1,225 @@
-/* === БАЗА === */
+/* === Базовые настройки === */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #fff url("fon.webp") center top no-repeat fixed;
-  background-size: cover;
-  color: #111;
+  background-color: #fafafa;
+  color: #222;
   overflow-x: hidden;
 }
 
-/* === ШАПКА === */
+/* === Шапка === */
 header.header {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
   width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 10px;
-  box-sizing: border-box;
+  aspect-ratio: 2 / 1; /* подгоняем адаптивную высоту */
+  overflow: hidden;
 }
 
-.header-left,
-.header-right {
+.header-left, .header-right {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  margin: 0 5px; /* отступ между блоками */
 }
 
-/* Левая — квадрат, масштабируется пропорционально */
-.header-left img.banner {
-  width: 100%;
-  max-width: 350px;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-/* Правая — прямоугольник, одинаковая высота с квадратом */
+.header-left img.banner,
 .header-right img.banner {
   width: 100%;
-  max-width: 875px;
-  height: auto;
-  border-radius: 10px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-/* === КОНТЕНТ === */
-.content {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1300px;
-  margin: 20px auto;
-  padding: 20px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 12px;
-  box-sizing: border-box;
+/* === Основной макет === */
+main.content {
+  display: grid;
+  grid-template-columns: 250px 1fr;
   gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
 }
 
+/* === Боковое меню === */
 .sidebar {
-  width: 25%;
+  background: #f2f2f2;
+  border-radius: 10px;
   text-align: center;
+  padding: 10px 0;
+}
+
+.sidebar img.divider {
+  width: 80%;
+  margin: 10px auto;
+  display: block;
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .menu a {
-  text-decoration: none;
-  background: #f8f8f8;
-  color: #000;
+  display: block;
   padding: 10px;
-  border-radius: 8px;
-  transition: background 0.3s;
+  text-decoration: none;
+  color: #222;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
 }
 
-.menu a:hover, .menu a.active {
-  background: #ffb700;
-  color: #000;
+.menu a:hover {
+  background-color: #25D366;
+  color: white;
 }
 
+.menu a.active {
+  background-color: #25D366;
+  color: white;
+  font-weight: bold;
+}
+
+/* === Статья / контент === */
 .article {
-  width: 70%;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.article h1.title {
+  text-align: center;
+  margin-top: 0;
+}
+
+.article p {
+  text-align: justify;
   line-height: 1.6;
 }
 
-/* === АДАПТИВ === */
-@media (max-width: 1024px) {
-  header.header {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .header-left img.banner,
-  .header-right img.banner {
-    max-width: 100%;
-    aspect-ratio: auto;
-  }
-
-  .content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sidebar,
-  .article {
-    width: 100%;
-    }
+/* === Картинки внутри текста === */
+.article img.float-left {
+  float: left;
+  width: 40%;
+  max-width: 350px;
+  margin: 0 20px 10px 0;
+  border-radius: 10px;
+  height: auto;
 }
 
-  
+.article img.float-right {
+  float: right;
+  width: 40%;
+  max-width: 350px;
+  margin: 0 0 10px 20px;
+  border-radius: 10px;
+  height: auto;
+}
+
+/* === Галерея === */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 30px 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* === Footer === */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 0;
+  font-size: 1rem;
+  border-top: 3px solid #555;
+  margin-top: 30px;
+}
+
+.pulsing-icon {
+  width: 28px;
+  height: 28px;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.whatsapp-text {
+  color: #25D366;
+  font-weight: bold;
+}
+
+.phone-number {
+  color: #fff;
+  margin-left: 8px;
+}
+
+/* === Адаптив для смартфонов === */
+@media (max-width: 900px) {
+  main.content {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: 1;
+  }
+
+  .article img.float-left,
+  .article img.float-right {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .gallery img {
+    height: auto;
+  }
+
+  header.header {
+    flex-direction: column;
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .header-left, .header-right {
+    margin: 0 0 5px 0;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
