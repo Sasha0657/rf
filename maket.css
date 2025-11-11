@@ -1,117 +1,98 @@
-/* ======= БАЗОВЫЙ СБРОС ======= */
+/* === БАЗА === */
 html, body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  color: #222;
-  background: #fff;
+  background: #fff url("fon.webp") center top no-repeat fixed;
+  background-size: cover;
+  color: #111;
   overflow-x: hidden;
 }
 
-/* ======= ШАПКА ======= */
+/* === ШАПКА === */
 header.header {
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-  gap: 15px;
   padding: 10px;
   box-sizing: border-box;
 }
 
 .header-left,
 .header-right {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-/* Левая — квадратная */
+/* Левая — квадрат, масштабируется пропорционально */
 .header-left img.banner {
   width: 100%;
-  height: auto;
+  max-width: 350px;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 10px;
 }
 
-/* Правая — прямоугольная */
+/* Правая — прямоугольник, одинаковая высота с квадратом */
 .header-right img.banner {
   width: 100%;
-  height: 250px;
-  object-fit: cover;
+  max-width: 875px;
+  height: auto;
   border-radius: 10px;
+  object-fit: contain;
 }
 
-/* ======= ОСНОВНОЙ МАКЕТ ======= */
-.main-container {
+/* === КОНТЕНТ === */
+.content {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
+  justify-content: space-between;
   max-width: 1300px;
   margin: 20px auto;
-  padding: 0 10px;
+  padding: 20px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
   box-sizing: border-box;
+  gap: 20px;
 }
 
-/* ======= МЕНЮ ======= */
-nav {
-  flex: 0 0 250px;
+.sidebar {
+  width: 25%;
+  text-align: center;
+}
+
+.menu {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-nav a {
-  display: block;
-  background: #ffcc00;
-  color: #000;
-  text-align: center;
-  padding: 12px;
-  border-radius: 8px;
+.menu a {
   text-decoration: none;
-  font-weight: 600;
+  background: #f8f8f8;
+  color: #000;
+  padding: 10px;
+  border-radius: 8px;
   transition: background 0.3s;
 }
 
-nav a:hover {
-  background: #ffdf33;
+.menu a:hover, .menu a.active {
+  background: #ffb700;
+  color: #000;
 }
 
-/* ======= КОНТЕНТ ======= */
-.content {
-  flex: 1;
-  min-width: 0;
+.article {
+  width: 70%;
+  line-height: 1.6;
 }
 
-/* ======= ГАЛЕРЕЯ ======= */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.gallery img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* ======= АДАПТИВ ======= */
-@media (max-width: 900px) {
+/* === АДАПТИВ === */
+@media (max-width: 1024px) {
   header.header {
     flex-direction: column;
     gap: 10px;
@@ -119,23 +100,17 @@ nav a:hover {
 
   .header-left img.banner,
   .header-right img.banner {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
     aspect-ratio: auto;
   }
 
-  .main-container {
+  .content {
     flex-direction: column;
     align-items: center;
   }
 
-  nav {
+  .sidebar,
+  .article {
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav a {
-    width: 90%;
   }
 }
