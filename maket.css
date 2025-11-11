@@ -1,40 +1,29 @@
-/* ========== ОБЩИЕ НАСТРОЙКИ ========== */
-body {
+/* ====== БАЗА ====== */
+html, body {
   margin: 0;
   padding: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #fff;
   color: #222;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: #fff;
   overflow-x: hidden;
 }
 
-main {
-  width: 100%;
-  max-width: 1300px;
-  box-sizing: border-box;
-  padding: 20px;
-}
-
-/* ========== ШАПКА ========== */
+/* ====== ШАПКА ====== */
 header.header {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;                 /* Отступ между фото */
+  gap: 15px;
   width: 100%;
   max-width: 1300px;
-  margin: 0 auto 20px;
-  padding: 0 10px;
+  margin: 0 auto;
+  padding: 10px;
   box-sizing: border-box;
 }
 
-/* Левая часть — 01.webp (квадрат) */
+/* Левая — квадрат */
 .header-left {
-  flex: 0 1 350px;           /* ширина около 350px */
-  max-width: 30%;
+  flex: 0 1 25%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,12 +32,12 @@ header.header {
 .header-left img.banner {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1;       /* строго квадрат */
-  object-fit: contain;       /* не обрезает */
+  aspect-ratio: 1 / 1;      /* квадрат */
+  object-fit: contain;
   border-radius: 8px;
 }
 
-/* Правая часть — shapka.webp (прямоугольник) */
+/* Правая — прямоугольник */
 .header-right {
   flex: 1;
   display: flex;
@@ -59,54 +48,55 @@ header.header {
 
 .header-right img.banner {
   width: 100%;
-  max-height: 250px;         /* ограничение высоты */
-  object-fit: cover;         /* заполняет область */
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
-/* ========== МЕНЮ (слева) ========== */
+/* ====== ОСНОВНОЙ КОНТЕЙНЕР ====== */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1300px;
+  margin: 20px auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* ====== МЕНЮ ====== */
 nav {
+  flex: 0 0 250px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   gap: 15px;
-  width: 250px;
-  margin-right: 20px;
 }
 
 nav a {
   display: block;
-  text-align: center;
-  background-color: #ffcc00;
+  background: #ffcc00;
   color: #000;
+  text-align: center;
   padding: 15px;
   border-radius: 10px;
-  font-weight: bold;
   text-decoration: none;
+  font-weight: bold;
   transition: 0.3s;
 }
 
 nav a:hover {
-  background-color: #ffd633;
+  background: #ffd633;
 }
 
-/* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+/* ====== КОНТЕНТ ====== */
 .content {
   flex: 1;
+  min-width: 0;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  gap: 20px;
-}
-
-/* ========== ГАЛЕРЕЯ ========== */
+/* ====== ГАЛЕРЕЯ ====== */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -127,37 +117,26 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-/* ========== ОКНО ПРОСМОТРА ФОТО (FULLSCREEN) ========== */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-/* ========== АДАПТАЦИЯ ДЛЯ СМАРТФОНОВ ========== */
-@media (max-width: 768px) {
+/* ====== АДАПТИВ ====== */
+@media (max-width: 900px) {
   header.header {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
-  .header-left,
-  .header-right {
-    max-width: 100%;
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    width: 100%;
   }
 
   .header-left img.banner,
@@ -166,25 +145,5 @@ nav a:hover {
     height: auto;
     aspect-ratio: auto;
   }
-
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav {
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav a {
-    width: 90%;
-  }
 }
-
-
-
-
-
 
