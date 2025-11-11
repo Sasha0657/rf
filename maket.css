@@ -7,49 +7,93 @@ body {
   color: #111;
 }
 
-/* === ШАПКА === */
+/* === ШАПКА: фиксированная, адаптивная и без горизонтальной прокрутки === */
+html, body { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Основной контейнер шапки */
 header.header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
-  width: 100vw;
-  height: 250px; /* стало ниже */
+  width: 100%;               /* Важно: не 100vw — чтобы не создавать горизонтальную прокрутку */
+  height: clamp(180px, 18vh, 250px); /* адаптивная высота: до 250px на больших экранах, меньше на узких */
   margin: 0;
-  padding: 0 1%; /* небольшой отступ по краям */
-  gap: 1.5%; /* расстояние между фото */
+  padding: 0 1.5%;           /* одинаковые боковые отступы */
+  gap: 1.5%;                 /* отступ между картинками */
   overflow: hidden;
+  background: transparent;
 }
 
+/* Левая часть — квадрат, адаптивная ширина */
 .header-left {
-  flex: 0 0 clamp(250px, 30%, 350px); /* квадрат адаптируется по ширине */
-  aspect-ratio: 1 / 1; /* всегда квадрат */
+  flex: 0 0 clamp(140px, 24vw, 340px); /* ширина квадрата плавно меняется: не меньше 140px, не больше 340px */
+  aspect-ratio: 1 / 1;                  /* гарантирует квадрат */
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  border-radius: 10px;
+  min-width: 0;                         /* важно для корректного сжатия в flex */
 }
 
+/* Правая часть — занимает оставшуюся ширину */
 .header-right {
   flex: 1 1 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-  border-radius: 10px;
+  min-width: 0;                         /* важно, чтобы правый блок не выталкивал страницу */
 }
 
-.header-left img.banner,
+/* Изображения внутри шапки */
+.header-left img.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    /* показываем весь квадрат, без обрезки сверху/снизу */
+  object-position: center;
+  display: block;
+  background-color: transparent; /* можно поставить фоновый цвет, если по краям будет пустота */
+}
+
 .header-right img.banner {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center center;
+  object-fit: cover;      /* заполняет правую область, обрезая по краям при необходимости */
+  object-position: center;
   display: block;
-  border: none;
-  margin: 0;
 }
+
+/* Плавное поведение при изменении размеров */
+.header-left, .header-right, .header-left img.banner, .header-right img.banner {
+  transition: width 220ms ease, height 220ms ease;
+}
+
+/* Мобильная/планшетная адаптация: фото одно под другим */
+@media (max-width: 768px) {
+  header.header {
+    flex-direction: column;
+    height: auto;
+    padding: 0.8rem 4%;
+    gap: 0.8rem;
+  }
+  .header-left, .header-right {
+    width: 100%;
+    flex: none;
+    aspect-ratio: auto;
+    min-width: 0;
+  }
+  .header-left img.banner, .header-right img.banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* на маленьких экранах cover выглядит привычнее */
+  }
+}
+
+/* Дополнительно: защитим контент от выталкивания за ширину */
+main, .content { max-width: 100%; box-sizing: border-box; }
+
+/* Если где-то в макете остались margin/width, которые давали горизонталку — можно временно скрыть: */
+/* body { overflow-x: hidden; }  -- только если всё прочее проверено */
 
 /* === ОСНОВНОЙ КОНТЕНТ === */
 .content {
@@ -223,6 +267,7 @@ header.header {
 .blink {
   animation: blink 1.4s infinite;
 }
+
 
 
 
