@@ -87,7 +87,7 @@ header.header {
     height: auto;
     object-fit: cover; /* на маленьких экранах cover выглядит привычнее */
   }
-}
+
 
 /* Дополнительно: защитим контент от выталкивания за ширину */
 main, .content { max-width: 100%; box-sizing: border-box; }
@@ -322,6 +322,7 @@ header.header {
     height: auto;
     aspect-ratio: auto;
   }
+
 
 
 
