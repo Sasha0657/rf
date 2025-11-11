@@ -247,7 +247,7 @@ body {
   .phone {
     font-size: 20px;
   }
-}
+
 /* ----- Выравнивание изображений в шапке ----- */
 header.header {
   display: flex !important;
@@ -291,3 +291,4 @@ header.header {
     height: auto !important;
   }
 }
+
