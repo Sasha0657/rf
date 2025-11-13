@@ -91,16 +91,33 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   <span class="phone-number">+7 (918) 608-5006</span>
 
 <style>
-.informer-link {
-    text-align: right;
+.header { /* или другой контейнер, где текст и информер */
+  display: flex;
+  justify-content: space-between; /* текст по центру, информер справа */
+  align-items: center; /* выравнивание по вертикали */
+}
+
+.header-text {
+  flex: 1; /* чтобы центрирование работало независимо от информера */
+  text-align: center;
+}
+
+.informer-link img {
+  border-radius: 8px;
 }
 </style>
-<div class="informer-link">
-  <a href="https://webmaster.yandex.ru/siteinfo/?site=https://artscreen.su">
-    <img width="88" height="31" alt="" border="0" style="border-radius: 8px;"
-         src="https://yandex.ru/cycounter?https://артскрин.рф&theme=light&lang=ru">
-  </a>
-</div>
+
+<div class="header">
+  <div class="header-text">
+    <h1>Мой сайт</h1>
+  </div>
+
+  <div class="informer-link">
+    <a href="https://webmaster.yandex.ru/siteinfo/?site=https://artscreen.su">
+      <img width="88" height="31" alt=""
+           src="https://yandex.ru/cycounter?https://артскрин.рф&theme=light&lang=ru">
+    </a>
+  </div>
 
 </footer>
 
@@ -174,6 +191,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
