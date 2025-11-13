@@ -90,22 +90,10 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   <span class="whatsapp-text">WhatsApp</span>
   <span class="phone-number">+7 (918) 608-5006</span>
 
-<style>
-.header { /* или другой контейнер, где текст и информер */
-  display: flex;
-  justify-content: space-between; /* текст по центру, информер справа */
-  align-items: center; /* выравнивание по вертикали */
-}
-
-.header-text {
-  flex: 1; /* чтобы центрирование работало независимо от информера */
-  text-align: center;
-}
-
-.informer-link img {
-  border-radius: 8px;
-}
-</style>
+<footer class="footer">
+  <img src="p6.png" alt="WhatsApp" class="pulsing-icon">
+  <span class="whatsapp-text">WhatsApp</span>
+  <span class="phone-number">+7 (918) 608-5006</span>
 
   <div class="informer-link">
     <a href="https://webmaster.yandex.ru/siteinfo/?site=https://artscreen.su">
@@ -113,6 +101,25 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
            src="https://yandex.ru/cycounter?https://артскрин.рф&theme=light&lang=ru">
     </a>
   </div>
+</footer>
+
+<style>
+.footer {
+  display: flex;
+  justify-content: space-between; /* элементы по краям */
+  align-items: center;            /* по вертикали */
+  padding: 10px 20px;             /* отступы */
+}
+
+.whatsapp-text, .phone-number {
+  text-align: center;
+  flex-grow: 1; /* чтобы центр оставался по центру */
+}
+
+.informer-link img {
+  border-radius: 8px;
+}
+</style>
 
 </footer>
 
@@ -186,6 +193,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
