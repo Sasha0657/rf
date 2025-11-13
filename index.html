@@ -87,9 +87,11 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 
   <footer>
 <footer class="footer">
-  <img src="p6.png" alt="WhatsApp" class="pulsing-icon">
-  <span class="whatsapp-text">WhatsApp</span>
-  <span class="phone-number">+7 (918) 608-5006</span>
+  <div class="footer-center">
+    <img src="p6.png" alt="WhatsApp" class="pulsing-icon">
+    <span class="whatsapp-text">WhatsApp</span>
+    <span class="phone-number">+7 (918) 608-5006</span>
+  </div>
 
   <div class="informer-link">
     <a href="https://webmaster.yandex.ru/siteinfo/?site=https://artscreen.su">
@@ -102,21 +104,30 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 <style>
 .footer {
   display: flex;
-  justify-content: space-between; /* элементы по краям */
-  align-items: center;            /* по вертикали */
-  padding: 10px 20px;             /* отступы */
+  justify-content: space-between; /* центр и информер по краям */
+  align-items: center;             /* выравнивание по вертикали */
+  padding: 10px 20px;
 }
 
-.whatsapp-text, .phone-number {
-  text-align: center;
-  flex-grow: 1; /* чтобы центр оставался по центру */
+/* Блок с центром */
+.footer-center {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* расстояние между иконкой, текстом и номером */
+  margin: 0 auto; /* центрирует блок по горизонтали */
 }
 
+/* Внешний вид информера */
 .informer-link img {
   border-radius: 8px;
 }
-</style>
 
+/* (Необязательно) стили для текста */
+.whatsapp-text, .phone-number {
+  font-size: 16px;
+}
+</style>
+✅ Что делает этот код:
 
   <!-- Лайтбокс для фото -->
 <style>
@@ -188,6 +199,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
