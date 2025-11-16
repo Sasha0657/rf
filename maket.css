@@ -312,9 +312,12 @@ header.header img.banner {
   }
   /* --- SEO уменьшенный текст --- */
 p.seo-small {
-  font-size: 0.85rem !important;
-  line-height: 1.4;
+  font-size: 0.78rem !important;
+  line-height: 1.28 !important;
+  opacity: 0.9;
+  margin: 8px 0 !important;
 }
 }
+
 
 
