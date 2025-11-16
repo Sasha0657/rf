@@ -38,6 +38,14 @@ header.header {
   border-radius: 10px;
   margin-right: 10px;    /* зазор между 01 и shapka */
 }
+.img-01 {
+  width: 100%;              /* подстраивается под контейнер */
+  max-width: 260px;         /* или твой размер */
+  aspect-ratio: 1 / 1;      /* ДЕЛАЕТ КВАДРАТ */
+  object-fit: cover;        /* обрезает красиво в квадрат */
+  display: block;
+  margin: 20px auto;        /* расстояние сверху/снизу, по центру */
+}
 
 /* Правая часть — прямоугольник */
 .header-right {
@@ -270,6 +278,7 @@ p.seo-small {
     gap: 5px;
   }
 }
+
 
 
 
