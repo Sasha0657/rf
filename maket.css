@@ -12,7 +12,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === Шапка (двойной баннер) === */
+/* === Шапка (Desktop) === */
 header.header {
   display: flex;
   justify-content: center;
@@ -26,16 +26,17 @@ header.header {
   max-height: 250px;
 }
 
-/* Левая часть — квадрат */
+/* Левая часть — КВАДРАТ 01 */
 .header-left {
   flex: 0 0 auto;
   width: 40%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;   /* ← квадрат 100% */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 10px;
+  margin-right: 10px;    /* зазор между 01 и shapka */
 }
 
 /* Правая часть — прямоугольник */
@@ -49,54 +50,14 @@ header.header {
   border-radius: 10px;
 }
 
+/* Картинки шапки */
 .header-left img.banner,
 .header-right img.banner {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
-}
-/* === Квадрат для левой картинки 01 === */
-.header-left {
-  flex: 0 0 auto;
-  width: 40%;          /* можно менять, если нужно больше/меньше */
-  aspect-ratio: 1 / 1; /* ЖЁСТКО фиксирует квадрат */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 10px;
-  margin-right: 10px;  /* ← добавляет пространство между 01 и shapka */
-}
-
-/* Чтобы картинка точно была квадратной и не искажалась */
-.header-left img.banner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* заполняет квадрат без искажений */
-  object-position: center;
-}
-/* === Мобильная версия шапки === */
-@media (max-width: 900px) {
-  header.header {
-    flex-direction: column;
-    gap: 5px;
-    max-height: none;
-  }
-
-  .header-left,
-  .header-right {
-    width: 100%;
-    aspect-ratio: auto;
-  }
-
-  .header-left img.banner,
-  .header-right img.banner {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
 }
 
 /* === Основной макет === */
@@ -149,7 +110,7 @@ main.content {
   font-weight: bold;
 }
 
-/* === Контент === */
+/* === Статья === */
 .article {
   background: white;
   border-radius: 10px;
@@ -167,7 +128,7 @@ main.content {
   line-height: 1.6;
 }
 
-/* === Картинки внутри текста === */
+/* === Картинки в тексте === */
 .article img.float-left {
   float: left;
   width: 40%;
@@ -243,14 +204,48 @@ main.content {
   margin-left: 8px;
 }
 
-/* === Адаптив: смартфоны === */
+/* === SEO уменьшенный текст === */
+p.seo-small {
+  font-size: 0.78rem !important;
+  line-height: 1.28 !important;
+  opacity: 0.9;
+  margin: 8px 0 !important;
+  color: inherit !important;
+  display: block !important;
+}
+
+/* === Мобильная версия === */
 @media (max-width: 900px) {
+
+  /* Картинки шапки друг под другом */
+  header.header {
+    flex-direction: column;
+    gap: 5px;
+    max-height: none;
+  }
+
+  .header-left,
+  .header-right {
+    width: 100%;
+    aspect-ratio: auto;
+    margin-right: 0;
+  }
+
+  .header-left img.banner,
+  .header-right img.banner {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Меню сверху */
   main.content {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
   .sidebar {
-    order: 1;
+    order: -1;
   }
 
   .article img.float-left,
@@ -276,51 +271,6 @@ main.content {
   }
 }
 
-/* === Мобильная версия: меню наверху === */
-@media (max-width: 900px) {
-  main.content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar {
-    order: -1;
-  }
-
-  .article {
-    order: 0;
-  }
-}
-
-/* === Шапка для страницы Home (одинарный баннер) === */
-header.header img.banner {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 10px;
-}
-
-/* === SEO уменьшенный текст === */
-p.seo-small {
-  font-size: 0.78rem !important;
-  line-height: 1.28 !important;
-  opacity: 0.9;
-  margin: 8px 0 !important;
-  color: inherit !important;
-  display: block !important;
-}
-
-/* === Мобильная версия Home === */
-@media (max-width: 900px) {
-  header.header img.banner {
-    width: 100%;
-    height: auto;
-    object-fit: contain !important;
-    object-position: center !important;
-  }
-}
 
 
 
