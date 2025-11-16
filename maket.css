@@ -12,71 +12,58 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === Шапка === */
+/* === Шапка (index) — 01 слева квадрат, shapka справа прямоугольник === */
 header.header {
   display: flex;
-  justify-content: center;
-  align-items: stretch;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   gap: 10px;
-  overflow: hidden;
-  height: auto;
-  max-height: 250px; /* ограничение по высоте */
 }
 
-/* Левая часть — квадрат */
 .header-left {
-  flex: 0 0 auto;
-  width: 40%;
+  flex: 0 0 40%;
   aspect-ratio: 1 / 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   border-radius: 10px;
 }
 
-/* Правая часть — прямоугольник */
 .header-right {
-  flex: 1 1 auto;
+  flex: 1;
   aspect-ratio: 16 / 9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   border-radius: 10px;
 }
 
-.header-left img.banner,
-.header-right img.banner {
+.header-left img,
+.header-right img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* чтобы не обрезало */
-  object-position: center;
-  display: block;
+  object-fit: cover;
 }
 
-/* --- Мобильная версия: фото друг под другом --- */
+/* === Шапка (home) — одна shapka === */
+.header-single img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* === Мобильная версия шапки === */
 @media (max-width: 900px) {
   header.header {
     flex-direction: column;
     gap: 5px;
-    max-height: none; /* убираем ограничение на мобильных */
   }
-
   .header-left,
   .header-right {
     width: 100%;
     aspect-ratio: auto;
   }
-
-  .header-left img.banner,
-  .header-right img.banner {
-    width: 100%;
+  .header-left img,
+  .header-right img {
     height: auto;
-    object-fit: cover;
   }
 }
 
@@ -90,6 +77,13 @@ main.content {
   padding: 0 10px;
 }
 
+/* === Мобильный макет — меню сверху === */
+@media (max-width: 900px) {
+  main.content {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* === Боковое меню === */
 .sidebar {
   background: #f2f2f2;
@@ -98,216 +92,89 @@ main.content {
   padding: 10px 0;
 }
 
-.sidebar img.divider {
-  width: 80%;
-  margin: 10px auto;
-  display: block;
-}
-
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
-.menu a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: #222;
-  border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
-}
-
-.menu a:hover {
-  background-color: #25D366;
-  color: white;
-}
-
-.menu a.active {
-  background-color: #25D366;
-  color: white;
-  font-weight: bold;
-}
-
-/* === Статья / контент === */
-.article {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-}
-
-.article h1.title {
-  text-align: center;
-  margin-top: 0;
-}
-
-.article p {
-  text-align: justify;
-  line-height: 1.6;
-}
-
-/* === Картинки внутри текста === */
-.article img.float-left {
-  float: left;
-  width: 40%;
-  max-width: 350px;
-  margin: 0 20px 10px 0;
-  border-radius: 10px;
-  height: auto;
-}
-
-.article img.float-right {
+/* === FLOAT-картинки внутри текста === */
+.float-right {
   float: right;
-  width: 40%;
-  max-width: 350px;
-  margin: 0 0 10px 20px;
+  width: 45%;
+  margin: 10px;
   border-radius: 10px;
-  height: auto;
+}
+
+.float-left {
+  float: left;
+  width: 45%;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+  .float-right, .float-left {
+    float: none;
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 
 /* === Галерея === */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin: 30px 0;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
 }
 
 .gallery img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.3s;
+  cursor: pointer;
+  transition: .3s;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
 }
 
-/* === Footer === */
+/* === FOOTER === */
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  background-color: #222;
-  color: #fff;
-  padding: 10px 0;
-  font-size: 1rem;
-  border-top: 3px solid #555;
-  margin-top: 30px;
+  margin-top: 40px;
+  text-align: center;
+  padding: 15px;
+  background: #e8ffe8;
+  border-top: 2px solid #c0e6c0;
 }
 
 .pulsing-icon {
-  width: 28px;
-  height: 28px;
-  animation: pulse 1.2s infinite;
+  width: 40px;
+  vertical-align: middle;
+  animation: pulse 1.4s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
 .whatsapp-text {
-  color: #25D366;
+  color: #1f8f2b;
   font-weight: bold;
+  margin-left: 10px;
 }
 
 .phone-number {
-  color: #fff;
-  margin-left: 8px;
+  margin-left: 10px;
+  font-size: 18px;
 }
 
-/* === Адаптив для смартфонов === */
-@media (max-width: 900px) {
-  main.content {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    order: 1;
-  }
-
-  .article img.float-left,
-  .article img.float-right {
-    float: none;
-    width: 100%;
-    max-width: 100%;
-    margin: 10px 0;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
-  }
-
-  .gallery img {
-    height: auto;
-  }
-
-  header.header {
-    flex-direction: column;
-    aspect-ratio: auto;
-    height: auto;
-  }
-
-  .header-left, .header-right {
-    margin: 0 0 5px 0;
-  }
-
-  .footer {
-    flex-direction: column;
-    gap: 5px;
-  }
-/* --- Мобильная версия: меню наверху --- */
-@media (max-width: 900px) {
-  main.content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar {
-    order: -1; /* перемещает меню наверх */
-  }
-
-  .article {
-    order: 0;
-  }
-/* === Шапка для страницы Home === */
-header.header {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 10px;
+/* === Уменьшенный SEO-текст === */
+.small-seo-text {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  font-weight: 600; /* можно убрать, если хочешь тоньше */
 }
 
-/* Изображение баннера */
-header.header img.banner {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain; /* сохраняет пропорции */
-  object-position: center;
-  border-radius: 10px;
-}
-
-/* --- Мобильная версия --- */
-@media (max-width: 900px) {
-  header.header {
-    width: 100%;
-  }
-
-  header.header img.banner {
-    width: 100%;
-    height: auto;
-    object-fit: contain !important; /* не обрезает */
-    object-position: center !important;
-  }
-}
