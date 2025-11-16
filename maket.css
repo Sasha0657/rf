@@ -297,7 +297,15 @@ header.header img.banner {
   object-position: center;
   border-radius: 10px;
 }
-
+  /* --- SEO уменьшенный текст --- */
+p.seo-small {
+  font-size: 0.78rem !important;
+  line-height: 1.28 !important;
+  opacity: 0.9;
+  margin: 8px 0 !important;
+  color: inherit !important;
+  display: block !important;
+}
 /* --- Мобильная версия --- */
 @media (max-width: 900px) {
   header.header {
@@ -310,16 +318,8 @@ header.header img.banner {
     object-fit: contain !important; /* не обрезает */
     object-position: center !important;
   }
-  /* --- SEO уменьшенный текст --- */
-p.seo-small {
-  font-size: 0.78rem !important;
-  line-height: 1.28 !important;
-  opacity: 0.9;
-  margin: 8px 0 !important;
-  color: inherit !important;
-  display: block !important;
 }
-}
+
 
 
 
