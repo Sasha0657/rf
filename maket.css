@@ -105,7 +105,7 @@ main.content {
   color: #222;
   border-radius: 6px;
   transition: background 0.3s, color 0.3s;
-  font-size: 26px; /* Добавьте эту строку */
+  font-size: 20px; /* Добавьте эту строку */
 }
 
 .menu a:hover {
@@ -279,6 +279,7 @@ p.seo-small {
     gap: 5px;
   }
 }
+
 
 
 
