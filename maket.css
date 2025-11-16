@@ -57,7 +57,26 @@ header.header {
   object-position: center;
   display: block;
 }
+/* === Квадрат для левой картинки 01 === */
+.header-left {
+  flex: 0 0 auto;
+  width: 40%;          /* можно менять, если нужно больше/меньше */
+  aspect-ratio: 1 / 1; /* ЖЁСТКО фиксирует квадрат */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-right: 10px;  /* ← добавляет пространство между 01 и shapka */
+}
 
+/* Чтобы картинка точно была квадратной и не искажалась */
+.header-left img.banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* заполняет квадрат без искажений */
+  object-position: center;
+}
 /* === Мобильная версия шапки === */
 @media (max-width: 900px) {
   header.header {
@@ -302,6 +321,7 @@ p.seo-small {
     object-position: center !important;
   }
 }
+
 
 
 
