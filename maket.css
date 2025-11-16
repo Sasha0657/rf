@@ -280,6 +280,15 @@ p.seo-small {
   }
 }
 
+/* === Исправление шапки на домашней странице (header-center) === */
+.header-center img.banner {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;   /* показывать полную картинку */
+  object-position: center !important;
+  aspect-ratio: auto !important;    /* запрет квадрата */
+  display: block;
+}
 
 
 
