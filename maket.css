@@ -316,8 +316,11 @@ p.seo-small {
   line-height: 1.28 !important;
   opacity: 0.9;
   margin: 8px 0 !important;
+  color: inherit !important;
+  display: block !important;
 }
 }
+
 
 
 
