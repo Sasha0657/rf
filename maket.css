@@ -265,6 +265,9 @@ main.content {
     flex-direction: column;
     gap: 5px;
   }
+}   /* ← закрываем первый @media */
+
+
 /* --- Мобильная версия: меню наверху --- */
 @media (max-width: 900px) {
   main.content {
@@ -279,6 +282,9 @@ main.content {
   .article {
     order: 0;
   }
+}  /* ← закрываем второй @media */
+
+
 /* === Шапка для страницы Home === */
 header.header {
   width: 100%;
@@ -293,11 +299,12 @@ header.header img.banner {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain; /* сохраняет пропорции */
+  object-fit: contain;
   object-position: center;
   border-radius: 10px;
 }
-  /* --- SEO уменьшенный текст --- */
+
+/* --- SEO уменьшенный текст --- */
 p.seo-small {
   font-size: 0.78rem !important;
   line-height: 1.28 !important;
@@ -306,7 +313,9 @@ p.seo-small {
   color: inherit !important;
   display: block !important;
 }
-/* --- Мобильная версия --- */
+
+
+/* --- Дополнительная мобильная версия для Home --- */
 @media (max-width: 900px) {
   header.header {
     width: 100%;
@@ -315,10 +324,10 @@ p.seo-small {
   header.header img.banner {
     width: 100%;
     height: auto;
-    object-fit: contain !important; /* не обрезает */
+    object-fit: contain !important;
     object-position: center !important;
   }
-}
+} /* ← закрываем третий @media */
 
 
 
