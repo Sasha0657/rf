@@ -112,7 +112,7 @@ main.content {
 
 .menu a {
   display: block;
-  padding: 20px;
+  padding: 10px;
   text-decoration: none;
   color: #222;
   border-radius: 6px;
@@ -328,6 +328,7 @@ p.seo-small {
     object-position: center !important;
   }
 } /* ← закрываем третий @media */
+
 
 
 
