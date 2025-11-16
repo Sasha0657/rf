@@ -310,4 +310,10 @@ header.header img.banner {
     object-fit: contain !important; /* не обрезает */
     object-position: center !important;
   }
+  /* --- SEO уменьшенный текст --- */
+.seo-small {
+  font-size: 0.9rem;
+  opacity: 0.95;
 }
+}
+
