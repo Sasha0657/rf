@@ -127,31 +127,11 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   }
 </style>
 <!-- Логика открытия изображения -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.createElement('div');
-    lightbox.classList.add('lightbox');
-    document.body.appendChild(lightbox);
-
-    const img = document.createElement('img');
-    lightbox.appendChild(img);
-
-    images.forEach(image => {
-      image.addEventListener('click', () => {
-        img.src = image.src;
-        lightbox.style.display = 'flex';
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-    });
-  });
-</script>
+<script src="lightbox.js"></script>
 </body>
 
 </html>
+
 
 
 
