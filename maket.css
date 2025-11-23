@@ -322,6 +322,32 @@ p.seo-small {
 }
 
 
+.footer {
+  display: flex;
+  justify-content: space-between; /* центр и информер по краям */
+  align-items: center;             /* выравнивание по вертикали */
+  padding: 10px 20px;
+}
+
+/* Блок с центром */
+.footer-center {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* расстояние между иконкой, текстом и номером */
+  margin: 0 auto; /* центрирует блок по горизонтали */
+}
+
+/* Внешний вид информера */
+.informer-link img {
+  border-radius: 8px;
+}
+
+/* (Необязательно) стили для текста */
+.whatsapp-text, .phone-number {
+  font-size: 16px;
+}
+
+
 
 
 
