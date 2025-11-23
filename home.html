@@ -89,9 +89,6 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   <img src="p6.png" alt="WhatsApp" class="pulsing-icon">
   <span class="whatsapp-text">WhatsApp</span>
   <span class="phone-number">+7 (918) 608-5006</span>
-
-
-
 </footer>
 
 <!-- Лайтбокс для фото -->
@@ -127,11 +124,31 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   }
 </style>
 <!-- Логика открытия изображения -->
-<script src="lightbox.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.createElement('div');
+    lightbox.classList.add('lightbox');
+    document.body.appendChild(lightbox);
+
+    const img = document.createElement('img');
+    lightbox.appendChild(img);
+
+    images.forEach(image => {
+      image.addEventListener('click', () => {
+        img.src = image.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  });
+</script>
 </body>
 
 </html>
-
 
 
 
