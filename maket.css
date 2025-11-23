@@ -290,6 +290,36 @@ p.seo-small {
   display: block;
 }
 
+/* === Лайтбокс (после переноса из HTML) === */
+.lightbox {
+  display: none;
+  position: fixed;        /* обязательно fixed */
+  inset: 0;               /* равносильно top:0; left:0; right:0; bottom:0 */
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;          /* чтобы всегда был поверх */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 3px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  display: block;
+  margin: auto;
+}
+
+.gallery img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
 
 
 
