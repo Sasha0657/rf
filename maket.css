@@ -413,6 +413,15 @@ header.header {
   width: calc(100% - 250px - 10px); /* учитывает ширину 01 + gap */
 }
 
+body {
+  width: 1024px;
+  height: 1024px;
+  margin: 0 auto;
+  border: 3px solid red;
+  overflow: auto;
+}
+
+
 
 
 
