@@ -68,6 +68,56 @@ header.header {
   display: block;
 }
 
+/* === ФИКС мобильной версии шапки === */
+@media (max-width: 900px) {
+
+  /* Контейнер шапки вертикально */
+  header.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* центрируем оба блока */
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Блок 01 — всегда центр + квадрат */
+  .header-left {
+    width: 90%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-left img.banner,
+  .img-01 {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;   /* квадрат */
+    display: block;
+  }
+
+  /* shapka — на всю ширину */
+  .header-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: auto !important;
+    margin: 10px 0 0 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-right img.banner {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;  /* полная картинка */
+    display: block;
+  }
+}
+
 /* === Основной макет === */
 main.content {
   display: grid;
@@ -362,6 +412,7 @@ header.header {
   flex: 1 1 auto;                  /* занимает ширину article */
   width: calc(100% - 250px - 10px); /* учитывает ширину 01 + gap */
 }
+
 
 
 
