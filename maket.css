@@ -347,6 +347,24 @@ p.seo-small {
   font-size: 16px;
 }
 
+/* === ВЫРАВНИВАНИЕ 01 И SHAPKA ПО СЕТКЕ 250px + контент === */
+header.header {
+  max-width: 1200px;               /* как у main.content */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-left {
+  width: 250px;                    /* точное совпадение с шириной sidebar */
+}
+
+.header-right {
+  flex: 1 1 auto;                  /* занимает ширину article */
+  width: calc(100% - 250px - 10px); /* учитывает ширину 01 + gap */
+}
+
+
+
 
 
 
