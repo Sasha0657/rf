@@ -15,8 +15,8 @@ html, body {
 /* === Шапка (Desktop) === */
 header.header {
   display: flex;
-  justify-content: center;
-  align-items: stretch;
+  justify-content: space-between;   /* ← выравнивает 01 и shapka по своим колонкам */
+  align-items: center;              /* ← центрирует по вертикали */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -346,6 +346,7 @@ p.seo-small {
 .whatsapp-text, .phone-number {
   font-size: 16px;
 }
+
 
 
 
