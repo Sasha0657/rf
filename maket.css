@@ -1,10 +1,8 @@
 /* ==========================================================================
-   Упорядоченные стили сайта
-   Структура: Базовые -> Шапка -> Основной контент -> Галерея -> Футер -> Медиа-запросы
+   Упорядоченные стили сайта - ОПТИМИЗИРОВАННАЯ ВЕРСИЯ
    ========================================================================== */
 
-/* === БАЗОВЫЕ СТИЛИ И СБРОС === */
-/* Сброс отступов и установка базовых значений */
+/* === БАЗОВЫЕ СТИЛИ === */
 * {
   box-sizing: border-box;
 }
@@ -19,7 +17,7 @@ html, body {
 }
 
 /* === ШАПКА САЙТА === */
-/* Основной контейнер шапки (desktop) */
+/* Основной контейнер шапки */
 header.header {
   display: flex;
   justify-content: center;
@@ -28,29 +26,23 @@ header.header {
   max-width: 1200px;
   margin: 0 auto;
   gap: 10px;
-  overflow: hidden;
-  height: auto;
-  max-height: 250px;
+  padding: 10px;
 }
 
 /* Левая часть - квадратное изображение */
 .header-left {
   flex: 0 0 auto;
-  width: 250px; /* Совпадает с шириной sidebar */
-  aspect-ratio: 1 / 1;
+  width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 10px;
-  margin-right: 10px;
 }
 
 /* Правая часть - прямоугольное изображение */
 .header-right {
-  flex: 1 1 auto;
-  width: calc(100% - 250px - 10px); /* Учитывает ширину левой части + gap */
-  aspect-ratio: 16 / 9;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,19 +54,7 @@ header.header {
 .header-left img.banner,
 .header-right img.banner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* Специфичный стиль для центрального изображения (главная страница) */
-.header-center img.banner {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  aspect-ratio: auto !important;
+  height: auto;
   display: block;
 }
 
@@ -82,13 +62,11 @@ header.header {
 .img-01 {
   width: 100%;
   max-width: 260px;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: auto;
   display: block;
-  margin: 20px auto;
 }
 
-/* === ОСНОВНОЙ КОНТЕНТ И МАКЕТ === */
+/* === ОСНОВНОЙ КОНТЕНТ === */
 /* Сетка основного контента */
 main.content {
   display: grid;
@@ -127,7 +105,7 @@ main.content {
   color: #222;
   border-radius: 6px;
   transition: background 0.3s, color 0.3s;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .menu a:hover {
@@ -178,38 +156,37 @@ main.content {
   height: auto;
 }
 
-/* === ГАЛЕРЕЯ И ЛАЙТБОКС === */
-/* Сетка галереи */
+/* === ГАЛЕРЕЯ === */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
   margin: 30px 0;
 }
 
 .gallery img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: auto;
   border-radius: 10px;
   transition: transform 0.3s;
-  cursor: pointer; /* Указываем, что изображение кликабельно */
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* Лайтбокс для просмотра изображений */
+/* === ЛАЙТБОКС === */
 .lightbox {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 9999;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 .lightbox img {
@@ -217,27 +194,19 @@ main.content {
   max-height: 90%;
   border: 3px solid #fff;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.5);
-  display: block;
-  margin: auto;
 }
 
-/* === ФУТЕР САЙТА === */
+/* === ФУТЕР === */
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
   background-color: #222;
   color: #fff;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-top: 3px solid #555;
+  padding: 15px 20px;
   margin-top: 30px;
 }
 
-/* Центральный блок футера (контакты WhatsApp) */
 .footer-center {
   display: flex;
   align-items: center;
@@ -245,7 +214,6 @@ main.content {
   margin: 0 auto;
 }
 
-/* Анимированная иконка */
 .pulsing-icon {
   width: 28px;
   height: 28px;
@@ -254,11 +222,10 @@ main.content {
 
 @keyframes pulse {
   0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.8; }
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Текстовые элементы футера */
 .whatsapp-text {
   color: #25D366;
   font-weight: bold;
@@ -266,75 +233,39 @@ main.content {
 
 .phone-number {
   color: #fff;
-  margin-left: 8px;
 }
 
-/* Информер в футере */
 .informer-link img {
   border-radius: 8px;
 }
 
 /* === SEO ТЕКСТ === */
-/* Мелкий текст для SEO-блоков */
 p.seo-small {
-  font-size: 0.78rem !important;
-  line-height: 1.28 !important;
+  font-size: 0.78rem;
+  line-height: 1.28;
   opacity: 0.9;
-  margin: 8px 0 !important;
-  color: inherit !important;
-  display: block !important;
+  margin: 8px 0;
 }
 
 /* === АДАПТИВНАЯ ВЕРСТКА === */
 @media (max-width: 900px) {
   /* Мобильная шапка */
   header.header {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    gap: 5px;
-    max-height: none;
+    gap: 10px;
   }
-
-  .header-left {
-    width: 90%;
-    max-width: 320px;
-    aspect-ratio: 1 / 1 !important;
-    margin: 0 auto !important;
-  }
-
+  
+  .header-left,
   .header-right {
-    width: 100% !important;
-    max-width: 100% !important;
-    aspect-ratio: auto !important;
-    margin: 10px 0 0 0 !important;
+    width: 100%;
   }
-
-  .header-left img.banner,
-  .img-01 {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-  }
-
-  .header-right img.banner {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;
-  }
-
+  
   /* Мобильный основной контент */
   main.content {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
-
-  .sidebar {
-    order: -1;
-  }
-
+  
   /* Мобильные изображения в статьях */
   .article img.float-left,
   .article img.float-right {
@@ -343,23 +274,35 @@ p.seo-small {
     max-width: 100%;
     margin: 10px 0;
   }
-
+  
   /* Мобильная галерея */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
+    gap: 10px;
   }
-
-  .gallery img {
-    height: auto;
-  }
-
+  
   /* Мобильный футер */
   .footer {
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    text-align: center;
   }
 }
+
+@media (max-width: 600px) {
+  main.content {
+    padding: 0 5px;
+  }
+  
+  .article {
+    padding: 15px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 
 
 
