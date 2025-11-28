@@ -16,7 +16,6 @@ html, body {
   overflow-x: hidden;
 }
 
-css
 /* === ШАПКА САЙТА === */
 /* Основной контейнер шапки */
 header.header {
@@ -315,6 +314,7 @@ p.seo-small {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 
 
 
