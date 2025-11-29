@@ -51,6 +51,23 @@ header.header {
   display: block;
 }
 
+/* Центровка shapka (header-center) на домашней */
+.header-center {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto; /* ← центрирует блок */
+  display: flex;
+  justify-content: center;
+}
+
+.header-center img.banner {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
 /* === Мобильная версия шапки === */
 @media (max-width: 900px) {
   .header-left {
@@ -259,6 +276,7 @@ p.seo-small {
   line-height: 1.28;
   opacity: 0.9;
 }
+
 
 
 
