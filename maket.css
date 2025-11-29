@@ -1,4 +1,8 @@
-/* === Базовые настройки === */
+/* ==========================================================================
+   Упорядоченные стили сайта - ОПТИМИЗИРОВАННАЯ ВЕРСИЯ
+   ========================================================================== */
+
+/* === БАЗОВЫЕ СТИЛИ === */
 * {
   box-sizing: border-box;
 }
@@ -12,45 +16,31 @@ html, body {
   overflow-x: hidden;
 }
 
-/* === Шапка (Desktop) === */
+/* === ШАПКА САЙТА - ИСПРАВЛЕННАЯ ВЕРСИЯ === */
 header.header {
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: flex-start; /* Выравниваем по верху */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   gap: 10px;
-  overflow: hidden;
-  height: auto;
-  max-height: 250px;
+  padding: 10px;
 }
 
-/* Левая часть — КВАДРАТ 01 */
+/* Левая часть - квадратное изображение */
 .header-left {
-  flex: 0 0 auto;
-  width: 40%;
-  aspect-ratio: 1 / 1;   /* ← квадрат 100% */
+  flex: 0 0 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 10px;
-  margin-right: 10px;    /* зазор между 01 и shapka */
-}
-.img-01 {
-  width: 100%;              /* подстраивается под контейнер */
-  max-width: 260px;         /* или твой размер */
-  aspect-ratio: 1 / 1;      /* ДЕЛАЕТ КВАДРАТ */
-  object-fit: cover;        /* обрезает красиво в квадрат */
-  display: block;
-  margin: 20px auto;        /* расстояние сверху/снизу, по центру */
 }
 
-/* Правая часть — прямоугольник */
+/* Правая часть - прямоугольное изображение */
 .header-right {
-  flex: 1 1 auto;
-  aspect-ratio: 16 / 9;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,67 +48,25 @@ header.header {
   border-radius: 10px;
 }
 
-/* Картинки шапки */
-.header-left img.banner,
-.header-right img.banner {
+/* Изображение 01 - квадратное */
+.header-left .img-01 {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  max-width: 250px;
   display: block;
+  border-radius: 10px;
 }
 
-/* === ФИКС мобильной версии шапки === */
-@media (max-width: 900px) {
-
-  /* Контейнер шапки вертикально */
-  header.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* центрируем оба блока */
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Блок 01 — всегда центр + квадрат */
-  .header-left {
-    width: 90%;
-    max-width: 320px;
-    aspect-ratio: 1 / 1 !important;
-    margin: 0 auto !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .header-left img.banner,
-  .img-01 {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;   /* квадрат */
-    display: block;
-  }
-
-  /* shapka — на всю ширину */
-  .header-right {
-    width: 100% !important;
-    max-width: 100% !important;
-    aspect-ratio: auto !important;
-    margin: 10px 0 0 0 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .header-right img.banner {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important;  /* полная картинка */
-    display: block;
-  }
+/* Изображение shapka - прямоугольное */
+.header-right .banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
 }
 
-/* === Основной макет === */
+/* === ОСНОВНОЙ КОНТЕНТ === */
+/* Сетка основного контента */
 main.content {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -128,7 +76,7 @@ main.content {
   padding: 0 10px;
 }
 
-/* === Боковое меню === */
+/* Боковая панель (меню) */
 .sidebar {
   background: #f2f2f2;
   border-radius: 10px;
@@ -142,6 +90,7 @@ main.content {
   display: block;
 }
 
+/* Навигационное меню */
 .menu {
   display: flex;
   flex-direction: column;
@@ -155,7 +104,7 @@ main.content {
   color: #222;
   border-radius: 6px;
   transition: background 0.3s, color 0.3s;
-  font-size: 20px; /* Добавьте эту строку */
+  font-size: 18px;
 }
 
 .menu a:hover {
@@ -169,7 +118,7 @@ main.content {
   font-weight: bold;
 }
 
-/* === Статья === */
+/* Стили статей */
 .article {
   background: white;
   border-radius: 10px;
@@ -187,7 +136,7 @@ main.content {
   line-height: 1.6;
 }
 
-/* === Картинки в тексте === */
+/* Изображения внутри статей */
 .article img.float-left {
   float: left;
   width: 40%;
@@ -206,39 +155,62 @@ main.content {
   height: auto;
 }
 
-/* === Галерея === */
+/* === ГАЛЕРЕЯ === */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
   margin: 30px 0;
 }
 
 .gallery img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: auto;
   border-radius: 10px;
   transition: transform 0.3s;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* === Footer === */
+/* === ЛАЙТБОКС === */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 3px solid #fff;
+  border-radius: 10px;
+}
+
+/* === ФУТЕР === */
 .footer {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
   background-color: #222;
   color: #fff;
-  padding: 10px 0;
-  font-size: 1rem;
-  border-top: 3px solid #555;
+  padding: 15px 20px;
   margin-top: 30px;
+}
+
+.footer-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
 }
 
 .pulsing-icon {
@@ -249,7 +221,7 @@ main.content {
 
 @keyframes pulse {
   0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.8; }
   100% { transform: scale(1); opacity: 1; }
 }
 
@@ -260,53 +232,40 @@ main.content {
 
 .phone-number {
   color: #fff;
-  margin-left: 8px;
 }
 
-/* === SEO уменьшенный текст === */
+.informer-link img {
+  border-radius: 8px;
+}
+
+/* === SEO ТЕКСТ === */
 p.seo-small {
-  font-size: 0.78rem !important;
-  line-height: 1.28 !important;
+  font-size: 0.78rem;
+  line-height: 1.28;
   opacity: 0.9;
-  margin: 8px 0 !important;
-  color: inherit !important;
-  display: block !important;
+  margin: 8px 0;
 }
 
-/* === Мобильная версия === */
+/* === АДАПТИВНАЯ ВЕРСТКА === */
 @media (max-width: 900px) {
-
-  /* Картинки шапки друг под другом */
+  /* Мобильная шапка */
   header.header {
     flex-direction: column;
-    gap: 5px;
-    max-height: none;
+    gap: 10px;
   }
-
+  
   .header-left,
   .header-right {
     width: 100%;
-    aspect-ratio: auto;
-    margin-right: 0;
   }
-
-  .header-left img.banner,
-  .header-right img.banner {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* Меню сверху */
+  
+  /* Мобильный основной контент */
   main.content {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
-
-  .sidebar {
-    order: -1;
-  }
-
+  
+  /* Мобильные изображения в статьях */
   .article img.float-left,
   .article img.float-right {
     float: none;
@@ -314,112 +273,34 @@ p.seo-small {
     max-width: 100%;
     margin: 10px 0;
   }
-
+  
+  /* Мобильная галерея */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
+    gap: 10px;
   }
-
-  .gallery img {
-    height: auto;
-  }
-
+  
+  /* Мобильный футер */
   .footer {
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    text-align: center;
   }
 }
 
-/* === Исправление шапки на домашней странице (header-center) === */
-.header-center img.banner {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;   /* показывать полную картинку */
-  object-position: center !important;
-  aspect-ratio: auto !important;    /* запрет квадрата */
-  display: block;
+@media (max-width: 600px) {
+  main.content {
+    padding: 0 5px;
+  }
+  
+  .article {
+    padding: 15px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-
-/* === Лайтбокс (после переноса из HTML) === */
-.lightbox {
-  display: none;
-  position: fixed;        /* обязательно fixed */
-  inset: 0;               /* равносильно top:0; left:0; right:0; bottom:0 */
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;          /* чтобы всегда был поверх */
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 3px solid #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.5);
-  display: block;
-  margin: auto;
-}
-
-.gallery img {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-
-.footer {
-  display: flex;
-  justify-content: space-between; /* центр и информер по краям */
-  align-items: center;             /* выравнивание по вертикали */
-  padding: 10px 20px;
-}
-
-/* Блок с центром */
-.footer-center {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* расстояние между иконкой, текстом и номером */
-  margin: 0 auto; /* центрирует блок по горизонтали */
-}
-
-/* Внешний вид информера */
-.informer-link img {
-  border-radius: 8px;
-}
-
-/* (Необязательно) стили для текста */
-.whatsapp-text, .phone-number {
-  font-size: 16px;
-}
-
-/* === ВЫРАВНИВАНИЕ 01 И SHAPKA ПО СЕТКЕ 250px + контент === */
-header.header {
-  max-width: 1200px;               /* как у main.content */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.header-left {
-  width: 250px;                    /* точное совпадение с шириной sidebar */
-}
-
-.header-right {
-  flex: 1 1 auto;                  /* занимает ширину article */
-  width: calc(100% - 250px - 10px); /* учитывает ширину 01 + gap */
-}
-
-
-
-
-
-
-
-
 
 
 
