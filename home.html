@@ -10,6 +10,13 @@
 <link rel="stylesheet" href="maket.css">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="canonical" href="https://артскрин.рф/home/">
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/fallback-sw.js');
+}
+</script>
+
 </head>
 <body>
 <!-- Yandex.Metrika -->
@@ -121,6 +128,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
     </script>
 </body>
 </html>
+
 
 
 
