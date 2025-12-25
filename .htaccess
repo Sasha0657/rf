@@ -16,9 +16,13 @@
  <Files "favicon.png">
         Header unset Content-Security-Policy
  </Files>
-# Редирект с punycode на кириллицу
+# Punycode корень → кириллический корень
 RewriteCond %{HTTP_HOST} ^xn--80aqfnmbfh.xn--p1ai$ [NC]
-RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+RewriteRule ^$ https://артскрин.рф/ [R=301,L]
+
+# Punycode home.html → кириллический home.html  
+RewriteCond %{HTTP_HOST} ^xn--80aqfnmbfh.xn--p1ai$ [NC]
+RewriteRule ^home\.html$ https://артскрин.рф/home.html [R=301,L]
 
 # Редирект с www на без www (если есть)
 RewriteCond %{HTTP_HOST} ^www\.артскрин\.рф$ [NC]
@@ -27,5 +31,6 @@ RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
 # Редирект с HTTP на HTTPS (если нужно)
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+
 
 
