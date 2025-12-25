@@ -8,12 +8,24 @@
    Header set X-Content-Type-Options "nosniff"
    Header set Referrer-Policy "strict-origin-when-cross-origin"
    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-    <Files "favicon.ico">
-        Header unset Content-Security-Policy
-    </Files>
- </IfModule>
+   </IfModule>
  <FilesMatch "^\.">
    Order Deny,Allow
    Deny from all
  </FilesMatch>
+ <Files "favicon.png">
+        Header unset Content-Security-Policy
+ </Files>
+# Редирект с punycode на кириллицу
+RewriteCond %{HTTP_HOST} ^xn--80aqfnmbfh.xn--p1ai$ [NC]
+RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+
+# Редирект с www на без www (если есть)
+RewriteCond %{HTTP_HOST} ^www\.артскрин\.рф$ [NC]
+RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+
+# Редирект с HTTP на HTTPS (если нужно)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+
 
