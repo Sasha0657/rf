@@ -1,36 +1,44 @@
-  <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  </IfModule>
-  <IfModule mod_headers.c>
-   Header always unset X-Frame-Options
-   Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com https://webmaster.yandex.ru https://btw.yandex.ru; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com https://yandex.ru; style-src 'self' 'unsafe-inline' https://*.google.com https://*.yandex.ru; font-src 'self' https://*.google.com https://*.gstatic.com; frame-src 'self' https://webmaster.yandex.ru https://*.yandex.ru https://mc.yandex.com;"   
-   Header set X-Content-Type-Options "nosniff"
-   Header set Referrer-Policy "strict-origin-when-cross-origin"
-   Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
-   </IfModule>
- <FilesMatch "^\.">
-   Order Deny,Allow
-   Deny from all
- </FilesMatch>
- <Files "favicon.png">
-        Header unset Content-Security-Policy
- </Files>
-# Punycode корень → кириллический корень
-RewriteCond %{HTTP_HOST} ^xn--80aqfnmbfh.xn--p1ai$ [NC]
-RewriteRule ^$ https://артскрин.рф/ [R=301,L]
+# Включаем mod_rewrite
+<IfModule mod_rewrite.c>
+RewriteEngine On
 
-# Punycode home.html → кириллический home.html  
-RewriteCond %{HTTP_HOST} ^xn--80aqfnmbfh.xn--p1ai$ [NC]
-RewriteRule ^home\.html$ https://артскрин.рф/home.html [R=301,L]
+# 1. /home.html -> /
+RewriteRule ^home\.html$ https://артскрин.рф/ [R=301,L]
 
-# Редирект с www на без www (если есть)
+# 2. Punycode-домен -> кириллический
+RewriteCond %{HTTP_HOST} ^xn--80aqfnmbfh\.xn--p1ai$ [NC]
+RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+
+# 3. www -> без www
 RewriteCond %{HTTP_HOST} ^www\.артскрин\.рф$ [NC]
 RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
 
-# Редирект с HTTP на HTTPS (если нужно)
+# 4. http -> https
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://артскрин.рф/$1 [R=301,L]
+
+</IfModule>
+
+# ---------------- Security Headers ----------------
+<IfModule mod_headers.c>
+Header always unset X-Frame-Options
+
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com https://webmaster.yandex.ru https://btw.yandex.ru; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com https://*.yandex.ru https://*.google.com https://yandex.ru; style-src 'self' 'unsafe-inline' https://*.google.com https://*.yandex.ru; font-src 'self' https://*.google.com https://*.gstatic.com; frame-src 'self' https://webmaster.yandex.ru https://*.yandex.ru https://mc.yandex.com;"
+
+Header set X-Content-Type-Options "nosniff"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+</IfModule>
+
+# ---------------- Защита скрытых файлов ----------------
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# ---------------- Исключение CSP для favicon ----------------
+<Files "favicon.png">
+    Header unset Content-Security-Policy
+</Files>
 
 
 
