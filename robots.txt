@@ -1,4 +1,4 @@
 User-agent: *  
 Disallow: /test.html
-
 Sitemap: https://артскрин.рф/sitemap.xml
+
