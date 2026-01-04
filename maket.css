@@ -309,7 +309,38 @@ header.header {
 main.content {
   position: relative;
   z-index: 0;
+}/* ======================================================
+   FIX rent.html — одна картинка в шапке (Chrome)
+   HTML НЕ трогаем
+   ====================================================== */
+
+/* Центрируем одиночный header-right */
+header.header > .header-right:only-child {
+  margin: 0 auto;        /* центр по горизонтали */
+  width: 100%;
+  max-width: 1200px;
+  flex: none;
 }
+
+/* Картинка shapka корректно считается по высоте */
+header.header > .header-right:only-child img {
+  display: block;        /* КЛЮЧЕВО: участвует в высоте */
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Заставляем header учитывать высоту картинки */
+header.header {
+  align-items: stretch;
+  min-height: fit-content;
+}
+
+/* ГАРАНТИРОВАННЫЙ отступ под шапкой */
+header.header {
+  margin-bottom: 20px;
+}
+
 
 
 
