@@ -279,55 +279,19 @@ p.seo-small {
 
 
 
-  /* Если в шапке только shapka */
-header.header > .header-right:only-child {
-  margin: 0 auto;        /* центр */
-  width: 100%;
-  max-width: 1200px;
-  flex: none;
-}
-
-/* Картинка участвует в расчёте высоты */
-header.header > .header-right:only-child img {
+/* Если в header только одна картинка */
+header.header > img.banner:only-child {
   display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
-}
-
-/* Отступ под шапкой, чтобы main не налезал */
-header.header {
-  margin-bottom: 20px;
-}
-
-  /* ======================================================
-   rent.html — шапка с одной картинкой (Chrome FIX)
-   HTML не трогаем
-   ====================================================== */
-
-/* Если в header ТОЛЬКО shapka — выключаем flex */
-header.header:has(> .header-right:only-child) {
-  display: block;
-}
-
-/* Контейнер shapka */
-header.header:has(> .header-right:only-child) .header-right {
-  width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Картинка shapka */
-header.header:has(> .header-right:only-child) img {
+/* В этом случае header НЕ должен быть flex */
+header.header:has(> img.banner:only-child) {
   display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Отступ, чтобы main никогда не налезал */
-header.header:has(> .header-right:only-child) {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* чтобы main не залезал */
 }
 
 
