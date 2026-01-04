@@ -300,6 +300,37 @@ header.header {
   margin-bottom: 20px;
 }
 
+  /* ======================================================
+   rent.html — шапка с одной картинкой (Chrome FIX)
+   HTML не трогаем
+   ====================================================== */
+
+/* Если в header ТОЛЬКО shapka — выключаем flex */
+header.header:has(> .header-right:only-child) {
+  display: block;
+}
+
+/* Контейнер shapka */
+header.header:has(> .header-right:only-child) .header-right {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Картинка shapka */
+header.header:has(> .header-right:only-child) img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Отступ, чтобы main никогда не налезал */
+header.header:has(> .header-right:only-child) {
+  margin-bottom: 20px;
+}
+
+
 
 
 
