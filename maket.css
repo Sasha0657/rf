@@ -279,20 +279,8 @@ p.seo-small {
 
 
 
-/* Если в header только одна картинка */
-header.header > img.banner:only-child {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin: 0 auto;
-}
 
-/* В этом случае header НЕ должен быть flex */
-header.header:has(> img.banner:only-child) {
-  display: block;
-  margin-bottom: 20px; /* чтобы main не залезал */
-}
+
 
 
 
