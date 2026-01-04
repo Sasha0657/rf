@@ -276,7 +276,42 @@ p.seo-small {
     flex-direction: column;
     gap: 5px;
   }
+}/* ======================================================
+   FIX: страницы с одной картинкой в шапке (без 01)
+   Работает ТОЛЬКО если .header-left отсутствует
+   ====================================================== */
+
+header.header {
+  align-items: stretch;
 }
+
+/* Если в шапке ТОЛЬКО header-right */
+header.header > .header-right:only-child {
+  flex: none;
+  width: 100%;
+  min-width: 100%;
+}
+
+/* Картинка shapka на всю ширину */
+header.header > .header-right:only-child img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Страховка от налезания контента */
+header.header {
+  position: relative;
+  z-index: 1;
+}
+
+main.content {
+  position: relative;
+  z-index: 0;
+}
+
+
 
 
 
