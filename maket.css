@@ -276,86 +276,29 @@ p.seo-small {
     flex-direction: column;
     gap: 5px;
   }
-}/* ======================================================
-   FIX: страницы с одной картинкой в шапке (без 01)
-   Работает ТОЛЬКО если .header-left отсутствует
-   ====================================================== */
 
-header.header {
-  align-items: stretch;
-}
 
-/* Если в шапке ТОЛЬКО header-right */
+
+  /* Если в шапке только shapka */
 header.header > .header-right:only-child {
-  flex: none;
-  width: 100%;
-  min-width: 100%;
-}
-
-/* Картинка shapka на всю ширину */
-header.header > .header-right:only-child img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Страховка от налезания контента */
-header.header {
-  position: relative;
-  z-index: 1;
-}
-
-main.content {
-  position: relative;
-  z-index: 0;
-}/* ======================================================
-   FIX rent.html — одна картинка в шапке (Chrome)
-   HTML НЕ трогаем
-   ====================================================== */
-
-/* Центрируем одиночный header-right */
-header.header > .header-right:only-child {
-  margin: 0 auto;        /* центр по горизонтали */
+  margin: 0 auto;        /* центр */
   width: 100%;
   max-width: 1200px;
   flex: none;
 }
 
-/* Картинка shapka корректно считается по высоте */
+/* Картинка участвует в расчёте высоты */
 header.header > .header-right:only-child img {
-  display: block;        /* КЛЮЧЕВО: участвует в высоте */
+  display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
 }
 
-/* Заставляем header учитывать высоту картинки */
-header.header {
-  align-items: stretch;
-  min-height: fit-content;
-}
-
-/* ГАРАНТИРОВАННЫЙ отступ под шапкой */
+/* Отступ под шапкой, чтобы main не налезал */
 header.header {
   margin-bottom: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
