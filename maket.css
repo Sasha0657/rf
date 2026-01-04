@@ -9,10 +9,10 @@ html, body {
   font-family: "Segoe UI", Arial, sans-serif;
   background-color: #fafafa;
   color: #222;
-  overflow-x: hidden; /* страховка */
+  overflow-x: hidden;
 }
 
-/* ================= ШАПКА ================= */
+/* ================= ШАПКА (DESKTOP) ================= */
 
 header.header {
   display: flex;
@@ -20,13 +20,12 @@ header.header {
   gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 10px;          /* ВАЖНО: отступы как у main */
-  max-height: 250px;
+  padding: 0 10px;
 }
 
-/* Левая картинка 01 */
+/* Левая часть — квадрат 01 */
 .header-left {
-  flex: 0 0 250px;          /* строго фиксированная ширина */
+  flex: 0 0 250px;
   aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
@@ -42,10 +41,10 @@ header.header {
   display: block;
 }
 
-/* Правая картинка (shapka) */
+/* Правая часть — shapka */
 .header-right {
   flex: 1 1 auto;
-  min-width: 0;             /* КРИТИЧНО для Chrome */
+  min-width: 0; /* важно для Chrome */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +59,33 @@ header.header {
   display: block;
 }
 
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+  header.header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-left {
+    width: 90%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .header-right {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .header-right img.banner {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
 /* ================= ОСНОВНОЙ МАКЕТ ================= */
 
 main.content {
@@ -71,19 +97,13 @@ main.content {
   padding: 0 10px;
 }
 
-/* ================= БОКОВОЕ МЕНЮ ================= */
+/* ================= SIDEBAR ================= */
 
 .sidebar {
   background: #f2f2f2;
   border-radius: 10px;
   text-align: center;
   padding: 10px 0;
-}
-
-.sidebar img.divider {
-  width: 80%;
-  margin: 10px auto;
-  display: block;
 }
 
 .menu {
@@ -93,50 +113,30 @@ main.content {
 }
 
 .menu a {
-  display: block;
   padding: 10px;
   text-decoration: none;
   color: #222;
   border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
   font-size: 20px;
 }
 
-.menu a:hover {
-  background-color: #25D366;
-  color: white;
-}
-
+.menu a:hover,
 .menu a.active {
   background-color: #25D366;
   color: white;
-  font-weight: bold;
 }
 
-/* ================= СТАТЬЯ ================= */
+/* ================= ARTICLE ================= */
 
 .article {
   background: white;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-.article h1.title {
-  text-align: center;
-  margin-top: 0;
-}
-
-.article p {
-  text-align: justify;
-  line-height: 1.6;
-}
-
-/* Картинки в тексте */
 .article img.float-left {
   float: left;
   width: 40%;
-  max-width: 350px;
   margin: 0 20px 10px 0;
   border-radius: 10px;
 }
@@ -144,18 +144,16 @@ main.content {
 .article img.float-right {
   float: right;
   width: 40%;
-  max-width: 350px;
   margin: 0 0 10px 20px;
   border-radius: 10px;
 }
 
-/* ================= ГАЛЕРЕЯ ================= */
+/* ================= GALLERY ================= */
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
-  margin: 30px 0;
 }
 
 .gallery img {
@@ -163,12 +161,6 @@ main.content {
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
 }
 
 /* ================= FOOTER ================= */
@@ -180,102 +172,13 @@ main.content {
   padding: 10px 20px;
   background-color: #222;
   color: #fff;
-  border-top: 3px solid #555;
   margin-top: 30px;
 }
 
 .footer-center {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin: 0 auto;
 }
 
-.pulsing-icon {
-  width: 28px;
-  height: 28px;
-  animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.whatsapp-text {
-  color: #25D366;
-  font-weight: bold;
-}
-
-.phone-number {
-  color: #fff;
-}
-
-/* ================= SEO мелкий текст ================= */
-
-p.seo-small {
-  font-size: 0.78rem;
-  line-height: 1.28;
-  opacity: 0.9;
-  margin: 8px 0;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 900px) {
-
-  header.header {
-    flex-direction: column;
-    max-height: none;
-  }
-
-  .header-left {
-    width: 90%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .header-right {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .header-right img.banner {
-    height: auto;
-    object-fit: contain;
-  }
-
-  main.content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar {
-    order: -1;
-  }
-
-  .article img.float-left,
-  .article img.float-right {
-    float: none;
-    width: 100%;
-    max-width: 100%;
-    margin: 10px 0;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
-  }
-
-  .gallery img {
-    height: auto;
-  }
-
-  .footer {
-    flex-direction: column;
-    gap: 5px;
-  }
 
 
 
