@@ -86,127 +86,174 @@ header.header {
   display: block;
 }
 
-/* === ПОЛНЫЙ СБРОС И ПЕРЕОПРЕДЕЛЕНИЕ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ === */
-
-/* Сначала сбросим все стили для шапки на мобильных */
-@media (max-width: 900px) {
-  /* Сброс для всего header */
+/* === ОПТИМИЗИРОВАННЫЕ СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ === */
+@media screen and (max-width: 900px) {
+  /* Общие настройки контейнера */
+  .container {
+    padding: 0 10px;
+    width: 100%;
+  }
+  
+  /* Шапка - сброс и базовая структура */
   header.header {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 15px 10px !important;
-    font-family: inherit !important;
-    background-color: transparent !important;
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0 auto;
   }
   
-  /* Контейнер для выравнивания */
+  /* Контейнер для двух частей шапки */
   .header-container {
-    all: initial !important;
-    display: flex !important;
-    flex-direction: column !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    gap: 15px !important;
-    align-items: center !important;
-    margin: 0 auto !important;
-    max-width: 600px !important;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    align-items: center;
   }
   
-  /* ЛЕВАЯ ЧАСТЬ - квадрат 01 */
+  /* КВАДРАТ 01 - фиксированный квадрат */
   .header-left {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    max-width: 320px !important;
-    height: 320px !important; /* ФИКСИРОВАННАЯ высота для квадрата */
-    margin: 0 auto !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    background-color: transparent !important;
+    width: 90%;
+    max-width: 320px;
+    height: 320px; /* Фиксированная высота делает квадрат */
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
   }
   
   .header-left img,
   .img-01 {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    border-radius: 10px !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   
-  /* ПРАВАЯ ЧАСТЬ - баннер shapka */
+  /* БАННЕР shapka - сохраняем пропорции */
   .header-right {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 180px !important;
-    max-height: 220px !important;
-    margin: 0 !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
-    background-color: transparent !important;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    max-height: 220px;
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
   }
   
   .header-right img.banner {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 220px !important;
-    object-fit: contain !important;
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    display: block;
   }
   
-  /* Для страницы rent.html где только один баннер */
+  /* Для страницы с одним баннером (rent.html) */
   .header-center {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: 180px !important;
-    max-height: 220px !important;
-    margin: 0 !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    max-height: 220px;
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
   }
   
   .header-center img.banner {
-    all: initial !important;
-    display: block !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-height: 220px !important;
-    object-fit: contain !important;
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    display: block;
+  }
+  
+  /* Адаптация основного контента */
+  main.content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 15px;
+  }
+  
+  .sidebar {
+    order: -1;
+    width: 100%;
+  }
+  
+  /* Оптимизация галереи для мобильных */
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+  
+  .gallery img {
+    height: 150px;
+  }
+  
+  /* Футер для мобильных */
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 15px 10px;
+  }
+  
+  .footer-center {
+    margin-bottom: 10px;
   }
 }
 
-/* Для очень маленьких экранов */
-@media (max-width: 480px) {
+/* Для очень маленьких экранов (до 480px) */
+@media screen and (max-width: 480px) {
   .header-left {
-    max-width: 280px !important;
-    height: 280px !important;
+    max-width: 280px;
+    height: 280px;
   }
   
   .header-right,
   .header-center {
-    min-height: 150px !important;
-    max-height: 180px !important;
+    min-height: 150px;
+    max-height: 180px;
   }
   
   .header-right img.banner,
   .header-center img.banner {
-    max-height: 180px !important;
+    max-height: 180px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+  
+  .gallery img {
+    height: 130px;
+  }
+}
+
+/* Для больших мобильных (планшеты) */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .header-left {
+    max-width: 350px;
+    height: 350px;
+  }
+  
+  .header-right,
+  .header-center {
+    min-height: 200px;
+    max-height: 250px;
+  }
+  
+  .header-right img.banner,
+  .header-center img.banner {
+    max-height: 250px;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  
+  .gallery img {
+    height: 180px;
   }
 }
 
@@ -467,6 +514,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
