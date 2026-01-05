@@ -210,19 +210,7 @@ header.header {
   }
 }
 
-/* Принудительное применение стилей для мобильной версии */
-@media (max-width: 900px) {
-  /* Отключаем десктопные стили */
-  .header-left {
-    flex: 0 0 auto !important;
-    width: 90% !important;
-  }
-  
-  .header-right {
-    flex: 1 1 auto !important;
-    width: 100% !important;
-  }
-}
+
 
 /* === Основной макет === */
 main.content {
@@ -479,6 +467,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
