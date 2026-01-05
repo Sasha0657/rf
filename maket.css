@@ -99,93 +99,115 @@ header.header {
     align-items: center;
     width: 100%;
     max-width: 100%;
-    padding: 0;
+    padding: 10px 0; /* Добавляем отступ сверху/снизу */
     margin: 0 auto;
   }
 
+  /* Убедимся, что header-container работает */
   .header-container {
-    flex-direction: column;
-    padding: 0;
-    gap: 10px; /* Добавляем отступ между квадратом и shapka */
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 15px !important; /* Отступ между блоками */
+    align-items: center !important;
   }
 
-  /* Блок 01 — всегда центр + квадрат */
+  /* Блок 01 — квадрат с фиксированными размерами */
   .header-left {
-    width: 100%;
-    max-width: 320px;
-    height: 320px; /* Фиксированная высота для квадрата */
+    width: 90% !important;
+    max-width: 320px !important;
+    height: 320px !important; /* Фиксированная высота */
     aspect-ratio: 1 / 1 !important;
     margin: 0 auto !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    border-radius: 10px !important;
   }
 
   .header-left img.banner,
-  .img-01 {
+  .header-left .img-01 {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    display: block;
+    display: block !important;
   }
 
-  /* shapka — на всю ширину с правильной высотой */
+  /* shapka — на всю ширину */
   .header-right {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
+    min-height: 180px !important;
+    max-height: 220px !important;
     aspect-ratio: auto !important;
-    margin: 10px 0 0 0 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 150px; /* Минимальная высота для shapka */
-    max-height: 200px;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    border-radius: 10px !important;
   }
 
   .header-right img.banner {
     width: 100% !important;
-    height: auto !important;
-    max-height: 200px;
+    height: 100% !important;
+    max-height: 220px !important;
     object-fit: contain !important;
-    display: block;
+    display: block !important;
   }
 
   /* Для header-center на второй странице */
   .header-center {
     width: 100% !important;
     height: auto !important;
-    min-height: 150px;
-    max-height: 200px;
+    min-height: 180px !important;
+    max-height: 220px !important;
     margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
   .header-center img.banner {
     width: 100% !important;
     height: auto !important;
-    max-height: 200px;
+    max-height: 220px !important;
     object-fit: contain !important;
   }
 }
 
-/* Дополнительные исправления для очень маленьких экранов */
+/* Для очень маленьких экранов */
 @media (max-width: 480px) {
   .header-left {
-    max-width: 280px;
-    height: 280px;
+    max-width: 280px !important;
+    height: 280px !important;
   }
   
   .header-right,
   .header-center {
-    min-height: 120px;
-    max-height: 180px;
+    min-height: 150px !important;
+    max-height: 180px !important;
   }
   
   .header-right img.banner,
   .header-center img.banner {
-    max-height: 180px;
+    max-height: 180px !important;
+  }
+}
+
+/* Принудительное применение стилей для мобильной версии */
+@media (max-width: 900px) {
+  /* Отключаем десктопные стили */
+  .header-left {
+    flex: 0 0 auto !important;
+    width: 90% !important;
+  }
+  
+  .header-right {
+    flex: 1 1 auto !important;
+    width: 100% !important;
   }
 }
 
@@ -444,6 +466,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
