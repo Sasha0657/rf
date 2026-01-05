@@ -86,7 +86,7 @@ header.header {
   display: block;
 }
 
-/* === ОПТИМИЗИРОВАННЫЕ СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ === */
+/* === ОПТИМИЗИРОВАННЫЕ СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ - ФИНАЛЬНАЯ ВЕРСИЯ === */
 @media screen and (max-width: 900px) {
   /* Общие настройки контейнера */
   .container {
@@ -96,11 +96,13 @@ header.header {
   
   /* Шапка - сброс и базовая структура */
   header.header {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     padding: 10px 0;
     margin: 0 auto;
-    background: transparent !important; /* Убираем фон у шапки */
+    background: transparent !important;
   }
   
   /* Контейнер для двух частей шапки */
@@ -113,47 +115,39 @@ header.header {
     background: transparent !important;
   }
   
-  /* КВАДРАТ 01 - только для index.html - ЗАПОЛНЯЕМ ВЕСЬ КВАДРАТ */
+  /* КВАДРАТ 01 - показываем картинку в ЕСТЕСТВЕННЫХ пропорциях */
   .header-left {
-    width: 100%; /* Занимаем всю ширину */
-    max-width: 400px; /* Максимальная ширина, но можно увеличить */
-    height: 400px; /* Делаем квадрат побольше */
+    width: 100%;
+    max-width: 400px;
+    height: auto !important; /* Автоматическая высота */
     margin: 0 auto;
-    border-radius: 10px;
-    overflow: hidden;
     display: block !important;
-    background: white !important; /* Белый фон вместо серого */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Легкая тень */
-    padding: 0 !important; /* Убираем любые отступы */
+    background: transparent !important; /* Прозрачный фон */
+    padding: 0 !important;
     border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+  
+  /* Картинка 01 - сохраняем оригинальные пропорции */
+  .header-left img,
+  .img-01 {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 400px !important;
+    object-fit: contain !important;
+    display: block;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border-radius: 10px;
+    background: white !important; /* Белый фон только у картинки */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
   
   /* Скрываем shapka на index.html в мобильной версии */
   .header-left ~ .header-right {
     display: none !important;
-  }
-  
-  /* Для index.html: картинка 01 заполняет ВЕСЬ квадрат */
-  .header-left img,
-  .img-01 {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: scale-down !important; /* Ключевое изменение! */
-    display: block;
-    background: white !important; /* Белый фон у самой картинки */
-    margin: 0 !important;
-    padding: 0 !important;
-    border-radius: 10px;
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Альтернативный вариант: если scale-down не работает */
-  .header-left .img-01 {
-    /* Попробуйте этот вариант если scale-down не дает нужного эффекта */
-    object-fit: contain !important;
-    object-position: center center !important;
-    transform: scale(1.05); /* Немного увеличиваем картинку */
   }
   
   /* БАННЕР shapka - ТОЛЬКО для rent.html */
@@ -221,9 +215,9 @@ header.header {
 
 /* Для очень маленьких экранов (до 480px) */
 @media screen and (max-width: 480px) {
-  .header-left {
-    max-width: 320px;
-    height: 320px;
+  .header-left img,
+  .img-01 {
+    max-height: 300px !important;
   }
   
   .header-center {
@@ -244,19 +238,11 @@ header.header {
   }
 }
 
-/* Для средних мобильных (481px - 600px) */
-@media screen and (min-width: 481px) and (max-width: 600px) {
-  .header-left {
-    max-width: 360px;
-    height: 360px;
-  }
-}
-
 /* Для больших мобильных (планшеты) */
 @media screen and (min-width: 601px) and (max-width: 900px) {
-  .header-left {
-    max-width: 400px;
-    height: 400px;
+  .header-left img,
+  .img-01 {
+    max-height: 400px !important;
   }
   
   .header-center {
@@ -283,9 +269,19 @@ header.header {
     display: flex !important;
   }
   
+  /* На десктопе возвращаем старые стили для квадрата */
+  .header-left {
+    width: 250px !important;
+    height: 250px !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+  
   .header-left img,
   .img-01 {
     object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
   }
 }
 
@@ -546,6 +542,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
