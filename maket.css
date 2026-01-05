@@ -10,6 +10,15 @@ html, body {
   background-color: #fafafa;
   color: #222;
   overflow-x: hidden;
+  width: 100%;
+}
+
+/* === Общий контейнер для выравнивания === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; /* Отступы от краев экрана */
+  width: 100%;
 }
 
 /* === Шапка (Desktop) === */
@@ -18,7 +27,6 @@ header.header {
   justify-content: center;
   align-items: stretch;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
   gap: 10px;
   overflow: hidden;
@@ -26,30 +34,40 @@ header.header {
   max-height: 250px;
 }
 
+/* Контейнер для выравнивания содержимого шапки */
+.header-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
 /* Левая часть — КВАДРАТ 01 */
 .header-left {
   flex: 0 0 auto;
-  width: 40%;
-  aspect-ratio: 1 / 1;   /* ← квадрат 100% */
+  width: 250px; /* Фиксированная ширина как у sidebar */
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 10px;
-  margin-right: 10px;    /* зазор между 01 и shapka */
 }
+
 .img-01 {
-  width: 100%;              /* подстраивается под контейнер */
-  max-width: 260px;         /* или твой размер */
-  aspect-ratio: 1 / 1;      /* ДЕЛАЕТ КВАДРАТ */
-  object-fit: cover;        /* обрезает красиво в квадрат */
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
-  margin: 20px auto;        /* расстояние сверху/снизу, по центру */
+  margin: 20px auto;
 }
 
 /* Правая часть — прямоугольник */
 .header-right {
   flex: 1 1 auto;
+  width: calc(100% - 260px); /* 250px + 10px gap */
   aspect-ratio: 16 / 9;
   display: flex;
   justify-content: center;
@@ -70,19 +88,29 @@ header.header {
 
 /* === ФИКС мобильной версии шапки === */
 @media (max-width: 900px) {
+  .container {
+    padding: 0 10px;
+  }
 
   /* Контейнер шапки вертикально */
   header.header {
     display: flex;
     flex-direction: column;
-    align-items: center;   /* центрируем оба блока */
+    align-items: center;
     width: 100%;
     max-width: 100%;
+    padding: 0;
+  }
+
+  .header-container {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
   }
 
   /* Блок 01 — всегда центр + квадрат */
   .header-left {
-    width: 90%;
+    width: 100%;
     max-width: 320px;
     aspect-ratio: 1 / 1 !important;
     margin: 0 auto !important;
@@ -95,7 +123,7 @@ header.header {
   .img-01 {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;   /* квадрат */
+    object-fit: cover !important;
     display: block;
   }
 
@@ -108,12 +136,14 @@ header.header {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: auto;
   }
 
   .header-right img.banner {
     width: 100% !important;
     height: auto !important;
-    object-fit: contain !important;  /* полная картинка */
+    max-height: 200px;
+    object-fit: contain !important;
     display: block;
   }
 }
@@ -125,7 +155,8 @@ main.content {
   gap: 20px;
   max-width: 1200px;
   margin: 20px auto;
-  padding: 0 10px;
+  padding: 0;
+  width: 100%;
 }
 
 /* === Боковое меню === */
@@ -155,7 +186,7 @@ main.content {
   color: #222;
   border-radius: 6px;
   transition: background 0.3s, color 0.3s;
-  font-size: 20px; /* Добавьте эту строку */
+  font-size: 20px;
 }
 
 .menu a:hover {
@@ -230,15 +261,26 @@ main.content {
 .footer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
   background-color: #222;
   color: #fff;
-  padding: 10px 0;
+  padding: 10px 20px;
   font-size: 1rem;
   border-top: 3px solid #555;
   margin-top: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Блок с центром */
+.footer-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
 }
 
 .pulsing-icon {
@@ -263,6 +305,11 @@ main.content {
   margin-left: 8px;
 }
 
+/* Внешний вид информера */
+.informer-link img {
+  border-radius: 8px;
+}
+
 /* === SEO уменьшенный текст === */
 p.seo-small {
   font-size: 0.78rem !important;
@@ -275,32 +322,10 @@ p.seo-small {
 
 /* === Мобильная версия === */
 @media (max-width: 900px) {
-
-  /* Картинки шапки друг под другом */
-  header.header {
-    flex-direction: column;
-    gap: 5px;
-    max-height: none;
-  }
-
-  .header-left,
-  .header-right {
-    width: 100%;
-    aspect-ratio: auto;
-    margin-right: 0;
-  }
-
-  .header-left img.banner,
-  .header-right img.banner {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-
-  /* Меню сверху */
   main.content {
     display: flex;
     flex-direction: column;
+    padding: 0 10px;
   }
 
   .sidebar {
@@ -322,11 +347,19 @@ p.seo-small {
 
   .gallery img {
     height: auto;
+    max-height: 200px;
   }
 
   .footer {
     flex-direction: column;
     gap: 5px;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .footer-center {
+    order: 1;
+    margin-bottom: 10px;
   }
 }
 
@@ -334,19 +367,19 @@ p.seo-small {
 .header-center img.banner {
   width: 100% !important;
   height: auto !important;
-  object-fit: contain !important;   /* показывать полную картинку */
+  object-fit: contain !important;
   object-position: center !important;
-  aspect-ratio: auto !important;    /* запрет квадрата */
+  aspect-ratio: auto !important;
   display: block;
 }
 
-/* === Лайтбокс (после переноса из HTML) === */
+/* === Лайтбокс === */
 .lightbox {
   display: none;
-  position: fixed;        /* обязательно fixed */
-  inset: 0;               /* равносильно top:0; left:0; right:0; bottom:0 */
+  position: fixed;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;          /* чтобы всегда был поверх */
+  z-index: 9999;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -371,47 +404,6 @@ p.seo-small {
   transform: scale(1.05);
 }
 
-
-.footer {
-  display: flex;
-  justify-content: space-between; /* центр и информер по краям */
-  align-items: center;             /* выравнивание по вертикали */
-  padding: 10px 20px;
-}
-
-/* Блок с центром */
-.footer-center {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* расстояние между иконкой, текстом и номером */
-  margin: 0 auto; /* центрирует блок по горизонтали */
-}
-
-/* Внешний вид информера */
-.informer-link img {
-  border-radius: 8px;
-}
-
-/* (Необязательно) стили для текста */
-.whatsapp-text, .phone-number {
-  font-size: 16px;
-}
-
-/* === ВЫРАВНИВАНИЕ 01 И SHAPKA ПО СЕТКЕ 250px + контент === */
-header.header {
-  max-width: 1200px;               /* как у main.content */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.header-left {
-  width: 250px;                    /* точное совпадение с шириной sidebar */
-}
-
-.header-right {
-  flex: 1 1 auto;                  /* занимает ширину article */
-  width: calc(100% - 250px - 10px); /* учитывает ширину 01 + gap */
-}
 
 
 
