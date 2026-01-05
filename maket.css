@@ -89,222 +89,106 @@ header.header {
 
 
 
-/* === ОПТИМИЗИРОВАННЫЕ СТИЛИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ - ФИНАЛЬНАЯ ВЕРСИЯ === */
+/* === УПРОЩЕННЫЙ И ИСПРАВЛЕННЫЙ CSS ДЛЯ МОБИЛЬНОЙ ВЕРСИИ === */
 @media screen and (max-width: 900px) {
-  /* Общие настройки контейнера */
+  /* СБРАСЫВАЕМ ВСЕ ОТСТУПЫ */
+  header.header,
+  .header-container,
+  .header-left,
+  .header-left img {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Контейнер страницы */
   .container {
     padding: 0 10px;
     width: 100%;
   }
   
-  /* Шапка - с отступами сверху */
+  /* Шапка - минимальные отступы */
   header.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     width: 100%;
-    padding: 10px 0 10px 0 !important; /* БЫЛО 400px, СТАЛО 30px */
-    margin: 0 auto;
-    background: transparent !important;
+    margin-top: 5px !important; /* ОЧЕНЬ маленький отступ сверху */
+    margin-bottom: 10px !important;
   }
   
-  /* Контейнер для двух частей шапки */
+  /* Контейнер шапки */
   .header-container {
-    display: flex;
-    flex-direction: column;
+    display: block;
     width: 100%;
-    gap: 0;
-    align-items: center;
-    background: transparent !important;
   }
   
-  /* КВАДРАТ 01 - с отступами и центрированием */
+  /* Квадрат 01 - минимальные отступы */
   .header-left {
     width: 100%;
-    max-width: 400px;
-    height: auto !important;
-    margin: 0 auto 10px auto !important; /* Отступ снизу 20px */
-    display: block !important;
-    background: transparent !important;
-    padding: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    overflow: visible !important;
+    max-width: 320px;
+    height: auto;
+    margin: 5px auto 10px auto !important; /* 5px сверху, 10px снизу */
+    display: block;
   }
   
-  /* Картинка 01 - с белым фоном и тенью */
+  /* Картинка 01 */
   .header-left img,
   .img-01 {
     width: 100% !important;
     height: auto !important;
-    max-height: 400px !important;
-    object-fit: contain !important;
-    display: block;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    border-radius: 10px;
-    background: white !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  }
-  
-  /* Скрываем shapka на index.html в мобильной версии */
-  .header-left ~ .header-right {
-    display: none !important;
-  }
-  
-  /* БАННЕР shapka - ТОЛЬКО для rent.html с отступами */
-  .header-center {
-    width: 100%;
-    height: auto;
-    min-height: 180px;
-    max-height: 220px;
-    margin: 30px 0 15px 0 !important; /* Больше отступ сверху */
-    border-radius: 10px;
-    overflow: hidden;
-    display: block !important;
-    background: transparent !important;
-  }
-  
-  .header-center img.banner {
-    width: 100%;
-    height: 100%;
-    max-height: 220px;
+    max-height: 320px;
     object-fit: contain;
     display: block;
-    background: transparent !important;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
   
-  /* Дополнительно: скрываем .header-right если он где-то остался */
+  /* Скрываем shapka */
   .header-right {
     display: none !important;
   }
   
-  /* Адаптация основного контента */
+  /* Основной контент - убираем лишние отступы */
   main.content {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    gap: 15px;
-  }
-  
-  .sidebar {
-    order: -1;
-    width: 100%;
-    margin-top: 10px !important; /* Добавляем отступ сверху для меню */
-  }
-  
-  /* Оптимизация галереи для мобильных */
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 8px;
-    margin: 20px 0 !important;
-  }
-  
-  .gallery img {
-    height: 150px;
-  }
-  
-  /* Футер для мобильных */
-  .footer {
-    flex-direction: column;
+    margin-top: 5px !important; /* Минимальный отступ после картинки */
     gap: 10px;
-    text-align: center;
-    padding: 15px 10px;
-    margin-top: 20px !important;
   }
   
-  .footer-center {
-    margin-bottom: 10px;
+  /* Sidebar и divider - убираем верхние отступы */
+  .sidebar {
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+  }
+  
+  .sidebar .divider:first-child {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Меню */
+  .menu {
+    gap: 5px;
+  }
+  
+  .menu a {
+    padding: 8px;
+    font-size: 18px;
   }
 }
 
-/* Для очень маленьких экранов (до 480px) */
+/* Для очень маленьких экранов */
 @media screen and (max-width: 480px) {
-  header.header {
-    padding: 15px 0 5px 0 !important; /* Меньше отступ на маленьких экранах */
-  }
-  
-  .header-left img,
-  .img-01 {
-    max-height: 300px !important;
-  }
-  
-  .header-center {
-    min-height: 150px;
-    max-height: 180px;
-    margin: 20px 0 10px 0 !important;
-  }
-  
-  .header-center img.banner {
-    max-height: 180px;
-  }
-  
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  }
-  
-  .gallery img {
-    height: 130px;
-  }
-}
-
-/* Для больших мобильных (планшеты) */
-@media screen and (min-width: 601px) and (max-width: 900px) {
-  header.header {
-    padding: 25px 0 15px 0 !important; /* Больше отступ на планшетах */
-  }
-  
-  .header-left img,
-  .img-01 {
-    max-height: 400px !important;
-  }
-  
-  .header-center {
-    min-height: 200px;
-    max-height: 250px;
-    margin: 35px 0 20px 0 !important;
-  }
-  
-  .header-center img.banner {
-    max-height: 250px;
-  }
-  
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-  
-  .gallery img {
-    height: 180px;
-  }
-}
-
-/* === ВАЖНО: Десктопная версия остается без изменений === */
-@media screen and (min-width: 901px) {
-  .header-left ~ .header-right {
-    display: flex !important;
-  }
-  
-  /* На десктопе возвращаем старые стили для квадрата */
   .header-left {
-    width: 250px !important;
-    height: 250px !important;
-    aspect-ratio: 1 / 1 !important;
-    margin: 0 !important;
+    max-width: 280px;
   }
   
   .header-left img,
   .img-01 {
-    object-fit: cover !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-height: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
+    max-height: 280px;
   }
   
-  header.header {
-    padding: 0 !important;
+  .menu a {
+    font-size: 16px;
+    padding: 6px;
   }
 }
 
@@ -586,6 +470,7 @@ p.seo-small {
     align-items: center !important;
   }
 }
+
 
 
 
