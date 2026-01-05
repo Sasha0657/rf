@@ -1,3 +1,34 @@
+/* ДОБАВЬТЕ ЭТО В САМОЕ НАЧАЛО CSS ФАЙЛА */
+@media (max-width: 900px) {
+  /* СБРОС ВСЕХ ОТСТУПОВ ДЛЯ ШАПКИ */
+  .header,
+  .header-container,
+  .header-left,
+  .header-right,
+  .header-center {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Картинка 01 с минимальными отступами */
+  .header-left {
+    margin-top: 10px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Sidebar сразу после картинки */
+  .sidebar {
+    margin-top: 0 !important;
+  }
+  
+  .divider:first-child {
+    margin-top: 5px !important;
+    margin-bottom: 15px !important;
+  }
+}
+
+
+
 /* === Базовые настройки === */
 * {
   box-sizing: border-box;
@@ -470,6 +501,7 @@ p.seo-small {
     align-items: center !important;
   }
 }
+
 
 
 
