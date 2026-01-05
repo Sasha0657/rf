@@ -17,29 +17,36 @@
 <meta property="og:url" content="https://артскрин.рф/">
 <meta property="og:type" content="website">
 <style>
-/* ЭКСТРЕННЫЙ ФИКС ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
+/* ФИКС ОТСТУПОВ ДЛЯ МОБИЛЬНЫХ */
 @media (max-width: 900px) {
+  /* Полный сброс для header */
   header.header {
-    padding-top: 30px !important;
-    padding-bottom: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
   }
   
+  .header-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Картинка 01 с точными отступами */
   .header-left {
-    margin-top: 10px !important;
-    margin-bottom: 20px !important;
+    margin: 10px auto 15px auto !important;
+    padding: 0 !important;
   }
   
-  .header-left img.img-01 {
-    max-height: 350px !important;
+  /* Sidebar прилипает к картинке */
+  .sidebar {
     margin-top: 0 !important;
+    padding-top: 0 !important;
   }
   
-  /* Гарантируем, что shapka скрыта */
-  .header-right {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    overflow: hidden !important;
+  /* Первый divider */
+  .divider:first-of-type {
+    margin-top: 10px !important;
+    margin-bottom: 15px !important;
   }
 }
 </style>
@@ -149,6 +156,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
   
 </body>
 </html>
+
 
 
 
