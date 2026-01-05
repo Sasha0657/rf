@@ -100,6 +100,7 @@ header.header {
     width: 100%;
     padding: 10px 0;
     margin: 0 auto;
+    background: transparent !important; /* Убираем фон у шапки */
   }
   
   /* Контейнер для двух частей шапки */
@@ -107,49 +108,65 @@ header.header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 0; /* Убираем gap между блоками */
+    gap: 0;
     align-items: center;
+    background: transparent !important;
   }
   
-  /* КВАДРАТ 01 - только для index.html - ПОЛНАЯ КАРТИНКА */
+  /* КВАДРАТ 01 - только для index.html - ЗАПОЛНЯЕМ ВЕСЬ КВАДРАТ */
   .header-left {
-    width: 90%;
-    max-width: 320px;
-    height: 320px; /* Фиксированная высота для квадрата */
+    width: 100%; /* Занимаем всю ширину */
+    max-width: 400px; /* Максимальная ширина, но можно увеличить */
+    height: 400px; /* Делаем квадрат побольше */
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
-    display: block !important; /* Всегда показываем на index */
+    display: block !important;
+    background: white !important; /* Белый фон вместо серого */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Легкая тень */
+    padding: 0 !important; /* Убираем любые отступы */
+    border: none !important;
   }
   
   /* Скрываем shapka на index.html в мобильной версии */
   .header-left ~ .header-right {
-    display: none !important; /* Скрываем правую часть если есть левая */
+    display: none !important;
   }
   
-  /* Для index.html: делаем картинку 01 полной (не обрезанной) */
+  /* Для index.html: картинка 01 заполняет ВЕСЬ квадрат */
   .header-left img,
   .img-01 {
-    width: 100%;
-    height: 100%;
-    object-fit: contain !important; /* ПОЛНАЯ картинка, не обрезаем */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: scale-down !important; /* Ключевое изменение! */
     display: block;
-    background-color: #f0f0f0; /* Фон на случай прозрачности */
-    padding: 5px; /* Небольшой отступ от краев */
-    box-sizing: border-box;
+    background: white !important; /* Белый фон у самой картинки */
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Альтернативный вариант: если scale-down не работает */
+  .header-left .img-01 {
+    /* Попробуйте этот вариант если scale-down не дает нужного эффекта */
+    object-fit: contain !important;
+    object-position: center center !important;
+    transform: scale(1.05); /* Немного увеличиваем картинку */
   }
   
   /* БАННЕР shapka - ТОЛЬКО для rent.html */
-  /* Когда есть только .header-center (без .header-left) */
   .header-center {
     width: 100%;
     height: auto;
     min-height: 180px;
     max-height: 220px;
-    margin: 15px 0; /* Добавляем отступы сверху/снизу */
+    margin: 15px 0;
     border-radius: 10px;
     overflow: hidden;
     display: block !important;
+    background: transparent !important;
   }
   
   .header-center img.banner {
@@ -158,6 +175,7 @@ header.header {
     max-height: 220px;
     object-fit: contain;
     display: block;
+    background: transparent !important;
   }
   
   /* Дополнительно: скрываем .header-right если он где-то остался */
@@ -204,8 +222,8 @@ header.header {
 /* Для очень маленьких экранов (до 480px) */
 @media screen and (max-width: 480px) {
   .header-left {
-    max-width: 280px;
-    height: 280px;
+    max-width: 320px;
+    height: 320px;
   }
   
   .header-center {
@@ -226,11 +244,19 @@ header.header {
   }
 }
 
+/* Для средних мобильных (481px - 600px) */
+@media screen and (min-width: 481px) and (max-width: 600px) {
+  .header-left {
+    max-width: 360px;
+    height: 360px;
+  }
+}
+
 /* Для больших мобильных (планшеты) */
 @media screen and (min-width: 601px) and (max-width: 900px) {
   .header-left {
-    max-width: 350px;
-    height: 350px;
+    max-width: 400px;
+    height: 400px;
   }
   
   .header-center {
@@ -252,15 +278,14 @@ header.header {
 }
 
 /* === ВАЖНО: Десктопная версия остается без изменений === */
-/* На десктопе обе картинки показываются как и раньше */
 @media screen and (min-width: 901px) {
   .header-left ~ .header-right {
-    display: flex !important; /* На десктопе показываем обе */
+    display: flex !important;
   }
   
   .header-left img,
   .img-01 {
-    object-fit: cover !important; /* На десктопе можно обрезать */
+    object-fit: cover !important;
   }
 }
 
@@ -521,6 +546,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
