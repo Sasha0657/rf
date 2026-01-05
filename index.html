@@ -115,9 +115,36 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
         window.location.href = "/rent.html";
       }, delay);
     };
-  </script>    
+  </script>
+
+<script>
+  // Исправление мобильной версии шапки
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 900) {
+      const headerLeft = document.querySelector('.header-left');
+      const headerRight = document.querySelector('.header-right');
+      
+      if (headerLeft) {
+        // Устанавливаем квадратные размеры
+        headerLeft.style.width = '90%';
+        headerLeft.style.maxWidth = '320px';
+        headerLeft.style.height = '320px';
+        headerLeft.style.aspectRatio = '1/1';
+      }
+      
+      if (headerRight) {
+        // Устанавливаем правильную высоту для shapka
+        headerRight.style.height = 'auto';
+        headerRight.style.minHeight = '180px';
+        headerRight.style.maxHeight = '220px';
+      }
+    }
+  });
+</script>
+  
 </body>
 </html>
+
 
 
 
