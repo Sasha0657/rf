@@ -107,56 +107,49 @@ header.header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 15px;
+    gap: 0; /* Убираем gap между блоками */
     align-items: center;
   }
   
-  /* КВАДРАТ 01 - фиксированный квадрат */
+  /* КВАДРАТ 01 - только для index.html - ПОЛНАЯ КАРТИНКА */
   .header-left {
     width: 90%;
     max-width: 320px;
-    height: 320px; /* Фиксированная высота делает квадрат */
+    height: 320px; /* Фиксированная высота для квадрата */
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
+    display: block !important; /* Всегда показываем на index */
   }
   
+  /* Скрываем shapka на index.html в мобильной версии */
+  .header-left ~ .header-right {
+    display: none !important; /* Скрываем правую часть если есть левая */
+  }
+  
+  /* Для index.html: делаем картинку 01 полной (не обрезанной) */
   .header-left img,
   .img-01 {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain !important; /* ПОЛНАЯ картинка, не обрезаем */
     display: block;
+    background-color: #f0f0f0; /* Фон на случай прозрачности */
+    padding: 5px; /* Небольшой отступ от краев */
+    box-sizing: border-box;
   }
   
-  /* БАННЕР shapka - сохраняем пропорции */
-  .header-right {
-    width: 100%;
-    height: auto;
-    min-height: 180px;
-    max-height: 220px;
-    margin: 0;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .header-right img.banner {
-    width: 100%;
-    height: 100%;
-    max-height: 220px;
-    object-fit: contain;
-    display: block;
-  }
-  
-  /* Для страницы с одним баннером (rent.html) */
+  /* БАННЕР shapka - ТОЛЬКО для rent.html */
+  /* Когда есть только .header-center (без .header-left) */
   .header-center {
     width: 100%;
     height: auto;
     min-height: 180px;
     max-height: 220px;
-    margin: 0;
+    margin: 15px 0; /* Добавляем отступы сверху/снизу */
     border-radius: 10px;
     overflow: hidden;
+    display: block !important;
   }
   
   .header-center img.banner {
@@ -165,6 +158,11 @@ header.header {
     max-height: 220px;
     object-fit: contain;
     display: block;
+  }
+  
+  /* Дополнительно: скрываем .header-right если он где-то остался */
+  .header-right {
+    display: none !important;
   }
   
   /* Адаптация основного контента */
@@ -210,13 +208,11 @@ header.header {
     height: 280px;
   }
   
-  .header-right,
   .header-center {
     min-height: 150px;
     max-height: 180px;
   }
   
-  .header-right img.banner,
   .header-center img.banner {
     max-height: 180px;
   }
@@ -237,13 +233,11 @@ header.header {
     height: 350px;
   }
   
-  .header-right,
   .header-center {
     min-height: 200px;
     max-height: 250px;
   }
   
-  .header-right img.banner,
   .header-center img.banner {
     max-height: 250px;
   }
@@ -254,6 +248,19 @@ header.header {
   
   .gallery img {
     height: 180px;
+  }
+}
+
+/* === ВАЖНО: Десктопная версия остается без изменений === */
+/* На десктопе обе картинки показываются как и раньше */
+@media screen and (min-width: 901px) {
+  .header-left ~ .header-right {
+    display: flex !important; /* На десктопе показываем обе */
+  }
+  
+  .header-left img,
+  .img-01 {
+    object-fit: cover !important; /* На десктопе можно обрезать */
   }
 }
 
@@ -514,6 +521,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
