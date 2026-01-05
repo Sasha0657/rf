@@ -567,6 +567,28 @@ p.seo-small {
 }
 
 
+/* ДОБАВЬТЕ В КОНЕЦ ФАЙЛА maket.css */
+/* ========== МОБИЛЬНЫЙ ФИКС ========== */
+@media (max-width: 900px) {
+  body {
+    padding-top: 5px !important;
+  }
+  
+  header.header {
+    min-height: auto !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  .header-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+}
+
+
+
 
 
 
