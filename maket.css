@@ -86,93 +86,106 @@ header.header {
   display: block;
 }
 
-/* === ФИКС мобильной версии шапки === */
+/* === ПОЛНЫЙ СБРОС И ПЕРЕОПРЕДЕЛЕНИЕ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ === */
+
+/* Сначала сбросим все стили для шапки на мобильных */
 @media (max-width: 900px) {
-  .container {
-    padding: 0 10px;
-  }
-
-  /* Контейнер шапки вертикально */
+  /* Сброс для всего header */
   header.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    padding: 10px 0; /* Добавляем отступ сверху/снизу */
-    margin: 0 auto;
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 15px 10px !important;
+    font-family: inherit !important;
+    background-color: transparent !important;
   }
-
-  /* Убедимся, что header-container работает */
+  
+  /* Контейнер для выравнивания */
   .header-container {
+    all: initial !important;
     display: flex !important;
     flex-direction: column !important;
+    box-sizing: border-box !important;
     width: 100% !important;
-    gap: 15px !important; /* Отступ между блоками */
+    gap: 15px !important;
     align-items: center !important;
-  }
-
-  /* Блок 01 — квадрат с фиксированными размерами */
-  .header-left {
-    width: 90% !important;
-    max-width: 320px !important;
-    height: 320px !important; /* Фиксированная высота */
-    aspect-ratio: 1 / 1 !important;
     margin: 0 auto !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: hidden !important;
-    border-radius: 10px !important;
+    max-width: 600px !important;
   }
-
-  .header-left img.banner,
-  .header-left .img-01 {
+  
+  /* ЛЕВАЯ ЧАСТЬ - квадрат 01 */
+  .header-left {
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 320px !important; /* ФИКСИРОВАННАЯ высота для квадрата */
+    margin: 0 auto !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    background-color: transparent !important;
+  }
+  
+  .header-left img,
+  .img-01 {
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    display: block !important;
+    border-radius: 10px !important;
   }
-
-  /* shapka — на всю ширину */
+  
+  /* ПРАВАЯ ЧАСТЬ - баннер shapka */
   .header-right {
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
     width: 100% !important;
-    max-width: 100% !important;
     height: auto !important;
     min-height: 180px !important;
     max-height: 220px !important;
-    aspect-ratio: auto !important;
     margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: hidden !important;
     border-radius: 10px !important;
+    overflow: hidden !important;
+    background-color: transparent !important;
   }
-
+  
   .header-right img.banner {
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
     width: 100% !important;
     height: 100% !important;
     max-height: 220px !important;
     object-fit: contain !important;
-    display: block !important;
   }
-
-  /* Для header-center на второй странице */
+  
+  /* Для страницы rent.html где только один баннер */
   .header-center {
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
     width: 100% !important;
     height: auto !important;
     min-height: 180px !important;
     max-height: 220px !important;
     margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
   }
   
   .header-center img.banner {
+    all: initial !important;
+    display: block !important;
+    box-sizing: border-box !important;
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     max-height: 220px !important;
     object-fit: contain !important;
   }
@@ -466,6 +479,7 @@ p.seo-small {
 .gallery img:hover {
   transform: scale(1.05);
 }
+
 
 
 
