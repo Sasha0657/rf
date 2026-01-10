@@ -1,22 +1,120 @@
 <!doctype html>
 <html lang="ru">
 <head>
- <meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АртСкрин - Главная страница</title> <!-- ОБЯЗАТЕЛЬНО добавьте уникальный заголовок -->
+    <meta name="description" content="Описание вашего сайта АртСкрин"> <!-- ОБЯЗАТЕЛЬНО добавьте описание -->
+
+
+
+    <!-- Стили (вынесли из атрибутов таблицы) -->
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 980px;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0.95;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .block {
+            background-color: #111;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+        .block img {
+            max-width: 100%;
+            height: auto;
+            border: none;
+            display: block;
+        }
+        .block a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            width: 100%;
+        }
+        .block a:hover {
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 15px;
+            }
+            .block {
+                min-height: 140px;
+            }
+        }
+    </style>
 </head>
- <body>
- <table width="980" border="0" align="center" cellpadding="10" cellspacing="3" background="fon_tab_2.jpg" 
-style="opacity: 0.85;"><tr><td width="280" align="center" valign="top" bgcolor="#000000" class="style7">
-target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/100266561/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" 
-style="width:360px; height:120px; border:0;"  /></a> 
- <a href="https://ping-admin.com/free_uptime/stat/cddf450bdc9d2c4c7f7bb3744857496814058.html" target="_blank">
- <img src="//images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.svg" onerror="this.onerror=null; 
- this.src='//images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.gif'" width="360" height="120" 
-  border="0" alt="проверить доступность сайта"></a>
-      <div class="informer-link">
-        <a href="https://webmaster.yandex.ru/siteinfo/?site=https://artscreen.su">
-          <img width="360" height="120" alt=""
-               src="https://yandex.ru/cycounter?https://артскрин.рф&theme=light&lang=ru">
-        </a></div>
+<body>
+    <div class="container">
+        <div class="content">
+            <!-- Блок 1: Статистика (можно заменить на график или убрать) -->
+            <div class="block">
+                <p>Статистика посещений</p>
+                <!-- Рекомендация: УДАЛИТЬ этот информер полностью.
+                     Если очень нужно, используйте только современный код из личного кабинета Яндекс.Метрики,
+                     который вставляется в <head> -->
+                <!-- <div id="yandex-metrica-widget"></div> -->
+            </div>
+
+            <!-- Блок 2: Мониторинг доступности -->
+            <div class="block">
+                <a href="https://ping-admin.com/free_uptime/stat/cddf450bdc9d2c4c7f7bb3744857496814058.html" target="_blank" rel="noopener">
+                    <img src="https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.svg"
+                         onerror="this.onerror=null; this.src='https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.gif'"
+                         width="360" height="120"
+                         alt="Статус доступности сайта АртСкрин">
+                </a>
+            </div>
+
+            <!-- Блок 3: Яндекс.Вебмастер -->
+            <div class="block">
+                <a href="https://webmaster.yandex.ru/siteinfo/?site=https://artscreen.su" target="_blank" rel="noopener">
+                    <p>Информация о сайте в Яндекс.Вебмастере</p>
+                    <!-- УДАЛЕНО: <img> с cycounter - этот счетчик устарел и блокируется -->
+                    <!-- Вместо картинки лучше использовать текстовую ссылку или кнопку -->
+                </a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
@@ -192,6 +290,7 @@ style="width:360px; height:120px; border:0;"  /></a>
 </body>
 
 </html>
+
 
 
 
