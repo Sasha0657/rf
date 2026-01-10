@@ -1,19 +1,11 @@
-User-agent: *  
-Allow: *.png
-Allow: *.jpg
-Allow: *.jpeg
-Allow: *.gif
-Allow: *.svg
-Allow: *.css
-Allow: *.js
-Allow: /wp-content/
-Allow: /images/
-Allow: /assets/
+User-agent: *
+Allow: /
 Disallow: /admin/
-Disallow: /wp-admin/
 Disallow: /cgi-bin/
+Disallow: /search/
 Disallow: /test.html
 Sitemap: https://артскрин.рф/sitemap.xml
+
 
 
 
