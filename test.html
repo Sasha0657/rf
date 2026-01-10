@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>АртСкрин - Главная страница</title> <!-- ОБЯЗАТЕЛЬНО добавьте уникальный заголовок -->
     <meta name="description" content="Описание вашего сайта АртСкрин"> <!-- ОБЯЗАТЕЛЬНО добавьте описание -->
-
-
-
-    <!-- Стили (вынесли из атрибутов таблицы) -->
     <style>
         * {
             box-sizing: border-box;
@@ -89,10 +85,21 @@
             <!-- Блок 1: Статистика (можно заменить на график или убрать) -->
             <div class="block">
                 <p>Статистика посещений</p>
-                <!-- Рекомендация: УДАЛИТЬ этот информер полностью.
-                     Если очень нужно, используйте только современный код из личного кабинета Яндекс.Метрики,
-                     который вставляется в <head> -->
-                <!-- <div id="yandex-metrica-widget"></div> -->
+<!-- Yandex.Metrika -->
+<a href="https://metrika.yandex.ru/stat/?id=100266561&amp;from=informer"
+target="_blank" rel="nofollow">
+<img src="https://informer.yandex.ru/informer/100266561/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+alt="Яндекс.Метрика" class="ym-advanced-informer" width="40" height="13">
+</a>
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],
+k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/100266561" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika -->
             </div>
 
             <!-- Блок 2: Мониторинг доступности -->
@@ -290,6 +297,7 @@
 </body>
 
 </html>
+
 
 
 
