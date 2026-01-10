@@ -121,15 +121,21 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 <div class="block">
     <a href="https://ping-admin.com/free_uptime/stat/cddf450bdc9d2c4c7f7bb3744857496814058.html" 
        target="_blank" 
-       rel="noopener nofollow"
-       style="display: block; width: 100%; max-width: 360px; margin: 0 auto;">
+       rel="noopener nofollow">
        
-        <!-- Просто один адаптивный img -->
-        <img src="https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.svg"
-             onerror="this.onerror=null; this.src='https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.gif'"
-             alt="Статус доступности сайта АртСкрин"
-             style="width: 100%; height: auto; display: block;"
-             width="360" height="120">
+        <!-- ТОЛЬКО picture - удаляем старый img перед ним -->
+        <picture>
+            <!-- Для мобильных -->
+            <source media="(max-width: 768px)" 
+                    srcset="https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.svg"
+                    onerror="this.onerror=null; this.src='https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.gif'">
+            <!-- Для десктопа -->
+            <img src="https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.svg"
+                 onerror="this.onerror=null; this.src='https://images.ping-admin.ru/i/free_uptime/a6171090d98d85a2bb82fe2b0ee8e91114058_2.gif'"
+                 alt="Статус доступности сайта АртСкрин"
+                 style="width: 100%; height: auto; max-width: 360px; display: block;"
+                 width="360" height="120">
+        </picture>
     </a>
 </div>
             <!-- Блок 3: Яндекс.Вебмастер -->
@@ -143,6 +149,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
     </div>
 </body>
 </html>
+
 
 
 
