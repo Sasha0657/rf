@@ -77,6 +77,32 @@
                 min-height: 140px;
             }
         }
+    /* Стили для блоков с иконками/баннерами */
+.block {
+    width: 100%; /* Занимает всю ширину родителя */
+    padding: 15px; /* Отступы внутри блока */
+    text-align: center; /* Центрируем содержимое */
+    background-color: #111; /* Фон блока */
+    border-radius: 8px; /* Закругленные углы */
+    margin-bottom: 15px; /* Отступ между блоками */
+    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+}
+
+.block a {
+    display: block; /* Ссылка как блочный элемент */
+    width: 100%; /* На всю ширину блока */
+    max-width: 360px; /* Максимальная ширина как у исходного изображения */
+    margin: 0 auto; /* Автоматические отступы по бокам = центрирование */
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #fff; /* Цвет текста (если будет) */
+}
+
+.block img {
+    width: 100%; /* Изображение на всю ширину ссылки */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    display: block; /* Убираем лишние отступы вокруг img */
+    border: none; /* Убираем рамку если была */
+}
     </style>
 </head>
 <body>
@@ -306,6 +332,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
