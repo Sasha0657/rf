@@ -6,104 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>АртСкрин - Главная страница</title> <!-- ОБЯЗАТЕЛЬНО добавьте уникальный заголовок -->
     <meta name="description" content="Описание вашего сайта АртСкрин"> <!-- ОБЯЗАТЕЛЬНО добавьте описание -->
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .container {
+        max-width: 980px;
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        opacity: 0.95;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    /* ОДИН общий стиль для .block - заменяем оба предыдущих */
+    .block {
+        background-color: #111;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 180px;
+        width: 100%; /* Добавили */
+        margin-bottom: 0; /* Убрали отступ, так как есть gap в .content */
+        box-sizing: border-box; /* Добавили */
+    }
+    
+    .block a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        width: 100%;
+        max-width: 360px; /* Добавили */
+        margin: 0 auto; /* Добавили */
+    }
+    
+    .block img {
+        max-width: 100%;
+        width: 100%; /* Добавили для мобильных */
+        height: auto;
+        border: none;
+        display: block;
+    }
+    
+    .block a:hover {
+        opacity: 0.9;
+    }
+    
+    @media (max-width: 768px) {
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            max-width: 980px;
-            width: 100%;
-            background-color: #000;
-            color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            opacity: 0.95;
+            padding: 10px;
         }
         .content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 15px;
         }
         .block {
-            background-color: #111;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 180px;
+            min-height: 140px;
         }
+        /* Дополнительно для мобильных: */
         .block img {
-            max-width: 100%;
-            height: auto;
-            border: none;
-            display: block;
+            max-width: 100% !important;
+            width: 100% !important;
         }
-        .block a {
-            text-decoration: none;
-            color: #fff;
-            display: block;
-            width: 100%;
-        }
-        .block a:hover {
-            opacity: 0.9;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .content {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                padding: 15px;
-            }
-            .block {
-                min-height: 140px;
-            }
-        }
-    /* Стили для блоков с иконками/баннерами */
-.block {
-    width: 100%; /* Занимает всю ширину родителя */
-    padding: 15px; /* Отступы внутри блока */
-    text-align: center; /* Центрируем содержимое */
-    background-color: #111; /* Фон блока */
-    border-radius: 8px; /* Закругленные углы */
-    margin-bottom: 15px; /* Отступ между блоками */
-    box-sizing: border-box; /* Чтобы padding не ломал ширину */
-}
-
-.block a {
-    display: block; /* Ссылка как блочный элемент */
-    width: 100%; /* На всю ширину блока */
-    max-width: 360px; /* Максимальная ширина как у исходного изображения */
-    margin: 0 auto; /* Автоматические отступы по бокам = центрирование */
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #fff; /* Цвет текста (если будет) */
-}
-
-.block img {
-    width: 100%; /* Изображение на всю ширину ссылки */
-    height: auto; /* Автоматическая высота для сохранения пропорций */
-    display: block; /* Убираем лишние отступы вокруг img */
-    border: none; /* Убираем рамку если была */
-}
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="container">
@@ -332,6 +323,7 @@ ym(100266561,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 </body>
 
 </html>
+
 
 
 
