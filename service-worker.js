@@ -1,6 +1,8 @@
 // service-worker.js
 const CACHE_NAME = 'site-cache-v1.0';
 const PRELOAD_IMAGES = [
+  '/d01.webp',
+  '/shapka.webp',
   '/d1.webp',
   '/d2.webp',
   '/d3.webp',
@@ -150,4 +152,5 @@ self.addEventListener('fetch', event => {
   
   // Для HTML страниц - обычная загрузка
   // (не перехватываем, чтобы не мешать навигации)
+
 });
