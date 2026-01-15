@@ -15,7 +15,35 @@
   <link rel="stylesheet" href="maket.css">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="canonical" href="https://артскрин.рф/rent.html">
-<!-- Yandex.Metrika counter -->
+  <!-- Service Worker регистрируем СРАЗУ в head -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    // Регистрируем немедленно, не ждем load
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(reg) {
+        console.log('Service Worker зарегистрирован');
+        
+        // Ускоряем активацию
+        if (reg.installing) {
+          reg.installing.addEventListener('statechange', function() {
+            if (this.state === 'installed') {
+              console.log('SW установлен, берем контроль');
+              // Принудительно активируем
+              if (reg.waiting) {
+                reg.waiting.postMessage({type: 'SKIP_WAITING'});
+              }
+            }
+          });
+        }
+      })
+      .catch(function(err) {
+        console.log('Ошибка SW:', err);
+      });
+  }
+  </script>
+  
+  
+  <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -103,12 +131,13 @@
 
   <script src="lightbox.js"></script>
 
-<script src="/register-sw.js"></script>
+<!--   <script src="/register-sw.js"></script>-->
 
 
 
 </body>
 </html>
+
 
 
 
