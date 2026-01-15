@@ -1,34 +1,63 @@
-// register-sw.js
+// register-sw.js - ИСПРАВЛЕННАЯ ВЕРСИЯ
 (function() {
-  // Проверяем поддержку Service Worker
   if (!('serviceWorker' in navigator)) {
-    console.log('Ваш браузер не поддерживает Service Worker');
+    console.log('Браузер не поддерживает Service Worker');
     return;
   }
   
-  // Ждем загрузки страницы
+  // Регистрируем СРАЗУ, не ждем load
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(function(registration) {
+      console.log('✅ SW зарегистрирован');
+      
+      // Принудительная активация
+      if (registration.waiting) {
+        registration.waiting.postMessage({type: 'SKIP_WAITING'});
+      }
+      
+      if (registration.installing) {
+        registration.installing.addEventListener('statechange', function() {
+          if (this.state === 'installed') {
+            console.log('SW установлен, принудительно активирую...');
+            registration.waiting.postMessage({type: 'SKIP_WAITING'});
+            location.reload(); // Перезагружаем страницу
+          }
+        });
+      }
+      
+      // Проверяем обновления
+      setInterval(() => registration.update(), 60 * 60 * 1000);
+      
+      // Слушаем сообщения от SW
+      navigator.serviceWorker.addEventListener('message', event => {
+        if (event.data.type === 'SW_ACTIVATED') {
+          console.log('✅ SW активирован! Версия:', event.data.version);
+        }
+      });
+      
+    })
+    .catch(function(error) {
+      console.log('❌ Ошибка регистрации SW:', error);
+    });
+  
+  // При загрузке страницы проверяем состояние
   window.addEventListener('load', function() {
-    // Регистрируем Service Worker
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(function(registration) {
-        console.log('✅ Service Worker зарегистрирован:', registration.scope);
+    setTimeout(() => {
+      if (navigator.serviceWorker.controller) {
+        console.log('🎯 Страница контролируется SW');
         
-        // Когда SW готов
-        return navigator.serviceWorker.ready;
-      })
-      .then(function() {
-        console.log('✅ Service Worker готов, картинки закэшированы');
-        
-        // Проверяем что в кэше (для отладки)
-        caches.open('dagomys-cache-v1.0').then(cache => {
+        // Проверяем кэш
+        caches.open('dagomys-cache-v1.1').then(cache => {
           cache.keys().then(keys => {
-            console.log('📦 В кэше сохранено картинок:', keys.length);
+            console.log(`📦 В кэше: ${keys.length} файлов`);
           });
         });
-      })
-      .catch(function(error) {
-        console.log('❌ Ошибка регистрации Service Worker:', error);
-      });
+      } else {
+        console.log('🔄 SW еще не контролирует страницу...');
+        console.log('Перезагрузите страницу или откройте сайт в новой вкладке!');
+      }
+    }, 1000);
   });
 })();
+
 
