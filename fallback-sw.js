@@ -5,4 +5,5 @@ self.addEventListener('fetch', event => {
       return Response.redirect('https://sasha0657.github.io/rf/index.html', 302);
     })
   );
+
 });
