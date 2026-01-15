@@ -1,123 +1,109 @@
 // service-worker.js
-const CACHE_NAME = 'dagomys-images-v2';
+const CACHE_NAME = 'dagomys-cache-v1.0';
 const IMAGES = [
+  // Все ваши картинки
   '/shapka.webp',
   '/dividers_1.png',
+  '/d1.webp', '/d2.webp', '/d3.webp', '/d4.webp',
+  '/d5.webp', '/d6.webp', '/d7.webp', '/d8.webp',
+  '/d9.webp', '/d10.webp', '/d11.webp', '/d12.webp',
+  '/d13.webp', 
   '/d14.webp', '/d15.webp', '/d16.webp', '/d17.webp',
   '/d20.webp', '/d21.webp', '/d22.webp', '/d23.webp',
   '/d24.webp', '/d25.webp', '/d26.webp', '/d27.webp',
   '/d28.webp', '/d29.webp', '/d30.webp', '/d31.webp',
   '/d32.webp', '/d33.webp', '/d34.webp', '/d35.webp',
-  '/2.jpg', '/p6.png', '/favicon.png'
+  '/p6.png', '/favicon.png', '/01.webp'
 ];
 
-// 1. УСТАНОВКА И КЭШИРОВАНИЕ
+// 1. УСТАНОВКА - кэшируем картинки при первом посещении
 self.addEventListener('install', event => {
-  console.log('⚙️ SW: Начинаю установку и кэширование', IMAGES.length, 'картинок');
+  console.log('[SW] Установка и кэширование картинок...');
   
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        // Пробуем кэшировать каждую картинку
-        const promises = IMAGES.map(url => {
-          return cache.add(url).catch(err => {
-            console.warn('⚠️ Не удалось кэшировать:', url, err);
-            return Promise.resolve();
-          });
-        });
-        return Promise.all(promises);
+        console.log('[SW] Кэшируем', IMAGES.length, 'картинок');
+        // Пробуем кэшировать все картинки
+        return Promise.all(
+          IMAGES.map(url => {
+            return cache.add(url).catch(err => {
+              console.log('[SW] Пропущена:', url);
+              return Promise.resolve();
+            });
+          })
+        );
       })
       .then(() => {
-        console.log('✅ SW: Все картинки закэшированы!');
-        return self.skipWaiting(); // Активируем СРАЗУ
+        console.log('[SW] Все картинки закэшированы!');
+        // Активируем SW сразу, без ожидания
+        return self.skipWaiting();
       })
   );
 });
 
-// 2. АКТИВАЦИЯ
+// 2. АКТИВАЦИЯ - очищаем старые кэши
 self.addEventListener('activate', event => {
-  console.log('🚀 SW: Активация, беру контроль над страницами');
+  console.log('[SW] Активация');
   
   event.waitUntil(
     Promise.all([
-      // Очищаем старые кэши
+      // Удаляем старые версии кэша
       caches.keys().then(cacheNames => {
         return Promise.all(
           cacheNames.map(name => {
             if (name !== CACHE_NAME) {
-              console.log('🗑️ Удаляю старый кэш:', name);
+              console.log('[SW] Удаляем старый кэш:', name);
               return caches.delete(name);
             }
           })
         );
       }),
-      
-      // Немедленно берем контроль над всеми клиентами
+      // Немедленно берем контроль над страницами
       self.clients.claim()
-    ]).then(() => {
-      console.log('✅ SW: Активирован и контролирую страницы');
-      
-      // Отправляем сообщение на страницу
-      self.clients.matchAll().then(clients => {
-        clients.forEach(client => {
-          client.postMessage({type: 'SW_ACTIVATED'});
-        });
-      });
-    })
+    ])
   );
 });
 
-// 3. ПЕРЕХВАТ ЗАПРОСОВ (главное!)
+// 3. ПЕРЕХВАТ ЗАПРОСОВ КАРТИНОК
 self.addEventListener('fetch', event => {
-  const request = event.request;
-  const url = request.url;
+  const url = event.request.url;
   
-  // Перехватываем ТОЛЬКО картинки нашего сайта
-  if (request.method === 'GET' && 
-      url.includes('артскрин.рф') &&
-      url.match(/\.(webp|jpg|jpeg|png|gif|ico|svg)$/i)) {
-    
+  // Перехватываем только картинки
+  if (url.match(/\.(webp|jpg|jpeg|png|gif|svg|ico)$/i)) {
     event.respondWith(
-      caches.open(CACHE_NAME).then(cache => {
-        return cache.match(request).then(cached => {
-          // 1. ЕСТЬ В КЭШЕ → отдаем мгновенно
+      caches.match(event.request)
+        .then(cached => {
+          // Если есть в кэше - отдаем мгновенно
           if (cached) {
-            console.log('⚡ SW: Отдаю из кэша:', url.split('/').pop());
+            console.log('[SW] Из кэша:', url.split('/').pop());
             return cached;
           }
           
-          // 2. НЕТ В КЭШЕ → грузим, кэшируем, отдаем
-          console.log('🌐 SW: Гружу с сервера:', url.split('/').pop());
-          return fetch(request).then(response => {
-            // Проверяем, что ответ успешный
-            if (response && response.status === 200) {
-              // Клонируем и кэшируем
-              const clone = response.clone();
-              cache.put(request, clone)
-                .then(() => console.log('💾 SW: Сохранил в кэш:', url.split('/').pop()));
-            }
-            return response;
-          }).catch(err => {
-            console.error('❌ SW: Ошибка загрузки:', url, err);
-            return new Response('', {status: 404});
-          });
-        });
-      })
+          // Если нет в кэше - грузим с сервера
+          return fetch(event.request)
+            .then(response => {
+              // Успешно загрузили - сохраняем в кэш
+              if (response && response.status === 200) {
+                const responseToCache = response.clone();
+                caches.open(CACHE_NAME)
+                  .then(cache => {
+                    cache.put(event.request, responseToCache);
+                    console.log('[SW] Сохранил в кэш:', url.split('/').pop());
+                  });
+              }
+              return response;
+            })
+            .catch(error => {
+              console.log('[SW] Ошибка загрузки:', url);
+              // Можно вернуть заглушку
+              return new Response(
+                '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f0f0f0"/></svg>',
+                { headers: { 'Content-Type': 'image/svg+xml' } }
+              );
+            });
+        })
     );
   }
 });
 
-// 4. СООБЩЕНИЯ ОТ СТРАНИЦЫ
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'GET_CACHE_INFO') {
-    caches.open(CACHE_NAME).then(cache => {
-      cache.keys().then(keys => {
-        event.ports[0].postMessage({
-          type: 'CACHE_INFO',
-          count: keys.length,
-          files: keys.map(k => k.url)
-        });
-      });
-    });
-  }
-});
