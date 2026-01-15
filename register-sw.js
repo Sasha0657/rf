@@ -1,49 +1,48 @@
-// register-sw.js - полная версия с обновлением
-if ('serviceWorker' in navigator) {
+// register-sw.js - безопасная регистрация Service Worker
+(function() {
+  // Проверяем поддержку
+  if (!('serviceWorker' in navigator)) {
+    console.log('Service Worker не поддерживается');
+    return;
+  }
+  
+  // Ждем полной загрузки страницы
   window.addEventListener('load', function() {
+    // Регистрируем Service Worker
     navigator.serviceWorker.register('/service-worker.js')
       .then(function(registration) {
         console.log('SW зарегистрирован:', registration.scope);
         
-        // === КОД ОБНОВЛЕНИЯ ===
-        // 1. Проверяем обновления при загрузке
-        registration.update();
+        // Когда SW готов
+        return navigator.serviceWorker.ready;
+      })
+      .then(function() {
+        console.log('SW готов, картинки закэшированы');
         
-        // 2. Слушаем событие обновления
-        registration.addEventListener('updatefound', function() {
-          const newWorker = registration.installing;
-          console.log('Найдено обновление SW! Состояние:', newWorker.state);
-          
-          newWorker.addEventListener('statechange', function() {
-            console.log('Состояние нового SW:', newWorker.state);
-            
-            // Когда новый SW установлен
-            if (newWorker.state === 'installed') {
-              // Если есть контролирующий SW (страница уже работает со SW)
-              if (navigator.serviceWorker.controller) {
-                console.log('Новая версия SW готова! Перезагрузите страницу.');
-                
-                // Можно показать уведомление пользователю
-                if (confirm('Доступна новая версия сайта. Обновить?')) {
-                  window.location.reload();
-                }
-              } else {
-                console.log('SW установлен впервые');
-              }
-            }
-          });
-        });
-        // === КОНЕЦ КОДА ОБНОВЛЕНИЯ ===
-        
+        // БЕЗОПАСНАЯ попытка скрыть индикатор
+        try {
+          const loader = document.getElementById('loading');
+          if (loader && loader.style) {
+            loader.style.display = 'none';
+            console.log('Индикатор загрузки скрыт');
+          } else {
+            console.log('Элемент #loading не найден - это нормально');
+          }
+        } catch (error) {
+          console.log('Ошибка при скрытии индикатора:', error);
+        }
       })
       .catch(function(error) {
         console.log('Ошибка регистрации SW:', error);
+        
+        // Все равно пытаемся скрыть индикатор
+        try {
+          const loader = document.getElementById('loading');
+          if (loader) loader.style.display = 'none';
+        } catch (e) {
+          // Игнорируем ошибку
+        }
       });
-    
-    // Периодическая проверка обновлений
-    setInterval(function() {
-      navigator.serviceWorker.getRegistration()
-        .then(reg => reg && reg.update());
-    }, 60 * 60 * 1000); // Каждый час
   });
-}
+})();
+
