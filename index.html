@@ -134,11 +134,50 @@
     </footer>
               <script src="lightbox.js"></script>
 
-<!--    --><script src="/register-sw.js"></script>
+<!--    <script src="/register-sw.js"></script>  -->
+<!-- Вставьте этот код на КАЖДОЙ странице перед </body> -->
 
+<!-- Подключаем регистрацию Service Worker -->
+<script src="/register-sw.js"></script>
+
+<!-- Скрипт проверки работы кэша -->
+<script>
+// Проверка работы Service Worker
+if ('serviceWorker' in navigator) {
+  // Проверяем через 3 секунды после загрузки
+  setTimeout(function() {
+    // 1. Проверяем контролирует ли SW страницу
+    if (navigator.serviceWorker.controller) {
+      console.log('🎯 Эта страница контролируется Service Worker');
+      
+      // 2. Проверяем кэш
+      caches.open('dagomys-cache-v1.0').then(cache => {
+        cache.keys().then(keys => {
+          console.log('💾 В кэше браузера сохранено:', keys.length, 'файлов');
+          
+          // 3. Проверяем несколько картинок
+          ['/d14.webp', '/shapka.webp', '/dividers_1.png'].forEach(img => {
+            caches.match(img).then(response => {
+              if (response) {
+                console.log('✅ ' + img.split('/').pop() + ' - в кэше');
+              } else {
+                console.log('❌ ' + img.split('/').pop() + ' - НЕТ в кэше');
+              }
+            });
+          });
+        });
+      });
+    } else {
+      console.log('⚠️ Страница пока не контролируется Service Worker');
+      console.log('При следующем открытии сайта картинки будут в кэше!');
+    }
+  }, 3000);
+}
+</script>
 
 </body>
 </html>
+
 
 
 
