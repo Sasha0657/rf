@@ -1,47 +1,33 @@
-// register-sw.js - безопасная регистрация Service Worker
+// register-sw.js
 (function() {
-  // Проверяем поддержку
+  // Проверяем поддержку Service Worker
   if (!('serviceWorker' in navigator)) {
-    console.log('Service Worker не поддерживается');
+    console.log('Ваш браузер не поддерживает Service Worker');
     return;
   }
   
-  // Ждем полной загрузки страницы
+  // Ждем загрузки страницы
   window.addEventListener('load', function() {
     // Регистрируем Service Worker
     navigator.serviceWorker.register('/service-worker.js')
       .then(function(registration) {
-        console.log('SW зарегистрирован:', registration.scope);
+        console.log('✅ Service Worker зарегистрирован:', registration.scope);
         
         // Когда SW готов
         return navigator.serviceWorker.ready;
       })
       .then(function() {
-        console.log('SW готов, картинки закэшированы');
+        console.log('✅ Service Worker готов, картинки закэшированы');
         
-        // БЕЗОПАСНАЯ попытка скрыть индикатор
-        try {
-          const loader = document.getElementById('loading');
-          if (loader && loader.style) {
-            loader.style.display = 'none';
-            console.log('Индикатор загрузки скрыт');
-          } else {
-            console.log('Элемент #loading не найден - это нормально');
-          }
-        } catch (error) {
-          console.log('Ошибка при скрытии индикатора:', error);
-        }
+        // Проверяем что в кэше (для отладки)
+        caches.open('dagomys-cache-v1.0').then(cache => {
+          cache.keys().then(keys => {
+            console.log('📦 В кэше сохранено картинок:', keys.length);
+          });
+        });
       })
       .catch(function(error) {
-        console.log('Ошибка регистрации SW:', error);
-        
-        // Все равно пытаемся скрыть индикатор
-        try {
-          const loader = document.getElementById('loading');
-          if (loader) loader.style.display = 'none';
-        } catch (e) {
-          // Игнорируем ошибку
-        }
+        console.log('❌ Ошибка регистрации Service Worker:', error);
       });
   });
 })();
