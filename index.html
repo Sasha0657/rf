@@ -16,7 +16,35 @@
 <meta property="og:image" content="https://артскрин.рф/01.webp">
 <meta property="og:url" content="https://артскрин.рф/">
 <meta property="og:type" content="website">
-<!-- Yandex.Metrika counter -->
+  <!-- Service Worker регистрируем СРАЗУ в head -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    // Регистрируем немедленно, не ждем load
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(reg) {
+        console.log('Service Worker зарегистрирован');
+        
+        // Ускоряем активацию
+        if (reg.installing) {
+          reg.installing.addEventListener('statechange', function() {
+            if (this.state === 'installed') {
+              console.log('SW установлен, берем контроль');
+              // Принудительно активируем
+              if (reg.waiting) {
+                reg.waiting.postMessage({type: 'SKIP_WAITING'});
+              }
+            }
+          });
+        }
+      })
+      .catch(function(err) {
+        console.log('Ошибка SW:', err);
+      });
+  }
+  </script>
+    
+    
+    <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -106,11 +134,12 @@
     </footer>
               <script src="lightbox.js"></script>
 
-<script src="/register-sw.js"></script>
+<!--  <script src="/register-sw.js"></script>  -->
 
 
 </body>
 </html>
+
 
 
 
