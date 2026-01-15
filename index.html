@@ -106,23 +106,25 @@
     </footer>
               <script src="lightbox.js"></script>
 
-<!-- Подключаем регистрацию Service Worker -->
-<script src="/register-sw.js"></script>
-
-<!-- Дополнительно: индикатор загрузки -->
+<!-- Упрощенная регистрация Service Worker -->
 <script>
-// Показываем индикатор пока SW кэширует картинки
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.ready.then(function(registration) {
-    console.log('Service Worker готов, картинки закэшированы');
-    // Можно скрыть прелоадер
-    document.getElementById('loading').style.display = 'none';
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(reg) {
+        console.log('Service Worker зарегистрирован');
+      })
+      .catch(function(err) {
+        console.log('Ошибка:', err);
+      });
   });
 }
 </script>
 
+
 </body>
 </html>
+
 
 
 
