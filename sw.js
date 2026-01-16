@@ -1,26 +1,28 @@
+console.log('SW LOADED');
+
 const CACHE = 'img-cache-v1';
 
-self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('install', () => {
+    console.log('SW INSTALL');
+    self.skipWaiting();
+});
 
 self.addEventListener('activate', event => {
-    event.waitUntil(
-        caches.keys().then(keys =>
-            Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-        )
-    );
+    console.log('SW ACTIVATE');
+    event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', event => {
-    const req = event.request;
-
-    if (req.destination === 'image') {
+    if (event.request.destination === 'image') {
         event.respondWith(
-            caches.match(req).then(cached => {
-                if (cached) return cached;
-
-                return fetch(req).then(res => {
+            caches.match(event.request).then(cached => {
+                if (cached) {
+                    console.log('FROM CACHE', event.request.url);
+                    return cached;
+                }
+                return fetch(event.request).then(res => {
                     return caches.open(CACHE).then(cache => {
-                        cache.put(req, res.clone());
+                        cache.put(event.request, res.clone());
                         return res;
                     });
                 });
