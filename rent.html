@@ -126,13 +126,14 @@ if ('serviceWorker' in navigator) {
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js')
         .then(() => console.log('SW REGISTERED'))
-        .catch(e => console.error(e));
+        .catch(e => console.error('SW ERROR', e));
 }
 </script>
 
 
 </body>
 </html>
+
 
 
 
