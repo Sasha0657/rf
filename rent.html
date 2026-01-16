@@ -122,16 +122,18 @@ if ('serviceWorker' in navigator) {
 
   <script src="lightbox.js"></script>
 
-<!--   <script src="/register-sw.js"></script>   -->
 <script>
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+    navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('SW REGISTERED'))
+        .catch(e => console.error(e));
 }
 </script>
 
 
 </body>
 </html>
+
 
 
 
