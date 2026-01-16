@@ -1,130 +1,153 @@
-// service-worker.js - ИСПРАВЛЕННАЯ ВЕРСИЯ
-const CACHE_NAME = 'dagomys-cache-v1.1'; // Измените версию!
-const IMAGES = [
- '/shapka.webp',
-  '/dividers_1.png',
-  '/d1.webp', '/d2.webp', '/d3.webp', '/d4.webp',
-  '/d5.webp', '/d6.webp', '/d7.webp', '/d8.webp',
-  '/d9.webp', '/d10.webp', '/d11.webp', '/d12.webp',
-  '/d13.webp', 
-  '/d14.webp', '/d15.webp', '/d16.webp', '/d17.webp',
-  '/d20.webp', '/d21.webp', '/d22.webp', '/d23.webp',
-  '/d24.webp', '/d25.webp', '/d26.webp', '/d27.webp',
-  '/d28.webp', '/d29.webp', '/d30.webp', '/d31.webp',
-  '/d32.webp', '/d33.webp', '/d34.webp', '/d35.webp',
-  '/p6.png', '/favicon.png', '/01.webp'
+// service-worker.js
+const CACHE_NAME = 'site-cache-v1.0';
+const PRELOAD_IMAGES = [
+  '/d1.webp',
+  '/d2.webp',
+  '/d3.webp',
+  '/d4.webp',
+  '/d5.webp',
+  '/d6.webp',
+  '/d7.webp',
+  '/d8.webp',
+  '/d9.webp',
+  '/d10.webp',
+  '/d11.webp',
+  '/d12.webp',
+  '/d13.webp',
+  '/d14.webp',
+  '/d15.webp',
+  '/d16.webp',
+  '/d17.webp',
+  '/d18.webp',
+  '/d19.webp',
+  '/d20.webp',
+  '/d21.webp',
+  '/d22.webp',
+  '/d23.webp',
+  '/d24.webp',
+  '/d25.webp',
+  '/d26.webp',
+  '/d27.webp',
+  '/d28.webp',
+  '/d29.webp',
+  '/d30.webp',
+  '/d31.webp',
+  '/d32.webp',
+  '/d33.webp',
+  '/d34.webp',
+  '/d35.webp'
+  // Добавьте ВСЕ картинки, которые хотите кэшировать
 ];
 
-// 1. УСТАНОВКА
+// 1. УСТАНОВКА - кэшируем картинки сразу при первом посещении
 self.addEventListener('install', event => {
   console.log('[SW] Установка...');
   
-  // Пропускаем фазу ожидания СРАЗУ
-  self.skipWaiting();
-  
-  // Кэшируем в фоне, не блокируя активацию
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('[SW] Начинаю кэширование', IMAGES.length, 'картинок');
+        console.log('[SW] Начинаем кэшировать картинки...');
         
-        // Кэшируем без ожидания завершения всех
-        const promises = IMAGES.map(url => {
-          return fetch(url, { cache: 'no-cache' })
+        // Пробуем загрузить и закэшировать каждую картинку
+        const cachePromises = PRELOAD_IMAGES.map(imageUrl => {
+          return fetch(imageUrl)
             .then(response => {
-              if (response.ok) {
-                return cache.put(url, response);
+              if (!response.ok) {
+                throw new Error(`Ошибка загрузки: ${imageUrl}`);
               }
-              return Promise.resolve();
+              return cache.put(imageUrl, response);
             })
-            .catch(err => {
-              console.log('[SW] Пропущена:', url);
-              return Promise.resolve();
+            .catch(error => {
+              console.log(`[SW] Пропущена: ${imageUrl}`, error);
+              return Promise.resolve(); // Продолжаем несмотря на ошибки
             });
         });
         
-        return Promise.all(promises);
+        return Promise.all(cachePromises);
       })
       .then(() => {
-        console.log('[SW] Кэширование завершено!');
+        console.log('[SW] Все картинки закэшированы!');
+        // Активируем SW сразу, без ожидания перезагрузки
+        return self.skipWaiting();
+      })
+      .catch(error => {
+        console.log('[SW] Ошибка установки:', error);
       })
   );
 });
 
-// 2. АКТИВАЦИЯ
+// 2. АКТИВАЦИЯ - очищаем старые кэши
 self.addEventListener('activate', event => {
-  console.log('[SW] Активация!');
+  console.log('[SW] Активация...');
   
   event.waitUntil(
-    Promise.all([
-      // Очищаем ВСЕ старые кэши
-      caches.keys().then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(name => {
-            console.log('[SW] Найден кэш:', name);
-            if (name !== CACHE_NAME) {
-              console.log('[SW] Удаляю старый кэш:', name);
-              return caches.delete(name);
-            }
-          })
-        );
-      }),
-      
-      // НЕМЕДЛЕННО берем контроль над ВСЕМИ вкладками
-      self.clients.claim()
-    ])
-    .then(() => {
-      console.log('[SW] Активирован и контролирую все вкладки!');
-      
-      // Сообщаем всем вкладкам об активации
-      self.clients.matchAll().then(clients => {
-        clients.forEach(client => {
-          client.postMessage({type: 'SW_ACTIVATED', version: CACHE_NAME});
-        });
-      });
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          // Удаляем все старые версии кэша
+          if (cacheName !== CACHE_NAME) {
+            console.log('[SW] Удаляем старый кэш:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => {
+      // Берем управление всеми вкладками сразу
+      return self.clients.claim();
     })
   );
 });
 
-// 3. ПЕРЕХВАТ ЗАПРОСОВ
+// 3. ПЕРЕХВАТ ЗАПРОСОВ - отдаем картинки из кэша
 self.addEventListener('fetch', event => {
-  const url = event.request.url;
+  const url = new URL(event.request.url);
   
-  // Только для картинок нашего сайта
-  if (url.includes('артскрин.рф') && 
-      url.match(/\.(webp|jpg|jpeg|png|gif|svg|ico)$/i)) {
-    
+  // Обрабатываем ТОЛЬКО картинки
+  if (url.pathname.match(/\.(jpg|jpeg|png|webp|gif|svg|ico)$/i)) {
     event.respondWith(
-      caches.open(CACHE_NAME).then(cache => {
-        return cache.match(event.request).then(cached => {
-          // Если есть в кэше - отдаем
-          if (cached) {
-            console.log('[SW] ⚡ Из кэша:', url.split('/').pop());
-            return cached;
+      caches.match(event.request)
+        .then(cachedResponse => {
+          // 1. Если есть в кэше - отдаем мгновенно
+          if (cachedResponse) {
+            console.log('[SW] Из кэша:', url.pathname);
+            return cachedResponse;
           }
           
-          // Если нет - грузим
-          console.log('[SW] 🌐 Гружу:', url.split('/').pop());
+          // 2. Если нет в кэше - загружаем с сети
           return fetch(event.request)
-            .then(response => {
-              // Кэшируем для будущего
-              if (response.ok) {
-                const clone = response.clone();
-                cache.put(event.request, clone)
-                  .then(() => {
-                    console.log('[SW] 💾 Сохранено:', url.split('/').pop());
-                  });
+            .then(networkResponse => {
+              // Проверяем, что ответ успешный
+              if (!networkResponse || networkResponse.status !== 200) {
+                return networkResponse;
               }
-              return response;
+              
+              // Клонируем ответ
+              const responseToCache = networkResponse.clone();
+              
+              // Сохраняем в кэш для будущего
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  cache.put(event.request, responseToCache);
+                  console.log('[SW] Сохранили в кэш:', url.pathname);
+                });
+              
+              return networkResponse;
             })
-            .catch(err => {
-              console.log('[SW] ❌ Ошибка:', url);
-              return new Response('');
+            .catch(error => {
+              console.log('[SW] Ошибка загрузки:', url.pathname, error);
+              
+              // Можно вернуть заглушку
+              return new Response(
+                '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f0f0f0"/></svg>',
+                {
+                  headers: { 'Content-Type': 'image/svg+xml' }
+                }
+              );
             });
-        });
-      })
+        })
     );
   }
+  
+  // Для HTML страниц - обычная загрузка
+  // (не перехватываем, чтобы не мешать навигации)
 });
-
-
