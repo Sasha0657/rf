@@ -1,68 +1,98 @@
 (function() {
     'use strict';
     
-    // Только для вашего локального использования
-    const LOCAL_PATH = 'file:///C:/dag/';
+    console.log('🔍 Проверяю локальные изображения...');
     
-    // Список ваших изображений
     const IMAGE_MAP = {
         'shapka.webp': true,
         '01.webp': true,
-        'dividers_1.png': true,       
-        'p6.png': true,
         'd1.webp': true, 'd2.webp': true, 'd3.webp': true,
-        'd4.webp': true, 'd5.webp': true, 'd6.webp': true,
-        'd7.webp': true, 'd8.webp': true, 'd9.webp': true,
-        'd10.webp': true, 'd11.webp': true, 'd12.webp': true,
-        'd13.webp': true, 'd14.webp': true, 'd15.webp': true,
-        'd16.webp': true, 'd17.webp': true, 'd18.webp': true,
-        'd19.webp': true, 'd20.webp': true, 'd21.webp': true,
-        'd22.webp': true, 'd23.webp': true, 'd24.webp': true,
-        'd25.webp': true, 'd26.webp': true, 'd27.webp': true,
-        'd28.webp': true, 'd29.webp': true, 'd30.webp': true,
-        'd31.webp': true, 'd32.webp': true, 'd33.webp': true,
-        'd34.webp': true, 'd35.webp': true, 'd36.webp': true
+        // ... все картинки
+        'd36.webp': true
     };
     
-    // Основная функция
-    function initLocalCache() {
-        console.log('🔍 Проверяю локальные изображения...');
+    // Функция для загрузки через iframe прокси
+    function loadViaProxy(filename) {
+        return new Promise((resolve) => {
+            const iframeId = 'proxy-' + Date.now();
+            const proxyUrl = `file:///C:/dag/local-cache-proxy.html?file=${encodeURIComponent(filename)}`;
+            
+            // Слушаем сообщения от iframe
+            function handleMessage(event) {
+                if (event.data.type === 'imageLoaded' && event.data.file === filename) {
+                    window.removeEventListener('message', handleMessage);
+                    document.getElementById(iframeId)?.remove();
+                    resolve(true);
+                }
+            }
+            
+            window.addEventListener('message', handleMessage);
+            
+            // Создаем iframe
+            const iframe = document.createElement('iframe');
+            iframe.id = iframeId;
+            iframe.style.display = 'none';
+            iframe.src = proxyUrl;
+            
+            // Таймаут
+            setTimeout(() => {
+                window.removeEventListener('message', handleMessage);
+                iframe.remove();
+                resolve(false);
+            }, 1000);
+            
+            document.body.appendChild(iframe);
+        });
+    }
+    
+    async function initLocalCache() {
+        console.log('🔄 Инициализация локального кэша...');
         
-        // Получаем все изображения на странице
-        const images = document.getElementsByTagName('img');
+        // Проверяем доступность первого файла
+        const testFile = 'shapka.webp';
+        const hasAccess = await loadViaProxy(testFile);
+        
+        if (!hasAccess) {
+            console.log('❌ Локальная папка недоступна');
+            hideLoader();
+            return;
+        }
+        
+        console.log('✅ Локальная папка найдена!');
+        
+        // Заменяем изображения
+        const images = document.querySelectorAll('img');
+        const replaced = [];
         
         for (let img of images) {
             const src = img.src;
             const filename = src.split('/').pop();
             
-            // Проверяем, есть ли это изображение в нашем списке
-            if (IMAGE_MAP[filename]) {
-                const localSrc = LOCAL_PATH + filename;
-                
-                // Создаем тестовое изображение для проверки
-                const testImg = new Image();
-                testImg.onload = function() {
-                    // Если локальный файл существует, заменяем
-                    img.src = localSrc;
-                    console.log(`✅ Заменено: ${filename}`);
-                };
-                testImg.src = localSrc;
+            if (IMAGE_MAP[filename] && !replaced.includes(filename)) {
+                // Устанавливаем новый src через наш прокси
+                const newSrc = `file:///C:/dag/local-cache-proxy.html?file=${encodeURIComponent(filename)}#img`;
+                img.src = newSrc;
+                replaced.push(filename);
+                console.log(`✅ ${filename}`);
             }
         }
         
-        // Скрываем индикатор загрузки
+        console.log(`📊 Заменено: ${replaced.length} изображений`);
+        hideLoader();
+    }
+    
+    function hideLoader() {
         setTimeout(() => {
             const loader = document.getElementById('loading');
             if (loader) {
                 loader.style.display = 'none';
                 console.log('✅ Индикатор скрыт');
             }
-        }, 1000);
+        }, 500);
     }
     
-    // Запускаем после загрузки страницы
-    window.addEventListener('load', function() {
-        // Ждем немного, чтобы все изображения начали загружаться
+    // Запуск
+    window.addEventListener('load', () => {
         setTimeout(initLocalCache, 500);
     });
 })();
