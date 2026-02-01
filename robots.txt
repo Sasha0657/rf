@@ -4,7 +4,16 @@ Disallow: /admin/
 Disallow: /cgi-bin/
 Disallow: /search/
 Disallow: /test.html
+Disallow: /d1.webp
+Disallow: /d2.webp
+Disallow: /d3.webp
+Disallow: /d7.webp
+Disallow: /d13.webp
+Disallow: /d19.webp
+Disallow: /p6.png
+Disallow: /dividers_1.png
 Sitemap: https://артскрин.рф/sitemap.xml
+
 
 
 
