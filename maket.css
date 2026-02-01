@@ -502,6 +502,98 @@ p.seo-small {
   }
 }
 
+/* === OPERA DARK + АВТОПО ТЁМНОЙ СИСТЕМЕ (ТОЛЬКО ПК) === */
+@media (prefers-color-scheme: dark) and (min-width: 901px) {
+
+  /* База */
+  html, body {
+    background-color: #0f1115; /* фон Opera */
+    color: #e6e6e6;
+  }
+
+  /* Header */
+  .header-left,
+  .header-right,
+  .header-center {
+    background: #16181d;
+  }
+
+  /* Основной макет */
+  main.content {
+    background: transparent;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background: #16181d;
+  }
+
+  .menu a {
+    color: #d0d0d0;
+  }
+
+  .menu a:hover {
+    background-color: #00c853; /* opera green */
+    color: #ffffff;
+  }
+
+  .menu a.active {
+    background-color: #00c853;
+    color: #ffffff;
+  }
+
+  /* Статья */
+  .article {
+    background: #1b1e24;
+    color: #e6e6e6;
+    box-shadow: 0 0 18px rgba(0,0,0,0.85);
+  }
+
+  .article h1,
+  .article h2,
+  .article h3 {
+    color: #ffffff;
+  }
+
+  .article p {
+    color: #dcdcdc;
+  }
+
+  /* Картинки */
+  .article img,
+  .gallery img {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.9);
+  }
+
+  /* Галерея hover */
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Footer */
+  .footer {
+    background-color: #0c0e12;
+    border-top: 3px solid #2a2d34;
+    color: #e0e0e0;
+  }
+
+  .phone-number {
+    color: #e6e6e6;
+  }
+
+  .whatsapp-text {
+    color: #00c853;
+  }
+
+  /* SEO текст */
+  p.seo-small {
+    color: #a8abb3 !important;
+    opacity: 1;
+  }
+
+}
+
+
 
 
 
