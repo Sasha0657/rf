@@ -10,9 +10,13 @@ Disallow: /d3.webp
 Disallow: /d7.webp
 Disallow: /d13.webp
 Disallow: /d19.webp
+Disallow: /d27.webp
+Disallow: /d28.webp
+Disallow: /d35.webp
 Disallow: /p6.png
 Disallow: /dividers_1.png
 Sitemap: https://артскрин.рф/sitemap.xml
+
 
 
 
