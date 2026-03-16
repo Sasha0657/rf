@@ -17,6 +17,7 @@ Disallow: /d27.webp
 Disallow: /d28.webp
 Disallow: /d30.webp
 Disallow: /d35.webp
+Disallow: /d36.webp
 Disallow: /p6.png
 Disallow: /dividers_1.png
 User-agent: YandexImages
@@ -34,6 +35,7 @@ Disallow: /d27.webp
 Disallow: /d28.webp
 Disallow: /d30.webp
 Disallow: /d35.webp
+Disallow: /d36.webp
 Disallow: /p6.png
 Disallow: /dividers_1.png
 
