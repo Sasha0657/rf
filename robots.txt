@@ -8,8 +8,11 @@ Disallow: /d2.webp
 Disallow: /d3.webp
 Disallow: /d7.webp
 Disallow: /d13.webp
+Disallow: /d15.webp
+Disallow: /d16.webp
 Disallow: /d19.webp
 Disallow: /d22.webp
+Disallow: /d26.webp
 Disallow: /d27.webp
 Disallow: /d28.webp
 Disallow: /d30.webp
@@ -22,8 +25,11 @@ Disallow: /d2.webp
 Disallow: /d3.webp
 Disallow: /d7.webp
 Disallow: /d13.webp
+Disallow: /d15.webp
+Disallow: /d16.webp
 Disallow: /d19.webp
 Disallow: /d22.webp
+Disallow: /d26.webp
 Disallow: /d27.webp
 Disallow: /d28.webp
 Disallow: /d30.webp
