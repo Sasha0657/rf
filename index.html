@@ -186,39 +186,36 @@
     transform: translateY(-50%);
   }
   
-  /* Для мобильных устройств */
-  @media (max-width: 768px) {
-    .footer {
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 0;
-    }
-    
-    /* Убираем абсолютное позиционирование */
-    .ym-informer {
-      position: static;
-      transform: none;
-      display: flex;
-      justify-content: center;
-      margin-top: 5px;  /* Уменьшили с 20px до 5px */
-      order: 2;
-    }
-    
-    /* Контент сверху */
-    .footer-center {
-      order: 1;
-      gap: 5px;
-      row-gap: 2px;
-    }
-    
-    /* Дополнительно сжимаем отступы у текста */
-    .footer-center p,
-    .footer-center span,
-    .footer-center img {
-      margin: 0;
-      line-height: 1.2;
-    }
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
   }
+  
+  .ym-informer {
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;  /* ← Минимальный отступ */
+    order: 2;
+  }
+  
+  .footer-center {
+    order: 1;
+    gap: 5px;
+    row-gap: 2px;
+  }
+  
+  .footer-center p,
+  .footer-center span,
+  .footer-center img {
+    margin: 0;
+    line-height: 1.2;
+  }
+}
 </style>
 
 <footer class="footer">
