@@ -503,7 +503,7 @@ p.seo-small {
 }
 
 /* === OPERA DARK + АВТОПО ТЁМНОЙ СИСТЕМЕ (ТОЛЬКО ПК) === */
-@media (prefers-color-scheme: dark) and (min-width: 901px) {
+@media (prefers-color-scheme: dark) {
 
   /* База */
   html, body {
@@ -572,9 +572,11 @@ p.seo-small {
 
   /* Footer */
   .footer {
-    background-color: #0c0e12;
-    border-top: 3px solid #2a2d34;
-    color: #e0e0e0;
+.footer {
+  background-color: #1f2f2b;
+  border-top: 3px solid #2ecc71;
+  color: #e8f5f2;
+}
   }
 
   .phone-number {
