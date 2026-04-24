@@ -387,105 +387,161 @@ p.seo-small {
     font-size: 18px;
   }
 
-  /* Футер */
-  .footer {
-    flex-direction: column;
-    gap: 5px;
-    text-align: center;
-    padding: 10px;
-  }
-
-  .footer-center {
-    order: 1;
-    margin-bottom: 10px;
-  }
+/* === Подвал — универсальный (светлая/тёмная тема) === */
+.footer {
+  position: relative;
+  background: linear-gradient(135deg, #2c3e50 0%, #1a2632 100%);
+  color: #f0f0f0;
+  border-radius: 16px 16px 0 0;
+  padding: 20px 20px 16px 20px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
-/* Очень маленькие экраны */
-@media (max-width: 480px) {
-  .header-left {
-    max-width: 280px;
-  }
-
-  .header-left img,
-  .img-01 {
-    max-height: 280px;
-  }
-
-  .menu a {
-    font-size: 16px;
-    padding: 6px;
-  }
+.footer-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-/* ========================================== */
-/* === ТЁМНАЯ ТЕМА ТОЛЬКО ДЛЯ ПК === */
-/* ========================================== */
+.ad-text {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.pulsing-icon {
+  width: 28px;
+  height: 28px;
+  animation: pulse 1.2s infinite;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.whatsapp-text {
+  color: #25D366;
+  font-weight: bold;
+  font-size: 1rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.phone-number {
+  color: #ffffff;
+  font-weight: 500;
+  background: rgba(255,255,255,0.12);
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.phone-number:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Информер прижат к правому краю подвала (для ПК) */
+.ym-informer {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.ym-informer:hover {
+  opacity: 1;
+}
+
+.ym-informer img {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ===== ТЁМНАЯ ТЕМА ДЛЯ ПК ===== */
 @media (prefers-color-scheme: dark) and (min-width: 901px) {
-  html, body {
-    background-color: #0f1115;
-    color: #e6e6e6;
-  }
-
-  .header-left,
-  .header-right,
-  .header-center,
-  .sidebar {
-    background: #16181d;
-  }
-
-  main.content {
-    background: transparent;
-  }
-
-  .menu a {
-    color: #d0d0d0;
-  }
-
-  .menu a:hover,
-  .menu a.active {
-    background-color: #00c853;
-    color: #ffffff;
-  }
-
-  .article {
-    background: #1b1e24;
-    color: #e6e6e6;
-    box-shadow: 0 0 18px rgba(0,0,0,0.85);
-  }
-
-  .article h1,
-  .article h2,
-  .article h3 {
-    color: #ffffff;
-  }
-
-  .article p {
-    color: #dcdcdc;
-  }
-
-  .article img,
-  .gallery img {
-    box-shadow: 0 6px 18px rgba(0,0,0,0.9);
-  }
-
   .footer {
-    background-color: #0c0e12;
-    border-top: 3px solid #2a2d34;
+    background: linear-gradient(135deg, #1e2a3a 0%, #0f1722 100%);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  
+  .ad-text {
     color: #e0e0e0;
   }
-
+  
   .phone-number {
-    color: #e6e6e6;
+    background: rgba(255,255,255,0.08);
+    color: #dddddd;
   }
-
+  
+  .phone-number:hover {
+    background: rgba(255,255,255,0.15);
+  }
+  
   .whatsapp-text {
-    color: #00c853;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
+}
 
-  p.seo-small {
-    color: #a8abb3 !important;
-    opacity: 1;
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+@media (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 12px 16px;
+    border-radius: 12px 12px 0 0;
+    margin-top: 30px;
+  }
+  
+  .footer-center {
+    order: 1;
+    gap: 8px;
+    row-gap: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .footer-center p,
+  .footer-center span,
+  .footer-center img {
+    margin: 0;
+    line-height: 1.3;
+  }
+  
+  .ad-text {
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  
+  .pulsing-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .whatsapp-text {
+    font-size: 0.9rem;
+  }
+  
+  .phone-number {
+    font-size: 0.85rem;
+    padding: 3px 10px;
+  }
+  
+  .ym-informer {
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+    order: 2;
   }
 }
 
