@@ -1,8 +1,4 @@
-
-
-
-
-/* === Базовые настройки === */
+/* === БАЗА === */
 * {
   box-sizing: border-box;
 }
@@ -14,202 +10,71 @@ html, body {
   background-color: #fafafa;
   color: #222;
   overflow-x: hidden;
-  width: 100%;
 }
 
-/* === Общий контейнер для выравнивания === */
+/* === КОНТЕЙНЕР === */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px; /* Отступы от краев экрана */
-  width: 100%;
+  padding: 0 15px;
 }
 
-/* === Шапка (Desktop) === */
+/* === HEADER === */
 header.header {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
-  margin: 0 auto;
   gap: 10px;
-  overflow: hidden;
-  height: auto;
-  max-height: 250px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Контейнер для выравнивания содержимого шапки */
 .header-container {
   display: flex;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   gap: 10px;
 }
 
-/* Левая часть — КВАДРАТ 01 */
 .header-left {
-  flex: 0 0 auto;
-  width: 250px; /* Фиксированная ширина как у sidebar */
+  width: 250px;
   aspect-ratio: 1 / 1;
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
-  border-radius: 10px;
+  justify-content: center;
 }
 
 .img-01 {
   width: 100%;
   max-width: 260px;
-  aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: block;
   margin: 20px auto;
 }
 
-/* Правая часть — прямоугольник */
 .header-right {
-  flex: 1 1 auto;
-  width: calc(100% - 260px); /* 250px + 10px gap */
+  flex: 1;
   aspect-ratio: 16 / 9;
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
-  border-radius: 10px;
+  justify-content: center;
 }
 
-/* Картинки шапки */
-.header-left img.banner,
-.header-right img.banner {
+.header-right img,
+.header-left img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  display: block;
 }
 
-
-
-
-/* === УПРОЩЕННЫЙ И ИСПРАВЛЕННЫЙ CSS ДЛЯ МОБИЛЬНОЙ ВЕРСИИ === */
-@media screen and (max-width: 900px) {
-  /* СБРАСЫВАЕМ ВСЕ ОТСТУПЫ */
-  header.header,
-  .header-container,
-  .header-left,
-  .header-left img {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
-  /* Контейнер страницы */
-  .container {
-    padding: 0 10px;
-    width: 100%;
-  }
-  
-  /* Шапка - минимальные отступы */
-  header.header {
-    display: block;
-    width: 100%;
-    margin-top: 5px !important; /* ОЧЕНЬ маленький отступ сверху */
-    margin-bottom: 10px !important;
-  }
-  
-  /* Контейнер шапки */
-  .header-container {
-    display: block;
-    width: 100%;
-  }
-  
-  /* Квадрат 01 - минимальные отступы */
-  .header-left {
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-    margin: 5px auto 10px auto !important; /* 5px сверху, 10px снизу */
-    display: block;
-  }
-  
-  /* Картинка 01 */
-  .header-left img,
-  .img-01 {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 320px;
-    object-fit: contain;
-    display: block;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-  
-  /* Скрываем shapka */
-  .header-right {
-    display: none !important;
-  }
-  
-  /* Основной контент - убираем лишние отступы */
-  main.content {
-    margin-top: 5px !important; /* Минимальный отступ после картинки */
-    gap: 10px;
-  }
-  
-  /* Sidebar и divider - убираем верхние отступы */
-  .sidebar {
-    margin-top: 0 !important;
-    padding-top: 5px !important;
-  }
-  
-  .sidebar .divider:first-child {
-    margin-top: 5px !important;
-    margin-bottom: 10px !important;
-  }
-  
-  /* Меню */
-  .menu {
-    gap: 5px;
-  }
-  
-  .menu a {
-    padding: 8px;
-    font-size: 18px;
-  }
-}
-
-/* Для очень маленьких экранов */
-@media screen and (max-width: 480px) {
-  .header-left {
-    max-width: 280px;
-  }
-  
-  .header-left img,
-  .img-01 {
-    max-height: 280px;
-  }
-  
-  .menu a {
-    font-size: 16px;
-    padding: 6px;
-  }
-}
-
-
-
-/* === Основной макет === */
+/* === LAYOUT === */
 main.content {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 20px;
   max-width: 1200px;
   margin: 20px auto;
-  padding: 0;
-  width: 100%;
 }
 
-/* === Боковое меню === */
+/* === SIDEBAR === */
 .sidebar {
   background: #f2f2f2;
   border-radius: 10px;
@@ -230,64 +95,51 @@ main.content {
 }
 
 .menu a {
-  display: block;
   padding: 10px;
   text-decoration: none;
   color: #222;
   border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
   font-size: 20px;
 }
 
-.menu a:hover {
-  background-color: #25D366;
-  color: white;
-}
-
+.menu a:hover,
 .menu a.active {
   background-color: #25D366;
-  color: white;
-  font-weight: bold;
+  color: #fff;
 }
 
-/* === Статья === */
+/* === ARTICLE === */
 .article {
-  background: white;
+  background: #fff;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-.article h1.title {
+.article h1 {
   text-align: center;
-  margin-top: 0;
 }
 
 .article p {
-  text-align: justify;
   line-height: 1.6;
+  text-align: justify;
 }
 
-/* === Картинки в тексте === */
+/* === FLOAT IMAGES === */
 .article img.float-left {
   float: left;
   width: 40%;
-  max-width: 350px;
   margin: 0 20px 10px 0;
   border-radius: 10px;
-  height: auto;
 }
 
 .article img.float-right {
   float: right;
   width: 40%;
-  max-width: 350px;
   margin: 0 0 10px 20px;
   border-radius: 10px;
-  height: auto;
 }
 
-/* === Галерея === */
+/* === GALLERY === */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -300,32 +152,26 @@ main.content {
   height: 220px;
   object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.3s;
+  cursor: pointer;
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* === Footer === */
+/* === FOOTER === */
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: #222;
-  color: #fff;
+
+  background-color: #1f2f2b;
+  color: #e8f5f2;
+  border-top: 3px solid #2ecc71;
+
   padding: 10px 20px;
-  font-size: 1rem;
-  border-top: 3px solid #555;
-  margin-top: 30px;
+  margin: 30px auto 0;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 0 0 10px 10px;
 }
 
-/* Блок с центром */
 .footer-center {
   display: flex;
   align-items: center;
@@ -340,9 +186,9 @@ main.content {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .whatsapp-text {
@@ -352,26 +198,30 @@ main.content {
 
 .phone-number {
   color: #fff;
-  margin-left: 8px;
 }
 
-/* Внешний вид информера */
-.informer-link img {
-  border-radius: 8px;
-}
-
-/* === SEO уменьшенный текст === */
-p.seo-small {
-  font-size: 0.78rem !important;
-  line-height: 1.28 !important;
+/* === SEO TEXT === */
+.seo-small {
+  font-size: 0.78rem;
   opacity: 0.9;
-  margin: 8px 0 !important;
-  color: inherit !important;
-  display: block !important;
 }
 
-/* === Мобильная версия === */
+/* === MOBILE === */
 @media (max-width: 900px) {
+  header.header {
+    flex-direction: column;
+    margin-top: 5px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-right {
+    display: none;
+  }
+
   main.content {
     display: flex;
     flex-direction: column;
@@ -386,186 +236,48 @@ p.seo-small {
   .article img.float-right {
     float: none;
     width: 100%;
-    max-width: 100%;
     margin: 10px 0;
   }
 
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px;
-  }
-
-  .gallery img {
-    height: auto;
-    max-height: 200px;
   }
 
   .footer {
     flex-direction: column;
-    gap: 5px;
     text-align: center;
-    padding: 10px;
-  }
-  
-  .footer-center {
-    order: 1;
-    margin-bottom: 10px;
   }
 }
 
-/* === Исправление шапки на домашней странице (header-center) === */
-.header-center img.banner {
-  width: 100% !important;
-  height: auto !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  aspect-ratio: auto !important;
-  display: block;
-}
-
-/* === Лайтбокс === */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 3px solid #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.5);
-  display: block;
-  margin: auto;
-}
-
-.gallery img {
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-
-/* ДОБАВЬТЕ В КОНЕЦ ФАЙЛА maket.css */
-/* ========== МОБИЛЬНЫЙ ФИКС ========== */
-@media (max-width: 900px) {
-  body {
-    padding-top: 5px !important;
-  }
-  
-  header.header {
-    min-height: auto !important;
-    max-height: none !important;
-    height: auto !important;
-  }
-  
-  .header-container {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-}
-
-/* === OPERA DARK + АВТОПО ТЁМНОЙ СИСТЕМЕ (ТОЛЬКО ПК) === */
+/* === DARK MODE === */
 @media (prefers-color-scheme: dark) {
-
-  /* База */
-  html, body {
-    background-color: #0f1115; /* фон Opera */
+  body {
+    background: #0f1115;
     color: #e6e6e6;
   }
 
-  /* Header */
-  .header-left,
-  .header-right,
-  .header-center {
-    background: #16181d;
-  }
-
-  /* Основной макет */
-  main.content {
-    background: transparent;
-  }
-
-  /* Sidebar */
   .sidebar {
     background: #16181d;
   }
 
-  .menu a {
-    color: #d0d0d0;
-  }
-
-  .menu a:hover {
-    background-color: #00c853; /* opera green */
-    color: #ffffff;
-  }
-
-  .menu a.active {
-    background-color: #00c853;
-    color: #ffffff;
-  }
-
-  /* Статья */
   .article {
     background: #1b1e24;
-    color: #e6e6e6;
-    box-shadow: 0 0 18px rgba(0,0,0,0.85);
   }
 
-  .article h1,
-  .article h2,
-  .article h3 {
-    color: #ffffff;
+  .menu a {
+    color: #ccc;
   }
 
-  .article p {
-    color: #dcdcdc;
+  .menu a:hover,
+  .menu a.active {
+    background: #00c853;
+    color: #fff;
   }
 
-  /* Картинки */
-  .article img,
-  .gallery img {
-    box-shadow: 0 6px 18px rgba(0,0,0,0.9);
-  }
-
-  /* Галерея hover */
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-
-  /* Footer */
   .footer {
-.footer {
-  background-color: #1f2f2b;
-  border-top: 3px solid #2ecc71;
-  color: #e8f5f2;
-}
+    background-color: #1f2f2b;
+    border-top: 3px solid #2ecc71;
   }
-
-  .phone-number {
-    color: #e6e6e6;
-  }
-
-  .whatsapp-text {
-    color: #00c853;
-  }
-
-  /* SEO текст */
-  p.seo-small {
-    color: #a8abb3 !important;
-    opacity: 1;
-  }
-
 }
 
 
