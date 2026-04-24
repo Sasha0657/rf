@@ -591,6 +591,21 @@ p.seo-small {
 
 
 
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .footer {
+    background: linear-gradient(135deg, #1a2634 0%, #0f1722 100%);
+  }
+  .ad-text {
+    color: #cbd5e0;
+  }
+  .phone-number {
+    background: rgba(37, 211, 102, 0.2);
+    color: #e8e8e8;
+  }
+}
+
+
+
 
 
 
