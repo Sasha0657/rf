@@ -340,9 +340,9 @@ main.content {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-background-color: #f8f9fa;
-color: #212529;
-border-top: 3px solid #dee2e6;
+background-color: #1f2f2b;
+color: #e8f5f2;
+border-top: 3px solid #2ecc71;
   padding: 10px 20px;
   font-size: 1rem;  
   margin-top: 30px;
