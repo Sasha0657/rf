@@ -425,10 +425,10 @@ p.seo-small {
     font-size: 18px;
   }
 
- /* Подвал на мобильных */
+  /* Подвал на мобильных */
   .footer {
     flex-direction: column;
-    padding: 16px 16px 20px 16px;  /* увеличил нижний отступ */
+    padding: 16px 16px 20px 16px;
     margin-top: 30px;
     justify-content: center;
   }
@@ -437,8 +437,7 @@ p.seo-small {
     order: 1;
     gap: 8px;
     row-gap: 4px;
-    margin-bottom: 12px;  /* увеличил отступ снизу */
-    margin: 0 auto;
+    margin: 0 auto 16px auto;  /* центрируем + отступ снизу 16px */
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -447,7 +446,7 @@ p.seo-small {
     font-size: 0.85rem;
     width: 100%;
     text-align: center;
-    margin-bottom: 4px;
+    margin-bottom: 6px;  /* чуть увеличил */
   }
   
   .pulsing-icon {
@@ -469,8 +468,7 @@ p.seo-small {
     transform: none;
     display: flex;
     justify-content: center;
-    margin-top: 8px;  /* добавил отступ сверху */
-    margin-bottom: 4px;  /* добавил отступ снизу */
+    margin-top: 4px;
     order: 2;
   }
 }
