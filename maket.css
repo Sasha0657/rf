@@ -425,11 +425,12 @@ p.seo-small {
     font-size: 18px;
   }
 
-  /* Подвал на мобильных */
+ /* Подвал на мобильных */
   .footer {
     flex-direction: column;
     padding: 16px 16px 12px 16px;
     margin-top: 30px;
+    justify-content: center; /* Добавить для мобильных */
   }
   
   .footer-center {
@@ -437,6 +438,7 @@ p.seo-small {
     gap: 8px;
     row-gap: 4px;
     margin-bottom: 8px;
+    margin: 0 auto; /* Центрирование на мобильных */
     justify-content: center;
   }
   
