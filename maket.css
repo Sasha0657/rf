@@ -387,7 +387,7 @@ p.seo-small {
     font-size: 18px;
   }
 
-/* === Подвал — универсальный (светлая/тёмная тема) === */
+/* ================= Подвал — универсальный (светлая/тёмная тема) ======================= */
 .footer {
   position: relative;
   background: linear-gradient(135deg, #e8edf2 0%, #d5dce3 100%) !important;
