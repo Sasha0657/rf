@@ -1,4 +1,4 @@
-/* === БАЗА === */
+/* === Базовые настройки === */
 * {
   box-sizing: border-box;
 }
@@ -10,71 +10,99 @@ html, body {
   background-color: #fafafa;
   color: #222;
   overflow-x: hidden;
+  width: 100%;
 }
 
-/* === КОНТЕЙНЕР === */
+/* === Общий контейнер === */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
+  width: 100%;
 }
 
-/* === HEADER === */
+/* === Шапка (Desktop) === */
 header.header {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  gap: 10px;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
+  gap: 10px;
+  overflow: hidden;
+  height: auto;
+  max-height: 250px;
 }
 
 .header-container {
   display: flex;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   gap: 10px;
 }
 
 .header-left {
+  flex: 0 0 auto;
   width: 250px;
   aspect-ratio: 1 / 1;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .img-01 {
   width: 100%;
   max-width: 260px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  display: block;
   margin: 20px auto;
 }
 
 .header-right {
-  flex: 1;
+  flex: 1 1 auto;
+  width: calc(100% - 260px);
   aspect-ratio: 16 / 9;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-.header-right img,
-.header-left img {
+.header-left img.banner,
+.header-right img.banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
-/* === LAYOUT === */
+.header-center img.banner {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  aspect-ratio: auto !important;
+  display: block;
+}
+
+/* === Основной макет === */
 main.content {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 20px;
   max-width: 1200px;
   margin: 20px auto;
+  padding: 0;
+  width: 100%;
 }
 
-/* === SIDEBAR === */
+/* === Боковое меню === */
 .sidebar {
   background: #f2f2f2;
   border-radius: 10px;
@@ -95,51 +123,62 @@ main.content {
 }
 
 .menu a {
+  display: block;
   padding: 10px;
   text-decoration: none;
   color: #222;
   border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
   font-size: 20px;
 }
 
 .menu a:hover,
 .menu a.active {
   background-color: #25D366;
-  color: #fff;
+  color: white;
 }
 
-/* === ARTICLE === */
+.menu a.active {
+  font-weight: bold;
+}
+
+/* === Статья === */
 .article {
-  background: #fff;
+  background: white;
   border-radius: 10px;
   padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-.article h1 {
+.article h1.title {
   text-align: center;
+  margin-top: 0;
 }
 
 .article p {
-  line-height: 1.6;
   text-align: justify;
+  line-height: 1.6;
 }
 
-/* === FLOAT IMAGES === */
 .article img.float-left {
   float: left;
   width: 40%;
+  max-width: 350px;
   margin: 0 20px 10px 0;
   border-radius: 10px;
+  height: auto;
 }
 
 .article img.float-right {
   float: right;
   width: 40%;
+  max-width: 350px;
   margin: 0 0 10px 20px;
   border-radius: 10px;
+  height: auto;
 }
 
-/* === GALLERY === */
+/* === Галерея === */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -153,22 +192,28 @@ main.content {
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-/* === FOOTER === */
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* === Footer === */
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-
-  background-color: #1f2f2b;
-  color: #e8f5f2;
-  border-top: 3px solid #2ecc71;
-
+  background-color: #222;
+  color: #fff;
   padding: 10px 20px;
-  margin: 30px auto 0;
+  font-size: 1rem;
+  border-top: 3px solid #555;
+  margin-top: 30px;
   max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 0 0 10px 10px;
 }
 
@@ -186,9 +231,9 @@ main.content {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .whatsapp-text {
@@ -198,88 +243,251 @@ main.content {
 
 .phone-number {
   color: #fff;
+  margin-left: 8px;
 }
 
-/* === SEO TEXT === */
-.seo-small {
-  font-size: 0.78rem;
+.informer-link img {
+  border-radius: 8px;
+}
+
+/* === SEO текст === */
+p.seo-small {
+  font-size: 0.78rem !important;
+  line-height: 1.28 !important;
   opacity: 0.9;
+  margin: 8px 0 !important;
+  color: inherit !important;
+  display: block !important;
 }
 
-/* === MOBILE === */
+/* === Лайтбокс === */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 3px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  display: block;
+  margin: auto;
+}
+
+/* ========================================== */
+/* === ЕДИНЫЙ БЛОК ДЛЯ ВСЕХ МОБИЛЬНЫХ ПРАВИЛ === */
+/* ========================================== */
 @media (max-width: 900px) {
+  body {
+    padding-top: 5px !important;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  /* Шапка */
+  header.header,
+  .header-container {
+    display: block !important;
+    width: 100%;
+  }
+
   header.header {
-    flex-direction: column;
-    margin-top: 5px;
+    margin: 5px 0 10px 0 !important;
+    min-height: auto !important;
+    max-height: none !important;
+    height: auto !important;
   }
 
   .header-container {
-    flex-direction: column;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .header-left {
+    width: 100%;
+    max-width: 320px;
+    margin: 5px auto 10px auto !important;
+    display: block;
+  }
+
+  .header-left img,
+  .img-01 {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 320px;
+    object-fit: contain;
+    display: block;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
   .header-right {
-    display: none;
+    display: none !important;
   }
 
+  /* Основной контент */
   main.content {
     display: flex;
     flex-direction: column;
+    margin-top: 5px !important;
+    gap: 10px;
     padding: 0 10px;
   }
 
   .sidebar {
     order: -1;
+    margin-top: 0 !important;
+    padding-top: 5px !important;
   }
 
+  .sidebar .divider:first-child {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Картинки в статье */
   .article img.float-left,
   .article img.float-right {
     float: none;
     width: 100%;
+    max-width: 100%;
     margin: 10px 0;
   }
 
+  /* Галерея */
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
   }
 
+  .gallery img {
+    height: auto;
+    max-height: 200px;
+  }
+
+  /* Меню */
+  .menu {
+    gap: 5px;
+  }
+
+  .menu a {
+    padding: 8px;
+    font-size: 18px;
+  }
+
+  /* Футер */
   .footer {
     flex-direction: column;
+    gap: 5px;
     text-align: center;
+    padding: 10px;
+  }
+
+  .footer-center {
+    order: 1;
+    margin-bottom: 10px;
   }
 }
 
-/* === DARK MODE === */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #0f1115;
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+  .header-left {
+    max-width: 280px;
+  }
+
+  .header-left img,
+  .img-01 {
+    max-height: 280px;
+  }
+
+  .menu a {
+    font-size: 16px;
+    padding: 6px;
+  }
+}
+
+/* ========================================== */
+/* === ТЁМНАЯ ТЕМА ТОЛЬКО ДЛЯ ПК === */
+/* ========================================== */
+@media (prefers-color-scheme: dark) and (min-width: 901px) {
+  html, body {
+    background-color: #0f1115;
     color: #e6e6e6;
   }
 
+  .header-left,
+  .header-right,
+  .header-center,
   .sidebar {
     background: #16181d;
   }
 
-  .article {
-    background: #1b1e24;
+  main.content {
+    background: transparent;
   }
 
   .menu a {
-    color: #ccc;
+    color: #d0d0d0;
   }
 
   .menu a:hover,
   .menu a.active {
-    background: #00c853;
-    color: #fff;
+    background-color: #00c853;
+    color: #ffffff;
+  }
+
+  .article {
+    background: #1b1e24;
+    color: #e6e6e6;
+    box-shadow: 0 0 18px rgba(0,0,0,0.85);
+  }
+
+  .article h1,
+  .article h2,
+  .article h3 {
+    color: #ffffff;
+  }
+
+  .article p {
+    color: #dcdcdc;
+  }
+
+  .article img,
+  .gallery img {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.9);
   }
 
   .footer {
-    background-color: #1f2f2b;
-    border-top: 3px solid #2ecc71;
+    background-color: #0c0e12;
+    border-top: 3px solid #2a2d34;
+    color: #e0e0e0;
+  }
+
+  .phone-number {
+    color: #e6e6e6;
+  }
+
+  .whatsapp-text {
+    color: #00c853;
+  }
+
+  p.seo-small {
+    color: #a8abb3 !important;
+    opacity: 1;
   }
 }
-
 
 
 
