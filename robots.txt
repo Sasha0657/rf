@@ -39,7 +39,7 @@ Disallow: /d35.webp
 Disallow: /d36.webp
 Disallow: /p6.png
 Disallow: /dividers_1.png
-
+Disallow: /MAX.jpg
 
 
 
